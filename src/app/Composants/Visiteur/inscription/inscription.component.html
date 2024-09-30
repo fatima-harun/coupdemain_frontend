@@ -37,13 +37,13 @@
    </main>
    <div class="container form-container">
     <div class="form-wrapper col-md-8">
-        <form>
+        <form  enctype="multipart/form-data">
             <div class="row">
                 <!-- Column 1 -->
                 <div class="col-md-6">
                     <div class="mb-3">
                         <label for="nom" class="form-label">Photo</label>
-                        <input type="file" class="form-control" id="photo" placeholder="Choisissez une photo" name="photo" [(ngModel)]="userObject.photo">
+                        <input type="file" class="form-control" id="photo" placeholder="Choisissez une photo" name="photo" accept="image/*" (change)="uploadImage($event)">
                     </div>
                     <div class="mb-3">
                         <label for="nom" class="form-label">Nom</label>
@@ -75,7 +75,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="age" class="form-label">Téléphone</label>
-                        <input type="number" class="form-control" id="age" placeholder="Entrez votre numéro de téléphone" name="telephone" [(ngModel)]="userObject.telephone">
+                        <input type="text" class="form-control" id="age" placeholder="Entrez votre numéro de téléphone" name="telephone" [(ngModel)]="userObject.telephone">
                     </div>
                     <div class="mb-3">
                         <label for="adresse" class="form-label">Adresse</label>
@@ -85,9 +85,8 @@
                         <label for="sexe" class="form-label">Sexe</label> <br>
                         <select class="form-select" id="sexe" name="sexe" [(ngModel)]="userObject.sexe">
                             <option selected>Choisir votre sexe</option>
-                            <option value="masculin">Masculin</option>
-                            <option value="feminin">Féminin</option>
-                            <option value="autre">Autre</option>
+                            <option value="Masculin">Masculin</option>
+                            <option value="Féminin">Féminin</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -98,11 +97,11 @@
             </div>
 
             <div class="text-center mt-4">
-                <button type="submit" class="btn btn-primary" (click)="register()">Envoyer</button>
+                <button (click)="register()">S'inscrire</button>
             </div>
         </form>
-         <!-- Message d'alert  -->
-         @if (alertMessage) {
+        <!-- Message d'alert  -->
+        @if (alertMessage) {
             <div class="mt-3 alert alert-dismissible fade js-alert" role="alert">
                 {{alertMessage}}
                 <button type="button" class="btn-close " data-bs-target="alert" aria-label="Close"></button>
