@@ -1,0 +1,50 @@
+body {
+    background-color: white; 
+}
+header {
+    padding: 10px 0; 
+    background-color: #4A69BD;
+}
+.navbar-nav {
+    flex-direction: row; 
+    margin-left: auto;
+}
+.navbar-nav .nav-link {
+    color: white;
+}
+h1{
+  color: #FED330;
+  text-align: center;
+  font-family: sans-serif;
+ font-size: 2.5rem;
+ font-style: normal;
+ font-weight: 700;
+ line-height: 3.75rem;
+ width: 39rem;
+ margin-top:6rem;
+}
+main{
+    display:flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+}
+.form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+
+footer {
+    background-color: #4A69BD; 
+    color: white; 
+}
+@media (min-width: 768px) {
+    .img-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+

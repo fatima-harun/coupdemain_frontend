@@ -1,0 +1,22 @@
+body {
+    background-color: white; 
+}
+header {
+    padding: 10px 0; 
+    background-color: #4A69BD;
+}
+.navbar-nav {
+    flex-direction: row; 
+    margin-left: auto;
+}
+.navbar-nav .nav-link {
+    color: white;
+}
+
+
+footer {
+    background-color: #4A69BD; 
+    color: white; 
+}
+
+

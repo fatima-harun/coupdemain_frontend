@@ -1,1 +1,64 @@
-<p>portail works!</p>
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="portail.component.css">
+    <title>Portail de Services</title>
+</head>
+
+<body>
+    <header class="text-white">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <img src="assets/img/logo_coupdemain.png" alt="Logo" class="navbar-brand" style="width:4rem; height: auto;"> 
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Missions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Emplois</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Candidats</a></li>
+                        <li class="nav-item"><a class="btn btn-warning ml-3" href="#">Se connecter</a></li>
+                        <li class="nav-item"><a class="btn btn-light ml-2" href="#">S'inscrire</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+       <div class="main-content row mt-5">
+            <!-- Text Content -->
+            <div class="text-content col-md-6 order-md-1 order-1">
+                <h1>
+                    Simplifiez votre vie avec un coup de main : trouvez l'aide idéale pour
+                    chaque tâche domestique.
+                </h1>
+                <p>
+                    Que ce soit pour le ménage, les réparations ou l'entretien, notre
+                    plateforme vous connecte avec les meilleurs candidats pour répondre à
+                    vos besoins spécifiques.
+                </p>
+                <div class="search-section d-flex mt-3">
+                    <input type="text" placeholder="Rechercher un personnel" class="form-control search-input me-2" />
+                    <button class="btn btn-primary btn-search">Rechercher</button>
+                </div>
+            </div>
+
+            <div class="image-section col-md-6 order-md-2 order-2">
+                <img src="assets/img/Group 75.png" alt="Illustration d'aide domestique" class="img-fluid">
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts Bootstrap and Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+
+</html>

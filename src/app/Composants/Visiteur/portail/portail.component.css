@@ -1,0 +1,24 @@
+.container-fluid{
+    background-color: #4A69BD;
+    color:white
+}
+header {
+    padding: 10px 0; 
+    background-color: #4A69BD;
+}
+.navbar-nav {
+    flex-direction: row; 
+    margin-left: auto;
+}
+.navbar-nav .nav-link {
+    color: white;
+}
+h1{
+    line-height: 3.5rem;
+}
+.text-content p{
+    line-height: 2rem;
+}
+.nav-link{
+    color:white
+}

@@ -10,6 +10,8 @@ export const routes: Routes = [
    
     // route visiteur
     {path:"portail",component:PortailComponent},
+
     {path:"connexion",component:ConnexionComponent},
+    
     {path:"inscription",component:InscriptionComponent}
 ];

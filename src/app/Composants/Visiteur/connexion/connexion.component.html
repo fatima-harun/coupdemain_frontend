@@ -1,12 +1,83 @@
-  <form>
-        <div class="mb-3">
-          <label for="email" class="form-label">Adresse email</label>
-          <input type="email" class="form-control" id="email" aria-describedby="emailHelp">
-          <div id="email" class="form-text">We'll never share your email with anyone else.</div>
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coup de Main - Connexion</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="connexion.component.css">
+    <style>
+        @media (min-width: 768px) {
+            .img-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+  <header class="text-white">
+    <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <img src="assets/img/logo_coupdemain.png" alt="Logo" class="navbar-brand" style="width:4rem; height: auto;"> 
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Missions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Guide</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Emplois</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Candidats</a></li>
+                    <li class="nav-item"><a class="btn btn-warning ml-3" href="#">Se connecter</a></li>
+                    <li class="nav-item"><a class="btn btn-light ml-2" href="#">S'inscrire</a></li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+</header>
+    
+    <main class="container text-center my-5">
+        <h1 class="text-warning">Bienvenue de nouveau !</h1>
+        <p class="lead">Nous sommes ravis de vous retrouver ! Connectez-vous à votre espace pour gérer vos candidatures, publier des offres d'emploi, ou explorer les dernières opportunités dans le secteur des services domestiques. Que vous soyez à la recherche de nouveaux talents ou de votre prochaine mission, tout est à portée de clic.</p>
+        <div class="row justify-content-center">
+            <div class="col-md-6 img-container">
+                <img src="assets/img/rafiki.png" alt="Illustration" class="img-fluid mb-3">
+            </div>
+            <div class="col-md-6">
+                <div class="card p-4">
+                    <form #loginForm="ngForm">
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" class="form-control" id="email" [(ngModel)]="userObject.email" name="email" required placeholder="Entrez votre email">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Mot de passe</label>
+                            <input type="password" class="form-control" id="password" [(ngModel)]="userObject.password" name="password" required placeholder="Entrez votre mot de passe">
+                        </div>
+                        <button type="submit" class="btn btn-warning btn-block" (click)="connexion()">Envoyer</button>
+                    </form>
+                     <!-- Message d'alert  -->
+         @if (alertMessage) {
+            <div class="mt-3 alert alert-dismissible fade js-alert" role="alert">
+                {{alertMessage}}
+                <button type="button" class="btn-close " data-bs-target="alert" aria-label="Close"></button>
+            </div>
+
+        }
+                </div>
+            </div>
         </div>
-        <div class="mb-3">
-          <label for="password" class="form-label">Mot de passe</label>
-          <input type="password" class="form-control" id="password">
-        </div>
-        <button type="submit" class="btn btn-primary">Envoyer</button>
-      </form>
+    </main>
+
+    <footer class=" text-white text-center py-3">
+        <p>&copy; 2024 Coup de Main. Tous droits réservés.</p>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
