@@ -4,6 +4,7 @@ import { AuthService } from '../../../Services/auth.service';
 import { UserModel } from '../../../Models/user.model';
 import { FormsModule } from '@angular/forms';
 import { AlertShowMessage } from '../../../Services/alertMessage';
+import { Role } from '../../../Models/role.model';
 
 @Component({
   selector: 'app-connexion',
@@ -23,42 +24,47 @@ export class ConnexionComponent {
 
 
   connexion() {
-    console.log(this.userObject);
-    if (!this.userObject.email || !this.userObject.password) {
-      this.alertMessage = "L'email et le mot de passe sont obligatoires";
-      AlertShowMessage("alert-danger");
-    } else {  
+    if (this.userObject.email && this.userObject.password) {
       this.authService.login(this.userObject).subscribe(
         (response: any) => {
-          console.log(response); // Vérifiez ici la structure de la réponse
-          if (response.success) {
-            localStorage.setItem("infos_Connexion", JSON.stringify(response));
+          console.log(response.access_token);
+          console.log("user",response.user);
   
-            const user = response.user;
-            console.log('Rôle de l\'utilisateur :', user.role); // Vérifiez le rôle ici
+          if (response.user) {
+            localStorage.setItem('access_token', response.access_token);
+            localStorage.setItem('user', JSON.stringify(response.user));
+            console.log(localStorage.getItem('user'));
   
-            if (user.role === "employeur") {
-              console.log('Redirection en cours pour employeur...');
-              this.router.navigateByUrl("/portail");
-            } else if (user.role === "admin") {
-              console.log('Redirection en cours pour admin...');
-              this.router.navigateByUrl("/portail");
-            } else if (user.role === "demandeur_d_emploi") {
-              console.log('Redirection en cours pour demandeur d\'emploi...');
-              this.router.navigateByUrl("/portail");
+            if (response.user.roles) {
+              if (response.user.roles.some((role: Role) => role.name === 'admin')) {
+                this.router.navigateByUrl('portail');
+              } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
+                this.router.navigateByUrl('portail');
+              } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {
+                this.router.navigateByUrl('portail');
+              }
             } else {
-              console.log('Rôle inconnu, aucune redirection.');
+              this.router.navigateByUrl('');
             }
-          }       
+  
+          }
         },
-        (error) => {
-          console.log("les erreurs");
-          console.log(error.error.message);
-          this.alertMessage = error.error.message;
-          AlertShowMessage("alert-danger");
-        }
+       
       );
     }
   }
+  // logout() {
+  //     return this.authService.logout().subscribe(
+  //       (response: any) => {
+  //         console.log(response);
+  //         localStorage.removeItem('access_token');
+  //         localStorage.removeItem('user');
+  //         this.router.navigateByUrl('/login');
+  //       },
+  //       (error) => {
+  //         console.error(error);
+  //       }
+  //     )
+  //   }
   
 }
