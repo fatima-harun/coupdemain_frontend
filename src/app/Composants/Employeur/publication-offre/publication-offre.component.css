@@ -1,0 +1,55 @@
+header {
+    padding: 10px 0; 
+    background-color: #4A69BD;
+}
+.navbar-nav {
+    flex-direction: row; 
+    margin-left: auto;
+}
+.navbar-nav .nav-link {
+    color: white;
+}
+.titre{
+    color: #FED330;
+  font-size: 3rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 2.5rem;
+  width: 47.625rem;
+height: 18.0625rem;
+flex-shrink: 0;
+  }
+  main{
+      display:flex;
+      justify-content: space-evenly;
+      margin-top: 2rem;
+  }
+  .form-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+  }
+  .paragraphe{
+    color: #000;
+  font-family: Figtree;
+  font-size: 1.25rem;
+ font-style: normal;
+ font-weight: 300;
+ line-height: 2.5rem;
+ width: 47.625rem;
+  }
+  
+  
+  
+  footer {
+      background-color: #4A69BD; 
+      color: white; 
+  }
+  @media (min-width: 768px) {
+      .img-container {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+      }
+  }

@@ -27,19 +27,22 @@ export class ConnexionComponent {
     if (this.userObject.email && this.userObject.password) {
       this.authService.login(this.userObject).subscribe(
         (response: any) => {
+
           console.log(response.access_token);
-          console.log("user",response.user);
+          console.log("user",response.user.nom);
   
           if (response.user) {
-            localStorage.setItem('access_token', response.access_token);
             localStorage.setItem('user', JSON.stringify(response.user));
-            console.log(localStorage.getItem('user'));
+            localStorage.setItem('role', response.user.roles[0].name);
+            localStorage.setItem('access_token', response.access_token);
+            console.log(localStorage.getItem('role'));
+            // private redirectionrole(role_id)
   
             if (response.user.roles) {
               if (response.user.roles.some((role: Role) => role.name === 'admin')) {
                 this.router.navigateByUrl('portail');
               } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
-                this.router.navigateByUrl('portail');
+                this.router.navigateByUrl('offre');
               } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {
                 this.router.navigateByUrl('portail');
               }

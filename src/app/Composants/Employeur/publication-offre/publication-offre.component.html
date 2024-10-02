@@ -3,9 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Formulaire de publication d'offre d'emploi</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="publication-offre.component.css">
 </head>
 <body>
+    <header class="text-white">
+        <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <img src="assets/img/logo_coupdemain.png" alt="Logo" class="navbar-brand" style="width:4rem; height: auto;"> 
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav ml-auto">
+                        <li class="nav-item"><a class="nav-link" href="#">Accueil</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Missions</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Guide</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Emplois</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Candidats</a></li>
+                        <li class="nav-item"><a class="btn btn-warning ml-3" href="#">Se connecter</a></li>
+                        <li class="nav-item"><a class="btn btn-light ml-2" href="#">S'inscrire</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div><img src="assets/img/Character (1).png" alt=""></div>
+        <div>
+           <p class="paragraphe">
+           <span class="titre">Prêt à Embaucher</span> <br>
+            Déposez vos offres d'emploi sur notre plateforme et 
+            accédez instantanément à un vivier de candidats qualifiés 
+            et motivés. Grâce à notre interface simple et intuitive, 
+            créez, gérez et diffusez vos annonces en quelques minutes,
+             tout en optimisant leur visibilité auprès des profils recherchés.
+              Ne perdez plus de temps, publiez votre offre dès maintenant et
+               recrutez le talent idéal en un clin d'œil !</p> 
+        </div>
+       </main>
+       
+       <div class="container form-container">
+        <div class="form-wrapper col-md-8">
+            <form enctype="multipart/form-data">
+                <div class="row">
+                    <!-- Column 1 -->
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label for="service" class="form-label">Type de service</label>
+                            <select name="service" id="service"  class="form-control" [(ngModel)]="OffreObject.service_id">
+                                @for (service of tabService; track $index) {
+                                    <option [value]="service.id">{{service.libelle}}</option>
+                                }
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description de l'offre</label>
+                            <input type="text" class="form-control" id="description" placeholder="Décrivez l'offre" name="description" [(ngModel)]="OffreObject.description">
+                        </div>
+                        <div class="mb-3">
+                            <label for="lieu" class="form-label">Lieu de travail</label>
+                            <input type="text" class="form-control" id="lieu" placeholder="Indiquez la localisation" name="lieu"[(ngModel)]="OffreObject.lieu" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="salaire" class="form-label">Rémunération</label>
+                            <input type="number" class="form-control" id="salaire" placeholder="Indiquez le salaire" name="salaire" [(ngModel)]="OffreObject.salaire">
+                        </div>
+                        <div class="mb-3">
+                            <label for="profil" class="form-label w-100">Profil recherché</label>
+                            <textarea id="profil" class="form-control" name="profil" placeholder="Indiquez le profil recherché" [(ngModel)]="OffreObject.profil"></textarea>
+                        </div>
+
+                    </div>
     
+                    <!-- Column 2 -->
+      <div class="col-md-6">
+        <div class="mb-3">
+        <label for="date_debut" class="form-label">Date de début</label>
+        <input type="date" class="form-control" id="date_debut" name="date_debut" [(ngModel)]="OffreObject.date_debut">
+         </div>
+    <div class="mb-3">
+        <label for="date_fin" class="form-label">Date de fin</label>
+        <input type="date" class="form-control" id="date_fin" name="date_fin" [(ngModel)]="OffreObject.date_fin">
+    </div>
+    <div class="mb-3">
+        <label for="date_limite" class="form-label">Date limite pour postuler</label>
+        <input type="date" class="form-control" id="date_limite" name="date_limite" [(ngModel)]="OffreObject.date_limite">
+    </div>
+    <div class="mb-3">
+        <label for="horaire" class="form-label">Horaire</label>
+        <input type="string" class="form-control" id="date_limite" name="horaire" [(ngModel)]="OffreObject.horaire">
+    </div>
+    <div class="mb-3"> <!-- Correction de l'élément div -->
+        <label for="nombre_postes" class="form-label">Nombre de postes à pourvoir</label>
+        <input type="number" class="form-control" id="nombre_postes" placeholder="Indiquez le nombre de postes" name="nombre_postes" [(ngModel)]="OffreObject.nombre_postes">
+    </div>
+</div>
+
+                </div>
+                <div class="text-center mt-4">
+                    <button type="submit" class="btn btn-primary " (click)="addOffre()">Publier l'offre</button> 
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Message d'alert  -->
+
 </body>
 </html>

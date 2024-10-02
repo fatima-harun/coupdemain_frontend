@@ -1,5 +1,6 @@
 export interface OffreModel{
     id?:number,
+    user_id?:number,
     description?:string,
     lieu?:string,
     salaire?:string,
@@ -9,4 +10,5 @@ export interface OffreModel{
     date_fin?:string,
     date_limite?:string,
     profil?:string,
+    service_id?: string,
 }
