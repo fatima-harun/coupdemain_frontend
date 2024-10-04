@@ -4,11 +4,12 @@ import { UserModel } from '../../../Models/user.model';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [RouterLink, FormsModule],
+  imports: [RouterLink, FormsModule,HeaderComponent],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.css'
 })

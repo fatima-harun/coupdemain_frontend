@@ -5,11 +5,12 @@ import { UserModel } from '../../../Models/user.model';
 import { FormsModule } from '@angular/forms';
 import { AlertShowMessage } from '../../../Services/alertMessage';
 import { Role } from '../../../Models/role.model';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [RouterLink, FormsModule,RouterModule],
+  imports: [RouterLink, FormsModule,RouterModule,HeaderComponent],
   templateUrl: './connexion.component.html',
   styleUrl: './connexion.component.css'
 })

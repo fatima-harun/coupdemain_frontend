@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <table *ngIf="tabOffres.length > 0">
+        <tr *ngFor="let offre of tabOffres; let i = index">
+          <td>{{ offre.lieu }}</td>
+          <td>{{ offre.description }}</td>
+          <ul>
+            <li *ngFor="let service of offre.services">{{ service.libelle }}</li> <!-- Affichage du libellé du service -->
+        </ul>
+        </tr>
+      </table>
+      <p *ngIf="tabOffres.length === 0">Aucune offre disponible pour le moment.</p>
+      
+      
+</body>
+</html>

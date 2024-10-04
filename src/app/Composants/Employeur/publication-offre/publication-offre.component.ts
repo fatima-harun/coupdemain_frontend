@@ -5,11 +5,13 @@ import { ServiceModel } from '../../../Models/service.model';
 import { FormsModule } from '@angular/forms';
 import Swal from 'sweetalert2';
 import { ServiceService } from '../../../Services/service.service';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-publication-offre',
   standalone: true,
-  imports: [FormsModule],
+  imports: [FormsModule,CommonModule,HeaderComponent],
   templateUrl: './publication-offre.component.html',
   styleUrl: './publication-offre.component.css'
 })
@@ -23,9 +25,11 @@ export class PublicationOffreComponent implements OnInit {
   tabOffres: OffreModel[] = [];
   tabService:ServiceModel[] = [];
   OffreObject: OffreModel = {};
+  user: any; // Pour stocker l'objet utilisateur
 
   ngOnInit(): void {
     this.fetchService();
+    this.user = this.getUser(); // Récupération de l'objet utilisateur lors de l'initialisation
   }
 
   // Récupération de tous les services
@@ -120,6 +124,11 @@ export class PublicationOffreComponent implements OnInit {
   // Méthode pour récupérer le token depuis le localStorage
   getToken(): string | null {
     return localStorage.getItem('access_token');
+  }
+    // Méthode pour récupérer l'objet utilisateur depuis le localStorage
+  getUser(): any {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null; // Retourne l'objet utilisateur ou null
   }
 
   // Methode pour stocker l'objet offre 

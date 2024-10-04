@@ -1,0 +1,47 @@
+nav{
+    background-color: #4A69BD;
+    height: 5.56rem
+}
+.nav-link{
+    color:white
+}
+.btn-connect{
+    border-radius: 1.25rem;
+background: #FED330;
+width: 7.25rem;
+height:  2.375rem;
+color:white;
+border:none
+}
+.btn-register{
+    width: 7.25rem;
+    height:  2.375rem;
+   color:white;
+   border:none;
+   background-color: #4A69BD;
+   border-radius: 1.25rem;
+   border: 0.0625rem solid #FFF;
+}
+ul{
+    gap:2rem
+}
+form{
+    display:flex;
+    gap:0.5rem
+}
+.navbar {
+    background-color: #4A69BD; 
+}
+.navbar-collapse {
+    background-color: #4A69BD;
+    width:200rem 
+}
+
+.navbar-toggler {
+    border: none; 
+}
+
+.navbar-toggler-icon {
+    background-color: white; 
+}
+
