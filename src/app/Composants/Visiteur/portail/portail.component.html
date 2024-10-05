@@ -3,13 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
     <link rel="stylesheet" href="portail.component.css">
     <title>Coup de main</title>
 </head>
 <body>
     <app-header></app-header>
 
-    
+    <main>
+        <div class="titre">
+            <h1>Simplifiez votre vie avec un coup de main : Trouvez l'aide idéale pour chaque tâche domestique.</h1>
+            <p class="paragraphe1">Que ce soit pour le ménage, les réparations ou l'entretien,
+                 notre plateforme vous connecte avec les meilleurs 
+                 candidats pour répondre à vos besoins spécifiques.</p>
+            <div class="btn-service">
+                 <button class="btn btn-primary me-4 mb-4">
+                    <i class="fas fa-car me-3 mt-1"></i> Chauffeur
+                </button>
+                <button class="btn btn-primary me-4 mb-4">
+                    <i class="fas fa-shield-alt me-3 mt-1"></i> Gardien
+                </button>
+                <button class="btn btn-primary me-4 mb-4 ">
+                    <i class="fas fa-baby me-3 mt-1"></i> Nounou
+                </button>
+                <button class="btn btn-primary me-4 mb-4">
+                    <i class="fas fa-broom me-3 mt-1"></i> Aide Ménagère
+                </button> <br>
+                <button class="btn btn-primary me-4 ">
+                    <i class="fas fa-utensils me-3 mt-1"></i> Cuisinier
+                </button>
+                <button class="btn btn-primary  me-4">
+                    <i class="fas fa-book-reader me-3 mt-1"></i> Répétiteur
+                </button>
+                <button class="btn btn-primary  me-4">
+                    <i class="fas fa-user-nurse me-3 mt-1"></i> Aide Soignante
+                </button>
+                <button class="btn btn-primary me-4">
+                    <i class="fas fa-tree me-3 mt-1"></i> Jardinier
+                </button>
+            </div>
+        </div>
+        <div class="titre-img">
+            <img src="assets/img/Group 75.png" alt="">
+        </div>
+    </main>
+    <div class="titre2">
+        <h2>Nos missions</h2>
+       <p class="paragraphe2 ">Découvrez une nouvelle façon de gérer votre foyer avec des services domestiques à votre portée.</p>
+    </div>
+    <div class="container">
+        <div class="box1">
+            <div>
+                <img src="assets/img/Group 157.png" alt="Description de l'image 01">
+            </div>
+            <div>
+                <p class="titre3"><span>01</span><br>Mettre en rapport les employeurs avec les personnels de maison</p>
+                <p class="paragraphe3">Notre mission première est de simplifier la mise en relation entre les familles
+                    et le personnel qualifié de maison. Nous créons une plateforme sécurisée 
+                    et transparente où les employeurs peuvent facilement trouver des professionnels 
+                    de confiance pour répondre à leurs besoins spécifiques, qu’il s’agisse d’un entretien
+                    ménager, de la garde d’enfants, ou d’autres services domestiques essentiels.
+                    Grâce à notre système de vérification rigoureux, nous assurons que chaque 
+                    profil est soigneusement sélectionné afin de garantir sérénité et sécurité 
+                    pour toutes les parties.</p>
+            </div>
+        </div>
+        <div class="box2">
+            <div>
+                <p class="titre3"><span>02</span><br>Faciliter la recherche d'emploi dans le secteur domestique</p>
+                <p class="paragraphe4">En parallèle, nous nous engageons à faciliter l’accès aux opportunités d’emploi 
+                    dans le secteur domestique. Notre plateforme permet aux demandeurs d’emploi 
+                    de postuler rapidement à des offres pertinentes, avec un système simple et 
+                    intuitif pour mettre en avant leurs compétences. Nous offrons un espace où 
+                    les professionnels du secteur peuvent non seulement trouver un emploi, mais 
+                    aussi se connecter avec des employeurs qui valorisent leur expérience et leur 
+                    expertise. Que vous soyez à la recherche d’une première opportunité ou d’un 
+                    poste à long terme, nous simplifions vos démarches pour que vous puissiez vous 
+                    concentrer sur ce qui compte.</p>
+            </div>
+            <div>
+                <img src="assets/img/Group 158.png" alt="Description de l'image 02">
+            </div>
+        </div>
+    </div>
+    <h2 class="emploi">Offres d'emploi les plus récentes</h2>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4" *ngFor="let offre of offres.slice(0, 3)">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <p class="card-text">
+                            <span *ngFor="let service of offre.services" class="service">{{ service.libelle }} </span>
+                        </p>
+                        <p>{{ offre.description?.substring(0, 100) }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text">
+                                <i class="fas fa-map-marker-alt" style="color: #FFD700;"></i> 
+                                {{ offre.lieu }}
+                            </p>
+                            <p class="card-text">
+                                <i class="fas fa-clock" style="color: #FFD700;"></i> 
+                                {{ offre.horaire }}
+                            </p>
+                        </div>
+                        <hr>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <p class="card-text">
+                                <i class="fas fa-dollar-sign" style="color: #FFD700;"></i> 
+                                {{ offre.salaire }}
+                            </p>
+                            <a class="btn_vu">Voir</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="lien_offre"><a href="">Voir toutes les offres</a></p>
 </body>
 </html>

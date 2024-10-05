@@ -1,0 +1,159 @@
+h1{
+    color: #4A69BD;
+font-family: sans-serif;
+font-size: 2rem; 
+font-style: normal;
+font-weight: 500;
+line-height: 3.4375rem; 
+width: 40.6875rem; 
+height: 11rem; 
+margin-top:3.69rem
+}
+.paragraphe1{
+    color: #000;
+font-family: sans-serif;
+font-size: 1rem; 
+font-style: normal;
+font-weight: 500;
+line-height: 1.875rem; 
+width: 39rem;  
+height: 4rem;  
+}
+main{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 4.625rem;
+}
+.btn-primary{
+    border:none;
+   background: #FED330;
+   box-shadow: 0px 0.0625rem 0.125rem 0px rgba(16, 24, 40, 0.05); 
+  display: inline-flex;
+  padding: 0.625rem 1rem; 
+border-radius: 1.25rem;
+
+}
+.titre-img{
+    margin-top:1.375rem
+}
+/* style de mission */
+.titre2{
+    text-align: center;
+}
+.titre2 h2{
+    color: #4A69BD;
+    font-size: 2rem;              
+   font-style: normal;
+  font-weight: 600;
+  line-height: 1.875rem;       
+  font-family:sans-serif;
+  margin-top:5rem;
+  margin-bottom:1rem
+}
+.titre2 p{
+    color: #000;
+   text-align: center;
+   font-family: sans-serif;
+  font-size: 1.7rem;
+  font-style: normal;
+  font-weight: 500;
+  width: 53rem;
+  height: 8.5625rem;
+  margin-left:21rem
+}
+span {
+    color: #FED330;
+    font-family: sans-serif;
+    font-size: 2.5rem;            
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.8125rem;       
+}
+.titre3 {
+    color: rgba(74, 105, 189, 0.90);
+    font-family: sans-serif;
+    font-size: 2rem;             
+    font-style: normal;
+    font-weight: 500;
+    line-height: 2.8125rem;       
+    width: 42rem;                
+    height: 9.8125rem;           
+}
+.paragraphe3{
+    color: #000;
+font-family: sans-serif;
+font-size: 0.875rem;              
+font-style: normal;
+font-weight: 300;
+line-height: 2.1875rem;           
+display: flex;
+width: 44rem;                     
+height: 11.1875rem;               
+flex-direction: column;
+justify-content: center;
+}
+.paragraphe4{
+    color: #000;
+font-family: sans-serif;
+font-size: 0.875rem;             
+font-style: normal;
+font-weight: 300;
+line-height: 2.1875rem;         
+display: flex;
+width: 44rem;                     
+height: 11.1875rem;              
+flex-direction: column;
+justify-content: center;
+}
+.box1{
+    display:flex;
+    gap:3rem;
+    margin-bottom:4rem
+}
+.box2{
+    display:flex;
+    gap:3rem
+}
+.emploi{
+    text-align: center;
+    color:#4A69BD;
+    text-align: center;
+   font-size: 2rem;              
+   font-style: normal;
+  font-weight: 600;
+  line-height: 1.875rem;       
+  font-family:sans-serif;
+  margin-top:4rem;
+  margin-bottom:4rem
+}
+.container1{
+    margin-bottom: 3rem;
+}
+.lien_offre{
+    text-align: right;
+    margin-right:7.5rem
+}
+.lien_offre a{
+    color:#FED330
+}
+.btn_vu{
+    color:#FED330
+}
+.service{
+    color: #000;
+    font-family: sans-serif;
+    font-size: 1.5rem; 
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    width: 11.6875rem; 
+    height: 1.8125rem; 
+}
+hr{
+    color:#FED330
+}
+.card-body{
+    border-radius: 20px;
+border: 1px solid var(--yellow, #FED330);
+background: #FFF;
+}

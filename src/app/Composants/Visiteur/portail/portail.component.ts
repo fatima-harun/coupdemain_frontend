@@ -4,13 +4,14 @@ import { OffreModel } from '../../../Models/offre.model';
 import { ListeOffresComponent } from '../../Employeur/list-offre/list-offre.component';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../header/header.component';
+import { TruncatePipe } from '../../../truncate.pipe';
 
 @Component({
   selector: 'app-portail',
   templateUrl: './portail.component.html',
   styleUrls: ['./portail.component.css'],
   standalone: true,
-  imports: [ListeOffresComponent,CommonModule,HeaderComponent],
+  imports: [ListeOffresComponent,CommonModule,HeaderComponent,TruncatePipe],
 })
 export class PortailComponent implements OnInit {
   private offreService = inject(OffreService);
