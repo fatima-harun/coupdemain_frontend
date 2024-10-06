@@ -16,6 +16,6 @@ export interface OffreModel{
    
 
 
-    // Ajoute la propriété services pour contenir un tableau de services
+    //  la propriété services pour contenir un tableau de services
     services?: ServiceModel[];  // Utilise un tableau de ServiceModel
 }

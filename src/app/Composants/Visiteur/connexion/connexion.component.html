@@ -6,57 +6,43 @@
     <title>Coup de Main - Connexion</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="connexion.component.css">
-    <style>
-        @media (min-width: 768px) {
-            .img-container {
-                display: flex;
-                justify-content: center;
-                align-items: center;
-            }
-        }
-    </style>
 </head>
 <body>
   <app-header></app-header>
-    <main class="container text-center my-5">
-        <h1 class="text-warning">Bienvenue de nouveau !</h1>
-        <p class="lead">Nous sommes ravis de vous retrouver ! Connectez-vous à votre espace pour gérer vos candidatures, publier des offres d'emploi, ou explorer les dernières opportunités dans le secteur des services domestiques. Que vous soyez à la recherche de nouveaux talents ou de votre prochaine mission, tout est à portée de clic.</p>
-        <div class="row justify-content-center">
-            <div class="col-md-6 img-container">
-                <img src="assets/img/rafiki.png" alt="Illustration" class="img-fluid mb-3">
-            </div>
-            <div class="col-md-6">
-                <div class="card p-4">
-                    <form #loginForm="ngForm">
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" [(ngModel)]="userObject.email" name="email" required placeholder="Entrez votre email">
-                        </div>
-                        <div class="form-group">
-                            <label for="password">Mot de passe</label>
-                            <input type="password" class="form-control" id="password" [(ngModel)]="userObject.password" name="password" required placeholder="Entrez votre mot de passe">
-                        </div>
-                        <button type="submit" class="btn btn-warning btn-block" (click)="connexion()">Envoyer</button>
-                    </form>
-                     <!-- Message d'alert  -->
-         @if (alertMessage) {
-            <div class="mt-3 alert alert-dismissible fade js-alert" role="alert">
-                {{alertMessage}}
-                <button type="button" class="btn-close " data-bs-target="alert" aria-label="Close"></button>
-            </div>
-
+  <main class="container text-center my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 img-container">
+            <img src="assets/img/jardinier.png" alt="Illustration" class="img-fluid mb-3">
+        </div>
+        <div class="col-md-6 ">
+            <div class=" carte p-4" >
+                <h1>Bienvenue 👋</h1>
+                <p class="paragraphe1">Que vous soyez employeur ou personnel de maison,
+                     connectez-vous à votre compte et profitez des 
+                     nombreuses opportunités qui s'offrent à vous</p>
+                <form #loginForm="ngForm">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" class="form-control" id="email" [(ngModel)]="userObject.email" name="email" required placeholder="Entrez votre email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Mot de passe</label>
+                        <input type="password" class="form-control" id="password" [(ngModel)]="userObject.password" name="password" required placeholder="Entrez votre mot de passe">
+                    </div>
+                    <button type="submit" class="btn  btn-block mb-3" (click)="connexion()">Envoyer</button>
+                </form>
+                <p class="paragraphe2">Vous n'avez pas de compte ! <span>Inscrivez-vous</span></p>
+                 <!-- Message d'alert  -->
+     @if (alertMessage) {
+        <div class="mt-3 alert alert-dismissible fade js-alert" role="alert">
+            {{alertMessage}}
+            <button type="button" class="btn-close " data-bs-target="alert" aria-label="Close"></button>
+        </div>
         }
-                </div>
             </div>
         </div>
-    </main>
+    </div>
+</main>
 
-    <footer class=" text-white text-center py-3">
-        <p>&copy; 2024 Coup de Main. Tous droits réservés.</p>
-    </footer>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>

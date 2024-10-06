@@ -1,0 +1,81 @@
+.en_tete{
+    background-image: url("/../../../../assets/img/Group 166.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 20.19rem;
+}
+h1{
+    text-align:center;
+    color:white;
+    padding-top: 7rem;
+}
+/* Style de base pour la carte */
+.card {
+    border: 1px solid #f6d200; /* Bordure jaune */
+    border-radius: 10px; /* Bordure arrondie */
+    padding: 20px;
+    max-width: 500px;
+    margin: 20px auto;
+    background-color: #fff;
+    font-family: Arial, sans-serif;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  }
+  
+  .card-body {
+    padding: 10px;
+  }
+  
+  .card-title {
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    color: #000;
+  }
+  
+  .card-text {
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 20px;
+  }
+  
+  .card-details {
+    display: flex;
+    justify-content: space-between;
+    color: #f6d200; /* Couleur jaune */
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+  }
+  
+  .card-details i {
+    margin-right: 5px;
+  }
+  
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .price {
+    color: #f6d200;
+    font-size: 1.1rem;
+  }
+  
+  .view-link {
+    text-decoration: none;
+    color: #f6d200;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+  
+  .view-link:hover {
+    text-decoration: underline;
+  }
+  
+  /* Ajout de quelques ajustements responsives */
+  @media (max-width: 768px) {
+    .card {
+      max-width: 100%;
+      padding: 15px;
+    }
+  }
+  

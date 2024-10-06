@@ -7,20 +7,28 @@ nav{
 }
 .btn-connect{
     border-radius: 1.25rem;
-background: #FED330;
-width: 7.25rem;
-height:  2.375rem;
-color:white;
-border:none
+    background: #FED330;
+   width: 7.25rem;
+   height:  2.375rem;
+  border:none;
+  text-decoration: none;
+}
+.btn-register a{
+ text-decoration: none;
+ color:white
+}
+.btn-connect a{
+    text-decoration: none;
+    color:white
 }
 .btn-register{
     width: 7.25rem;
     height:  2.375rem;
-   color:white;
    border:none;
    background-color: #4A69BD;
    border-radius: 1.25rem;
    border: 0.0625rem solid #FFF;
+   text-decoration: none;
 }
 ul{
     gap:2rem

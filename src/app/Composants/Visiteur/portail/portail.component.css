@@ -157,3 +157,88 @@ hr{
 border: 1px solid var(--yellow, #FED330);
 background: #FFF;
 }
+.card{
+    border:none;
+    height: 16.625rem;
+}
+.card-text{
+    padding-bottom: 0;
+    padding-top: 0;
+}
+/* Styles globaux */
+body {
+    margin: 0;
+    font-family: sans-serif;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #4A69BD;
+    padding: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 1rem;
+}
+
+.nav-links a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.nav-links a:hover {
+    text-decoration: underline;
+}
+
+/* Footer */
+.footer {
+    background-color: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 2rem;
+}
+
+/* Responsivité */
+@media (max-width: 768px) {
+    .nav-links {
+        flex-direction: column;
+    }
+    
+    .titre {
+        text-align: center;
+    }
+
+    .paragraphe1 {
+        text-align: center;
+    }
+
+    .btn-service {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .container {
+        flex-direction: column;
+    }
+
+    .box1, .box2 {
+        flex-direction: column;
+    }
+
+    .titre2 {
+        text-align: center;
+    }
+
+    .emploi {
+        text-align: center;
+    }
+}
+
