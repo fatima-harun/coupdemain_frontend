@@ -25,7 +25,7 @@ export class ConnexionComponent {
 
 
   connexion() {
-    if (this.userObject.email && this.userObject.password) {
+    if (this.userObject.nom_utilisateur && this.userObject.password) {
       this.authService.login(this.userObject).subscribe(
         (response: any) => {
 

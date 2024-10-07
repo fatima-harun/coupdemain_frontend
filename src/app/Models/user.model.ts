@@ -4,7 +4,7 @@ export interface UserModel{
     nom?:string,
     prenom?:string,
     email?:string,
-    CNI?:string,
+    nom_utilisateur?:string,
     sexe?:string,
     role?:string,
     telephone?:string,

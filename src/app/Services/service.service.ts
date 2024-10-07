@@ -20,7 +20,8 @@ export class ServiceService {
         return this.http.get(`${apiUrl}/services`);
     }
     
-
+    
+      
     // Methode pour mettre a jour un service
     updateService(id:any, Service:any){
         return this.http.post(`${apiUrl}/services/${id}`, Service);

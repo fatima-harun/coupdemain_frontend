@@ -33,7 +33,7 @@ export class InscriptionComponent {
     // Utilisation de la coalescence nulle pour s'assurer que les valeurs sont définies
     formData.append('nom', this.userObject.nom ?? ''); // Utiliser '' si nom est undefined
     formData.append('prenom', this.userObject.prenom ?? ''); // Utiliser '' si prenom est undefined
-    formData.append('CNI', this.userObject.CNI ?? ''); // Utiliser '' si CNI est undefined
+    formData.append('nom_utilisateur', this.userObject.nom_utilisateur ?? ''); // Utiliser '' si CNI est undefined
     formData.append('email', this.userObject.email ?? ''); // Utiliser '' si email est undefined
     formData.append('role', this.userObject.role ?? ''); // Utiliser '' si role est undefined
     formData.append('sexe', this.userObject.sexe ?? ''); // Utiliser '' si sexe est undefined

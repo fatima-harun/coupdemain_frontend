@@ -5,6 +5,7 @@ import { PortailComponent } from './Composants/Visiteur/portail/portail.componen
 import { PublicationOffreComponent } from './Composants/Employeur/publication-offre/publication-offre.component';
 import { AuthEmployeurGuard } from './Guard/employeur.guard';
 import { ListeOffresComponent } from './Composants/Employeur/list-offre/list-offre.component';
+import { DetailOffreComponent } from './Composants/Employeur/detail-offre/detail-offre.component';
 
 export const routes: Routes = [
 
