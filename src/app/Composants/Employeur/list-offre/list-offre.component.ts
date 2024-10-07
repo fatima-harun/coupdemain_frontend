@@ -20,6 +20,7 @@ export class ListeOffresComponent implements OnInit {
   private serviceService = inject(ServiceService);
   tabService:ServiceModel[] = [];
   tabOffres: OffreModel[] = [];
+  offreObject:OffreModel = {};
   user: any;
 
   ngOnInit(): void {
@@ -56,8 +57,8 @@ export class ListeOffresComponent implements OnInit {
     return user ? JSON.parse(user) : null;
   }
 
-  // Nouvelle méthode pour obtenir seulement 3 offres
-  // getLimitedOffres(): OffreModel[] {
-  //   return this.tabOffres.slice(0, 3);
-  // }
+  getOffreObject(offre: any) {
+    this.offreObject = offre;
+     console.log(this.offreObject);
+  }
 }
