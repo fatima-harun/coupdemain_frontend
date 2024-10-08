@@ -13,7 +13,7 @@ export interface OffreModel{
     date_limite?:string,
     profil?:string,
     service_id?: string,
-   
+
 
 
     //  la propriété services pour contenir un tableau de services

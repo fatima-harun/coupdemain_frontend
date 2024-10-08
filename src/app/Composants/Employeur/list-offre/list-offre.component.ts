@@ -1,5 +1,5 @@
 // list-offre.component.ts
-import { Component, inject, OnInit } from '@angular/core'; 
+import { Component, inject, OnInit } from '@angular/core';
 import { OffreService } from '../../../Services/offre.service';
 import { OffreModel } from '../../../Models/offre.model';
 import { CommonModule } from '@angular/common';
@@ -7,6 +7,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { ServiceModel } from '../../../Models/service.model';
 import { ServiceService } from '../../../Services/service.service';
 import { FormsModule } from '@angular/forms';
+import { Ng2SearchPipe, Ng2SearchPipeModule } from 'ng2-search-filter';
 
 @Component({
   selector: 'app-list-offre',
@@ -22,6 +23,7 @@ export class ListeOffresComponent implements OnInit {
   tabOffres: OffreModel[] = [];
   offreObject:OffreModel = {};
   user: any;
+
 
   ngOnInit(): void {
     this.fetchOffres();

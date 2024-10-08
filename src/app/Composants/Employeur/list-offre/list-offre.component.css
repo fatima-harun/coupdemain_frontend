@@ -18,25 +18,40 @@ h1{
     margin: 20px auto;
     background-color: #fff;
     font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  */
   }
-  
+   .carte p{
+    font-size: 1rem;
+   }
+   .carte input{
+    border-radius: 20px;
+   }
+   .input{
+     border-radius: 20px;
+     border:none;
+     width: 15rem;
+   }
+   .input::placeholder {
+    font-size: 0.875rem; /* Taille de la police réduite à 14px (0.875rem = 14px) */
+    color: #888; /* Facultatif : change la couleur du placeholder */
+}
+
   .card-body {
     padding: 10px;
   }
-  
+
   .card-title {
     font-size: 1.5rem;
     margin-bottom: 5px;
     color: #000;
   }
-  
+
   .card-text {
     color: #333;
     font-size: 1rem;
     margin-bottom: 20px;
   }
-  
+
   .card-details {
     display: flex;
     justify-content: space-between;
@@ -44,33 +59,40 @@ h1{
     font-size: 0.9rem;
     margin-bottom: 15px;
   }
-  
+
   .card-details i {
     margin-right: 5px;
   }
-  
+
   .card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color: white;
   }
-  
+
   .price {
     color: #f6d200;
     font-size: 1.1rem;
   }
-  
+
   .view-link {
     text-decoration: none;
     color: #f6d200;
     font-weight: bold;
     font-size: 1rem;
   }
-  
+
   .view-link:hover {
     text-decoration: underline;
   }
-  
+  .carte{
+    width: 18rem;
+    height: 20rem;
+    border-radius: 1.25rem;
+    background-color: #4A69BD;
+    color:#fff
+  }
   /* Ajout de quelques ajustements responsives */
   @media (max-width: 768px) {
     .card {
@@ -78,4 +100,3 @@ h1{
       padding: 15px;
     }
   }
-  

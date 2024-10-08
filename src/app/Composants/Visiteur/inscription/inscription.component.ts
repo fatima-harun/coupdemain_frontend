@@ -117,6 +117,7 @@ export class InscriptionComponent implements OnInit {
   getToken(): string | null {
     return localStorage.getItem('access_token');
   }
+  
 
   // Méthode pour récupérer l'objet utilisateur depuis le localStorage
   getUser(): any {
