@@ -6,6 +6,7 @@ import { ListeOffresComponent } from '../../Employeur/list-offre/list-offre.comp
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../header/header.component';
 import { TruncatePipe } from '../../../truncate.pipe';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-portail',
@@ -15,6 +16,7 @@ import { TruncatePipe } from '../../../truncate.pipe';
   imports: [ListeOffresComponent, CommonModule, HeaderComponent, TruncatePipe],
 })
 export class PortailComponent implements OnInit {
+
   private offreService = inject(OffreService);
   private authService = inject(AuthService); // Injection de AuthService
 
@@ -46,4 +48,11 @@ export class PortailComponent implements OnInit {
     this.utilisateurConnecte = this.authService.getUser();
     console.log('Utilisateur connecté:', this.utilisateurConnecte);
   }
+
+  // Ajoutez une méthode pour gérer la déconnexion
+logout() {
+  this.authService.logout(); // Supprimer les données d'utilisateur dans le service
+   // Redirection après déconnexion
+}
+
 }

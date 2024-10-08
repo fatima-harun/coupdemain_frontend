@@ -5,31 +5,7 @@ nav{
 .nav-link{
   color:white
 }
-.btn-connect{
-  border-radius: 1.25rem;
-  background: #FED330;
- width: 7.25rem;
- height:  2.375rem;
-border:none;
-text-decoration: none;
-}
-.btn-register a{
-text-decoration: none;
-color:white
-}
-.btn-connect a{
-  text-decoration: none;
-  color:white
-}
-.btn-register{
-  width: 7.25rem;
-  height:  2.375rem;
- border:none;
- background-color: #4A69BD;
- border-radius: 1.25rem;
- border: 0.0625rem solid #FFF;
- text-decoration: none;
-}
+
 ul{
   gap:2rem
 }
@@ -44,17 +20,17 @@ form{
   background-color: #4A69BD;
   width:200rem
 }
-
 .navbar-toggler {
   border: none;
 }
-
 .navbar-toggler-icon {
   background-color: white;
+}.btn-register {
+  background-color:#f6d200;
+  color: white;
 }
-body {
-    margin: 0;
-    font-family: sans-serif;
+.dropdown-menu {
+  min-width: 200px; /* Ajustez la taille du menu si nécessaire */
 }
 h1{
     color: #4A69BD;

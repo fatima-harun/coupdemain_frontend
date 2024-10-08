@@ -7,6 +7,7 @@ import Swal from 'sweetalert2';
 import { ServiceService } from '../../../Services/service.service';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../header/header.component';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-publication-offre',
@@ -17,15 +18,18 @@ import { HeaderComponent } from '../../header/header.component';
 })
 export class PublicationOffreComponent implements OnInit {
 
-  // Injection de dependances 
+  // Injection de dependances
   private offreService = inject(OffreService);
   private serviceService = inject(ServiceService);
+  private authService = inject(AuthService);
 
-  // Declaration des variables 
+  // Declaration des variables
   tabOffres: OffreModel[] = [];
   tabService:ServiceModel[] = [];
   OffreObject: OffreModel = {};
-  user: any; // Pour stocker l'objet utilisateur
+  user: any;
+  utilisateurConnecte: any = null; // Pour stocker l'utilisateur connecté
+
 
   ngOnInit(): void {
     this.fetchService();
@@ -48,12 +52,12 @@ export class PublicationOffreComponent implements OnInit {
     console.log(this.OffreObject);
 
     // Vérifier que tous les champs obligatoires sont remplis
-    if (!this.OffreObject.description || 
-        !this.OffreObject.lieu || 
-        !this.OffreObject.service_id || 
-        !this.OffreObject.date_debut || 
-        !this.OffreObject.date_fin || 
-        !this.OffreObject.date_limite || 
+    if (!this.OffreObject.description ||
+        !this.OffreObject.lieu ||
+        !this.OffreObject.service_id ||
+        !this.OffreObject.date_debut ||
+        !this.OffreObject.date_fin ||
+        !this.OffreObject.date_limite ||
         !this.OffreObject.horaire ||
         !this.OffreObject.salaire ||
         !this.OffreObject.profil ||
@@ -125,15 +129,19 @@ export class PublicationOffreComponent implements OnInit {
   getToken(): string | null {
     return localStorage.getItem('access_token');
   }
-    // Méthode pour récupérer l'objet utilisateur depuis le localStorage
-  getUser(): any {
-    const user = localStorage.getItem('user');
-    return user ? JSON.parse(user) : null; // Retourne l'objet utilisateur ou null
+    // Récupérer l'utilisateur connecté
+  getUser() {
+    this.utilisateurConnecte = this.authService.getUser();
+    console.log('Utilisateur connecté:', this.utilisateurConnecte);
   }
 
-  // Methode pour stocker l'objet offre 
+  // Methode pour stocker l'objet offre
   getOffreObject(offre: any) {
     this.OffreObject = offre;
+  }
+  logout() {
+    this.authService.logout(); // Supprimer les données d'utilisateur dans le service
+     // Redirection après déconnexion
   }
 
 }

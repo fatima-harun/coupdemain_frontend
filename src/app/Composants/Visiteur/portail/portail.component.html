@@ -29,26 +29,28 @@
                     <a class="nav-link" href="#">Guide</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Emplois</a>
+                    <a class="nav-link" href="/liste-offre">Emplois</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Candidats</a>
                 </li>
             </ul>
             <form class="d-flex">
-                <div class="me-1"> <!-- Ajouter de l'espace à droite du bouton "S'inscrire" -->
-                   <button class="btn-connect" > <a  href="/connexion">Se connecter</a></button>
-                </div>
-                <div class="me-3">
-                   <button class="btn-register"> <a  href="/inscription">S'inscrire</a></button>
-                </div>
+              <div class="dropdown me-3" *ngIf="utilisateurConnecte">
+                <button class="btn btn-register dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fas fa-user"></i> {{ utilisateurConnecte.prenom }}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <!-- Option déconnexion -->
+                  <li class="dropdown-item">
+                    <a (click)="logout()">Se déconnecter</a>
+                  </li>
+                </ul>
+              </div>
             </form>
         </div>
     </div>
 </nav>
-  <div *ngIf="utilisateurConnecte">
-    <h2>Bienvenue, {{ utilisateurConnecte.prenom }} !</h2>
-  </div>
     <main>
         <div class="titre">
             <h1>Simplifiez votre vie avec un coup de main : Trouvez l'aide idéale pour chaque tâche domestique.</h1>
