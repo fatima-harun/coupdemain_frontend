@@ -1,55 +1,81 @@
+nav{
+  background-color: #4A69BD;
+  height: 5.56rem
+}
+.nav-link{
+  color:white
+}
+.btn-connect{
+  border-radius: 1.25rem;
+  background: #FED330;
+ width: 7.25rem;
+ height:  2.375rem;
+border:none;
+text-decoration: none;
+}
+.btn-register a{
+text-decoration: none;
+color:white
+}
+.btn-connect a{
+  text-decoration: none;
+  color:white
+}
+.btn-register{
+  width: 7.25rem;
+  height:  2.375rem;
+ border:none;
+ background-color: #4A69BD;
+ border-radius: 1.25rem;
+ border: 0.0625rem solid #FFF;
+ text-decoration: none;
+}
+ul{
+  gap:2rem
+}
+form{
+  display:flex;
+  gap:0.5rem
+}
+.navbar {
+  background-color: #4A69BD;
+}
+.navbar-collapse {
+  background-color: #4A69BD;
+  width:200rem
+}
+
+.navbar-toggler {
+  border: none;
+}
+
+.navbar-toggler-icon {
+  background-color: white;
+}
 body {
     margin: 0;
     font-family: sans-serif;
 }
-
-
-.navbar {
-    background-color: #4A69BD;
-    padding: 1rem;
-}
-
-.nav-links {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 0;
-}
-.nav-links li {
-    margin: 0 1rem;
-}
-
-.nav-links a {
-    color: white;
-    text-decoration: none;
-    font-size: 1.1rem;
-}
-
-.nav-links a:hover {
-    text-decoration: underline;
-}
-
 h1{
     color: #4A69BD;
 font-family: sans-serif;
-font-size: 2rem; 
+font-size: 2rem;
 font-style: normal;
 font-weight: 500;
-line-height: 3.4375rem; 
-width: 40.6875rem; 
-height: 11rem; 
+line-height: 3.4375rem;
+width: 40.6875rem;
+height: 11rem;
 margin-top:3.69rem
 }
 .paragraphe1{
     color: #000;
 font-family: sans-serif;
-font-size: 1rem; 
+font-size: 1rem;
 font-style: normal;
 font-weight: 500;
-line-height: 1.875rem; 
-width: 39rem;  
-height: 4rem;  
+line-height: 1.875rem;
+width: 39rem;
+height: 4rem;
 }
 main{
     display:flex;
@@ -59,9 +85,9 @@ main{
 .btn-primary{
     border:none;
    background: #FED330;
-   box-shadow: 0px 0.0625rem 0.125rem 0px rgba(16, 24, 40, 0.05); 
+   box-shadow: 0px 0.0625rem 0.125rem 0px rgba(16, 24, 40, 0.05);
   display: inline-flex;
-  padding: 0.625rem 1rem; 
+  padding: 0.625rem 1rem;
 border-radius: 1.25rem;
 
 }
@@ -74,10 +100,10 @@ border-radius: 1.25rem;
 }
 .titre2 h2{
     color: #4A69BD;
-    font-size: 2rem;              
+    font-size: 2rem;
    font-style: normal;
   font-weight: 600;
-  line-height: 1.875rem;       
+  line-height: 1.875rem;
   font-family:sans-serif;
   margin-top:5rem;
   margin-bottom:1rem
@@ -96,44 +122,44 @@ border-radius: 1.25rem;
 span {
     color: #FED330;
     font-family: sans-serif;
-    font-size: 2.5rem;            
+    font-size: 2.5rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 2.8125rem;       
+    line-height: 2.8125rem;
 }
 .titre3 {
     color: rgba(74, 105, 189, 0.90);
     font-family: sans-serif;
-    font-size: 2rem;             
+    font-size: 2rem;
     font-style: normal;
     font-weight: 500;
-    line-height: 2.8125rem;       
-    width: 42rem;                
-    height: 9.8125rem;           
+    line-height: 2.8125rem;
+    width: 42rem;
+    height: 9.8125rem;
 }
 .paragraphe3{
     color: #000;
 font-family: sans-serif;
-font-size: 0.875rem;              
+font-size: 0.875rem;
 font-style: normal;
 font-weight: 300;
-line-height: 2.1875rem;           
+line-height: 2.1875rem;
 display: flex;
-width: 44rem;                     
-height: 11.1875rem;               
+width: 44rem;
+height: 11.1875rem;
 flex-direction: column;
 justify-content: center;
 }
 .paragraphe4{
     color: #000;
 font-family: sans-serif;
-font-size: 0.875rem;             
+font-size: 0.875rem;
 font-style: normal;
 font-weight: 300;
-line-height: 2.1875rem;         
+line-height: 2.1875rem;
 display: flex;
-width: 44rem;                     
-height: 11.1875rem;              
+width: 44rem;
+height: 11.1875rem;
 flex-direction: column;
 justify-content: center;
 }
@@ -150,10 +176,10 @@ justify-content: center;
     text-align: center;
     color:#4A69BD;
     text-align: center;
-   font-size: 2rem;              
+   font-size: 2rem;
    font-style: normal;
   font-weight: 600;
-  line-height: 1.875rem;       
+  line-height: 1.875rem;
   font-family:sans-serif;
   margin-top:4rem;
   margin-bottom:4rem
@@ -174,43 +200,42 @@ justify-content: center;
 .service{
     color: #000;
     font-family: sans-serif;
-    font-size: 1.5rem; 
+    font-size: 1.5rem;
     font-style: normal;
     font-weight: 600;
     line-height: normal;
-    width: 11.6875rem; 
-    height: 1.8125rem; 
+    width: 11.6875rem;
+    height: 1.8125rem;
 }
 hr{
     color:#FED330
 }
 .card {
-    border: 1px solid #f6d200; /* Bordure jaune */
-    border-radius: 10px; /* Bordure arrondie */
-    padding: 20px;
-    max-width: 500px;
-    margin: 20px auto;
-    background-color: #fff;
-    font-family: Arial, sans-serif;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Légère ombre */
+  border: 1px solid #f6d200; /* Bordure jaune */
+  border-radius: 10px; /* Bordure arrondie */
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
   }
-  
+
   .card-body {
     padding: 10px;
   }
-  
+
   .card-title {
     font-size: 1.5rem;
     margin-bottom: 5px;
     color: #000;
   }
-  
+
   .card-text {
     color: #333;
     font-size: 1rem;
     margin-bottom: 20px;
   }
-  
+
   .card-details {
     display: flex;
     justify-content: space-between;
@@ -218,12 +243,12 @@ hr{
     font-size: 0.2rem;
     margin-bottom: 15px;
   }
-  
+
   .card-details i {
     margin-right: 5px;
     font-size:1rem
   }
-  
+
   .card-footer {
     display: flex;
     justify-content: space-between;
@@ -246,11 +271,11 @@ hr{
     font-weight: bold;
     font-size: 1rem;
   }
-  
+
   .view-link:hover {
     text-decoration: underline;
   }
-  
+
   @media (max-width: 768px) {
     .card {
       max-width: 100%;
@@ -266,7 +291,7 @@ hr{
     .nav-links {
         flex-direction: column;
     }
-    
+
     .titre {
         text-align: center;
     }
