@@ -1,46 +1,59 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UserModel } from '../../../Models/user.model';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from '../../../Services/auth.service';
 import { HttpErrorResponse } from '@angular/common/http';
 import { HeaderComponent } from '../../header/header.component';
+import { ServiceModel } from '../../../Models/service.model';
+import { ServiceService } from '../../../Services/service.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-inscription',
   standalone: true,
-  imports: [RouterLink, FormsModule,HeaderComponent],
+  imports: [RouterLink, FormsModule,HeaderComponent,CommonModule],
   templateUrl: './inscription.component.html',
   styleUrl: './inscription.component.css'
 })
-export class InscriptionComponent {
-  // Injections 
+export class InscriptionComponent implements OnInit {
+  // Injections
   private authService = inject(AuthService);
+  private serviceService = inject(ServiceService);
+
+ngOnInit (): void {
+  this.fetchService(),
+  this.user = this.getUser();
+};
 
   // Déclaration des variables
-  userObject: UserModel = {} 
+  userObject: UserModel = {}
   alertMessage: string = "";  // Par défaut, vide
+  tabService:ServiceModel[] = [];
+  user: any; // Pour stocker l'objet utilisateur
 
-  // Déclaration des méthodes 
+  // Déclaration des méthodes
   register() {
+    this.fetchService();
     const formData = new FormData();
-  
+
     // Ajout des champs dans formData
     if (this.userObject.photo) {
       formData.append('photo', this.userObject.photo); // Fichier photo
     }
-  
+
     // Utilisation de la coalescence nulle pour s'assurer que les valeurs sont définies
-    formData.append('nom', this.userObject.nom ?? ''); // Utiliser '' si nom est undefined
-    formData.append('prenom', this.userObject.prenom ?? ''); // Utiliser '' si prenom est undefined
-    formData.append('nom_utilisateur', this.userObject.nom_utilisateur ?? ''); // Utiliser '' si CNI est undefined
-    formData.append('email', this.userObject.email ?? ''); // Utiliser '' si email est undefined
-    formData.append('role', this.userObject.role ?? ''); // Utiliser '' si role est undefined
-    formData.append('sexe', this.userObject.sexe ?? ''); // Utiliser '' si sexe est undefined
-    formData.append('adresse', this.userObject.adresse ?? ''); // Utiliser '' si adresse est undefined
-    formData.append('telephone', this.userObject.telephone ?? ''); // Utiliser '' si telephone est undefined
-    formData.append('password', this.userObject.password ?? ''); // Utiliser '' si password est undefined
-  
+    formData.append('nom', this.userObject.nom ?? '');
+    formData.append('prenom', this.userObject.prenom ?? '');
+    formData.append('nom_utilisateur', this.userObject.nom_utilisateur ?? '');
+    formData.append('email', this.userObject.email ?? '');
+    formData.append('role', this.userObject.role ?? '');
+    formData.append('sexe', this.userObject.sexe ?? '');
+    formData.append('adresse', this.userObject.adresse ?? '');
+    formData.append('telephone', this.userObject.telephone ?? '');
+    formData.append('password', this.userObject.password ?? '');
+    formData.append('service_id', this.userObject.service_id ?? '');
+
     // Envoi de la requête au service Auth
     this.authService.register(formData).subscribe(
       (response: any) => {
@@ -56,11 +69,30 @@ export class InscriptionComponent {
       }
     );
   }
-  
-
-  // Méthode pour uploader l'image 
+  // / Récupération de tous les services
+  fetchService(){
+    this.serviceService.getAllService().subscribe(
+      (response:any) => {
+        // console.log("service",response);
+       if(response.data){
+        this.tabService = response.data;
+       }
+      }
+    )
+  }
+  // Méthode pour uploader l'image
   uploadImage(event: any) {
     console.log(event.target.files[0]);
     this.userObject.photo = event.target.files[0];
   }
+  // Méthode pour récupérer le token depuis le localStorage
+  getToken(): string | null {
+    return localStorage.getItem('access_token');
+  }
+    // Méthode pour récupérer l'objet utilisateur depuis le localStorage
+  getUser(): any {
+    const user = localStorage.getItem('user');
+    return user ? JSON.parse(user) : null; // Retourne l'objet utilisateur ou null
+  }
 }
+

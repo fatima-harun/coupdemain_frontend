@@ -1,3 +1,5 @@
+import { ServiceModel } from "./service.model";
+
 export interface UserModel{
     id?:number,
     photo?:string,
@@ -10,4 +12,10 @@ export interface UserModel{
     telephone?:string,
     adresse?:string,
     password?:string,
+    service_id?: string,
+   
+
+
+    //  la propriété services pour contenir un tableau de services
+    services?: ServiceModel[];  // Utilise un tableau de ServiceModel
 }
