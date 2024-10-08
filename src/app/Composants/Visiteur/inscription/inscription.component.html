@@ -16,13 +16,16 @@
         <img src="/assets/img/imageregister.png" alt="Image d'inscription" class="img-fluid">
       </div>
 
-      <!-- Form Section -->
+      <!-- Formulaire -->
       <div class="col-lg-6 col-md-6">
-        <div class="container form-container">
+        <div class="container form-container ">
           <div class="form-wrapper">
+            <h2>Formulaire d'inscription</h2>
+            <p>Bienvenue sur notre plateforme ! <br> Nous sommes heureux de vous accueillir
+              dans notre communauté dédiée à la mise en relation entre personnels de maison et employeurs.</p>
             <form enctype="multipart/form-data">
               <div class="row">
-                <!-- Column 1 -->
+                <!-- Colonne 1 -->
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="photo" class="form-label">Photo</label>
@@ -38,15 +41,15 @@
                   </div>
                   <div class="mb-3">
                     <label for="nom_utilisateur" class="form-label">Nom d'utilisateur</label>
-                    <input type="text" class="form-control" id="nom_utilisateur" placeholder="Choisissez un nom d'utilisateur" name="nom_utilisateur" [(ngModel)]="userObject.nom_utilisateur">
+                    <input type="text" class="form-control" id="nom_utilisateur" placeholder="Entrez un nom d'utilisateur" name="nom_utilisateur" [(ngModel)]="userObject.nom_utilisateur">
                   </div>
                   <div class="mb-3">
                     <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Entrez votre email" name="email" [(ngModel)]="userObject.email">
+                    <input type="email" class="form-control" id="email" placeholder="Entrez votre email(optionnel)" name="email" [(ngModel)]="userObject.email">
                   </div>
                 </div>
 
-                <!-- Column 2 -->
+                <!-- Colonne 2 -->
                 <div class="col-md-6">
                   <div class="mb-3">
                     <label for="role" class="form-label">Rôle</label>
@@ -86,9 +89,10 @@
                   </div>
                 </div>
               </div>
-              <div class="text-center mt-4">
-                <button (click)="register()" class="btn btn-primary">S'inscrire</button>
+              <div class="text-left mt-2">
+                <button (click)="register()" class="btn-register">S'inscrire</button>
               </div>
+              <p class="paragraphe2 mt-3">Vous avez un compte ! <span>Connectez-vous</span></p>
             </form>
 
             <!-- Message d'alerte -->
