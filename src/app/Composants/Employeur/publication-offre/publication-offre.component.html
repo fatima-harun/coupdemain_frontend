@@ -8,89 +8,84 @@
     <link rel="stylesheet" href="publication-offre.component.css">
 </head>
 <body>
+   <!-- publication-offre.component.html -->
    <app-header></app-header>
 
-    <main>
-        <div><img src="assets/img/Character (1).png" alt=""></div>
-        <div>
-           <p class="paragraphe">
-           <span class="titre">Prêt à Embaucher</span> <br>
-            Déposez vos offres d'emploi sur notre plateforme et 
-            accédez instantanément à un vivier de candidats qualifiés 
-            et motivés. Grâce à notre interface simple et intuitive, 
-            créez, gérez et diffusez vos annonces en quelques minutes,
-             tout en optimisant leur visibilité auprès des profils recherchés.
-              Ne perdez plus de temps, publiez votre offre dès maintenant et
-               recrutez le talent idéal en un clin d'œil !</p> 
-        </div>
-       </main>
-       
-       <div class="container form-container">
-        <div class="form-wrapper col-md-8">
-            <form enctype="multipart/form-data">
-                <div class="row">
-                    <!-- Column 1 -->
-                    <div class="col-md-6">
-                        <div class="mb-3">
-                            <label for="service" class="form-label">Type de service</label>
-                            <select name="service" id="service"  class="form-control" [(ngModel)]="OffreObject.service_id">
-                                @for (service of tabService; track $index) {
-                                    <option [value]="service.id">{{service.libelle}}</option>
-                                }
-                            </select>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description de l'offre</label>
-                            <input type="text" class="form-control" id="description" placeholder="Décrivez l'offre" name="description" [(ngModel)]="OffreObject.description">
-                        </div>
-                        <div class="mb-3">
-                            <label for="lieu" class="form-label">Lieu de travail</label>
-                            <input type="text" class="form-control" id="lieu" placeholder="Indiquez la localisation" name="lieu"[(ngModel)]="OffreObject.lieu" >
-                        </div>
-                        <div class="mb-3">
-                            <label for="salaire" class="form-label">Rémunération</label>
-                            <input type="number" class="form-control" id="salaire" placeholder="Indiquez le salaire" name="salaire" [(ngModel)]="OffreObject.salaire">
-                        </div>
-                        <div class="mb-3">
-                            <label for="profil" class="form-label w-100">Profil recherché</label>
-                            <textarea id="profil" class="form-control" name="profil" placeholder="Indiquez le profil recherché" [(ngModel)]="OffreObject.profil"></textarea>
-                        </div>
+   <div class="container my-5">
+       <div class="row d-flex align-items-center justify-content-center">
+           <!-- Image Section -->
+           <div class="col-lg-4 col-md-6 text-center mb-4 mb-lg-0">
+               <img src="/assets/img/imageoffre.png" alt="Image d'inscription" class="img-fluid">
+           </div>
 
-                    </div>
-    
-                    <!-- Column 2 -->
-      <div class="col-md-6">
-        <div class="mb-3">
-        <label for="date_debut" class="form-label">Date de début</label>
-        <input type="date" class="form-control" id="date_debut" name="date_debut" [(ngModel)]="OffreObject.date_debut">
-         </div>
-    <div class="mb-3">
-        <label for="date_fin" class="form-label">Date de fin</label>
-        <input type="date" class="form-control" id="date_fin" name="date_fin" [(ngModel)]="OffreObject.date_fin">
-    </div>
-    <div class="mb-3">
-        <label for="date_limite" class="form-label">Date limite pour postuler</label>
-        <input type="date" class="form-control" id="date_limite" name="date_limite" [(ngModel)]="OffreObject.date_limite">
-    </div>
-    <div class="mb-3">
-        <label for="horaire" class="form-label">Horaire</label>
-        <input type="string" class="form-control" id="date_limite" name="horaire" [(ngModel)]="OffreObject.horaire">
-    </div>
-    <div class="mb-3"> <!-- Correction de l'élément div -->
-        <label for="nombre_postes" class="form-label">Nombre de postes à pourvoir</label>
-        <input type="number" class="form-control" id="nombre_postes" placeholder="Indiquez le nombre de postes" name="nombre_postes" [(ngModel)]="OffreObject.nombre_postes">
-    </div>
-</div>
+           <!-- Formulaire -->
+           <div class="col-lg-6 col-md-6">
+               <div class="container form-container">
+                   <div class="form-wrapper">
+                       <h2>Publication d'une offre d'emploi</h2>
+                       <p>Bon retour parmi nous! <br> Publiez votre offre d'emploi sur notre plateforme
+                        et connectez-vous avec des candidats qualifiés prêts à être embauchés.</p>
+                       <form enctype="multipart/form-data">
+                           <div class="row">
+                               <!-- Colonne 1 -->
+                               <div class="col-md-6">
+                                   <div class="mb-3">
+                                       <label for="service" class="form-label">Type de service</label>
+                                       <select name="service" id="service" class="form-control" [(ngModel)]="OffreObject.service_id">
+                                           <option *ngFor="let service of tabService" [value]="service.id">{{ service.libelle }}</option>
+                                       </select>
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="description" class="form-label">Description de l'offre</label>
+                                       <input type="text" class="form-control" id="description" placeholder="Décrivez l'offre" name="description" [(ngModel)]="OffreObject.description">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="lieu" class="form-label">Lieu de travail</label>
+                                       <input type="text" class="form-control" id="lieu" placeholder="Indiquez la localisation" name="lieu" [(ngModel)]="OffreObject.lieu">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="salaire" class="form-label">Rémunération</label>
+                                       <input type="number" class="form-control" id="salaire" placeholder="Indiquez le salaire" name="salaire" [(ngModel)]="OffreObject.salaire">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="profil" class="form-label w-100">Profil recherché</label>
+                                       <textarea id="profil" class="form-control" name="profil" placeholder="Indiquez le profil recherché" [(ngModel)]="OffreObject.profil"></textarea>
+                                   </div>
+                               </div>
 
-                </div>
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary " (click)="addOffre()">Publier l'offre</button> 
-                </div>
-            </form>
-        </div>
-    </div>
- 
-    <!-- Message d'alert  -->
+                               <!-- Colonne 2 -->
+                               <div class="col-md-6">
+                                   <div class="mb-3">
+                                       <label for="date_debut" class="form-label">Date de début</label>
+                                       <input type="date" class="form-control" id="date_debut" name="date_debut" [(ngModel)]="OffreObject.date_debut">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="date_fin" class="form-label">Date de fin</label>
+                                       <input type="date" class="form-control" id="date_fin" name="date_fin" [(ngModel)]="OffreObject.date_fin">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="date_limite" class="form-label">Date limite pour postuler</label>
+                                       <input type="date" class="form-control" id="date_limite" name="date_limite" [(ngModel)]="OffreObject.date_limite">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="horaire" class="form-label">Horaire</label>
+                                       <input type="text" class="form-control" id="horaire" name="horaire" [(ngModel)]="OffreObject.horaire">
+                                   </div>
+                                   <div class="mb-3">
+                                       <label for="nombre_postes" class="form-label">Nombre de postes à pourvoir</label>
+                                       <input type="number" class="form-control" id="nombre_postes" placeholder="Indiquez le nombre de postes" name="nombre_postes" [(ngModel)]="OffreObject.nombre_postes">
+                                   </div>
+                               </div>
+                           </div>
 
+                           <div class="text-left mt-2">
+                               <button type="submit" class="btn-publish" (click)="addOffre()">Publier l'offre</button>
+                           </div>
+                       </form>
+                   </div>
+               </div>
+           </div>
+       </div>
+   </div>
 </body>
 </html>
