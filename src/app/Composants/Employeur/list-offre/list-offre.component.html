@@ -15,47 +15,55 @@
         <h1>Liste des offres d'emploi</h1>
     </div>
     <div class="container">
-        <div class="row">
-            <!-- Colonne pour la recherche -->
-            <div class="carte col-md-3 mt-5">
-                <p class="mt-3">Rechercher par service</p>
-                <input ng-model="searchText" placeholder="Rechercher" class="input mb-3 pl-3">
-                <div *ngFor="let service of tabService" class="form-check mb-3">
-                    <input type="checkbox" class="form-check-input" id="service-{{service.id}}" [(ngModel)]="service.selected" >
-                    <label class="form-check-label" for="service-{{service.id}}">{{ service.libelle }}</label>
-                </div>
-            </div>
-            <!-- Colonne pour les cartes -->
-            <div class="col-md-9 mt-4">
-                <div class="row">
-                    <div class="col-md-6 mb-4" *ngFor="let offre of tabOffres; let i = index">
-                        <div class="card">
-                            <div class="card-body">
-                                <h3 class="card-title" *ngFor="let service of offre.services">{{ service.libelle }}</h3>
-                                <p class="card-text">
-                                    {{ offre.description| slice:0:50  }}
-                                </p>
-                                <div class="card-details">
-                                    <span class="location">
-                                        <i class="fa fa-map-marker-alt"></i> {{ offre.lieu }}
-                                    </span>
-                                    <span class="time">
-                                        <i class="fa fa-clock"></i> {{ offre.horaire }}
-                                    </span>
-                                </div>
-                                <div class="card-footer">
-                                    <span class="price">
-                                        <i class="fa fa-money-bill-wave"></i> {{ offre.salaire }}
-                                    </span>
-                                    <a href="#" (click)="getOffreObject(offre)">Voir</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+      <div class="row">
+        <!-- Colonne pour la recherche -->
+        <div class="carte col-md-3 mt-5">
+          <p class="mt-3">Rechercher par service</p>
+          <input [(ngModel)]="searchText" placeholder="Rechercher" class="input mb-3 pl-3">
+          <div *ngFor="let service of tabService" class="form-check mb-3">
+            <input type="checkbox"
+                   class="form-check-input"
+                   id="service-{{service.id}}"
+                   [(ngModel)]="service.selected"
+                   (change)="onServiceChange(service.id)">
+            <label class="form-check-label" for="service-{{service.id}}">
+              {{ service.libelle }}
+            </label>
+          </div>
         </div>
+
+        <!-- Colonne pour les cartes -->
+        <div class="col-md-9 mt-4">
+          <div class="row">
+            <div class="col-md-6 mb-4" *ngFor="let offre of filteredOffres()">
+              <div class="card">
+                <div class="card-body">
+                  <h3 class="card-title" *ngFor="let service of offre.services">{{ service.libelle }}</h3>
+                  <p class="card-text">
+                    {{ offre.description | slice:0:50 }}
+                  </p>
+                  <div class="card-details">
+                    <span class="location">
+                      <i class="fa fa-map-marker-alt"></i> {{ offre.lieu }}
+                    </span>
+                    <span class="time">
+                      <i class="fa fa-clock"></i> {{ offre.horaire }}
+                    </span>
+                  </div>
+                  <div class="card-footer">
+                    <span class="price">
+                      <i class="fa fa-money-bill-wave"></i> {{ offre.salaire }}
+                    </span>
+                    <a href="#" (click)="getOffreObject(offre)">Voir</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

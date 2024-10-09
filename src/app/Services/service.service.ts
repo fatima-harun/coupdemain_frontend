@@ -19,14 +19,12 @@ export class ServiceService {
     getAllService(){
         return this.http.get(`${apiUrl}/services`);
     }
-    
-    
-      
+
     // Methode pour mettre a jour un service
     updateService(id:any, Service:any){
         return this.http.post(`${apiUrl}/services/${id}`, Service);
     }
-    
+
     // Methode pour supprimer definitivement une service
     deleteService(id:any){
         return this.http.delete(`${apiUrl}/services/${id}/force-delete`);

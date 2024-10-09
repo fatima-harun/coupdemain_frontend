@@ -35,4 +35,8 @@ export class OffreService {
             return new HttpHeaders();
         }
     }
+
+    getOffresByService(serviceId: number){
+      return this.http.get(`${apiUrl}/services/${serviceId}/offres`);
+    }
 }

@@ -19,7 +19,7 @@ export class HeaderComponent implements OnInit {
     // S'abonne aux changements de l'état de connexion de l'utilisateur
     this.authService.currentUser.subscribe(user => {
       this.isLoggedIn = !!user;
-      this.userName = user ? user.prenom : ''; // Suppose que l'objet user a une propriété 'prenom'
+      this.userName = user ? user.prenom : ''; // l'objet user a une propriété 'prenom'
     });
   }
   onLogout() {
