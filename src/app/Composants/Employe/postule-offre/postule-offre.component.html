@@ -1,1 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Formulaire de données personnelles</title>
+  <style>
+    /* Ajout de styles CSS pour le textarea */
+    textarea {
+      width: 100%; /* Prend toute la largeur de son conteneur */
+      height: 150px; /* Hauteur personnalisée */
+      padding: 10px; /* Espacement interne */
+      border-radius: 5px; /* Coins arrondis */
+      border: 1px solid #ccc; /* Bordure */
+      resize: vertical; /* Permet de redimensionner uniquement verticalement */
+    }
+  </style>
+</head>
+<body>
+  <app-header></app-header>
+  <div class="container my-5">
+    <div class="row d-flex align-items-center justify-content-center">
+      <!-- Image Section -->
+      <div class="col-lg-4 col-md-6 text-center mb-4 mb-lg-0">
+        <img src="/assets/img/imgpostuler.png" alt="Image d'inscription" class="img-fluid">
+      </div>
 
+      <!-- Formulaire -->
+      <div class="col-lg-6 col-md-6">
+        <div class="container form-container">
+          <div class="form-wrapper">
+            <p>Renseignez vos informations complémentaires et profitez des opportunités qui s'offrent à vous</p>
+            <form enctype="multipart/form-data">
+              <label for="competences">Compétences</label> <br>
+              <textarea id="competences" name="competences"></textarea> <br>
+              <label for="experiences">Expériences</label> <br>
+              <textarea id="experiences" name="experiences"></textarea>
+            </form>
+          </div>
+          <div><button type="submit" class="btn-publish">Publier l'offre</button></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

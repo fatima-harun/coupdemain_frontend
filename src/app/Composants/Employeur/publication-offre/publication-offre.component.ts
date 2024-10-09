@@ -135,10 +135,6 @@ export class PublicationOffreComponent implements OnInit {
     console.log('Utilisateur connecté:', this.utilisateurConnecte);
   }
 
-  // Methode pour stocker l'objet offre
-  getOffreObject(offre: any) {
-    this.OffreObject = offre;
-  }
   logout() {
     this.authService.logout(); // Supprimer les données d'utilisateur dans le service
      // Redirection après déconnexion

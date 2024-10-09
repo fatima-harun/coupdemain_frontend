@@ -3,54 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous"> -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-
     <link rel="stylesheet" href="portail.component.css">
     <title>Coup de main</title>
 </head>
 <body>
-  <nav class="navbar navbar-expand-lg">
-    <div class="container-fluid">
-        <a class="navbar-brand ms-3" href="#"><img src="assets/img/logo_coupdemain.png" alt="" class="ms-4"></a>
-        <!-- ici c'est pour le menu burger -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> <!-- Centrer les éléments de la liste -->
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Missions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Guide</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/liste-offre">Emplois</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Candidats</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-              <div class="dropdown me-3" *ngIf="utilisateurConnecte">
-                <button class="btn btn-register dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                  <i class="fas fa-user"></i> {{ utilisateurConnecte.prenom }}
-                </button>
-                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                  <!-- Option déconnexion -->
-                  <li class="dropdown-item">
-                    <a (click)="logout()">Se déconnecter</a>
-                  </li>
-                </ul>
-              </div>
-            </form>
-        </div>
-    </div>
-</nav>
+  <app-header></app-header>
     <main>
         <div class="titre">
             <h1>Simplifiez votre vie avec un coup de main : Trouvez l'aide idéale pour chaque tâche domestique.</h1>
@@ -102,8 +60,8 @@
                 <p class="paragraphe3">Notre mission première est de simplifier la mise en relation entre les familles
                     et le personnel qualifié de maison. Nous créons une plateforme sécurisée
                     et transparente où les employeurs peuvent facilement trouver des professionnels
-                    de confiance pour répondre à leurs besoins spécifiques, qu’il s’agisse d’un entretien
-                    ménager, de la garde d’enfants, ou d’autres services domestiques essentiels.
+                    de confiance pour répondre à leurs besoins spécifiques, qu'il s'agisse d'un entretien
+                    ménager, de la garde d'enfants, ou d'autres services domestiques essentiels.
                     Grâce à notre système de vérification rigoureux, nous assurons que chaque
                     profil est soigneusement sélectionné afin de garantir sérénité et sécurité
                     pour toutes les parties.</p>
@@ -112,13 +70,13 @@
         <div class="box2">
             <div>
                 <p class="titre3"><span>02</span><br>Faciliter la recherche d'emploi dans le secteur domestique</p>
-                <p class="paragraphe4">En parallèle, nous nous engageons à faciliter l’accès aux opportunités d’emploi
-                    dans le secteur domestique. Notre plateforme permet aux demandeurs d’emploi
+                <p class="paragraphe4">En parallèle, nous nous engageons à faciliter l'accès aux opportunités d'emploi
+                    dans le secteur domestique. Notre plateforme permet aux demandeurs d'emploi
                     de postuler rapidement à des offres pertinentes, avec un système simple et
                     intuitif pour mettre en avant leurs compétences. Nous offrons un espace où
                     les professionnels du secteur peuvent non seulement trouver un emploi, mais
                     aussi se connecter avec des employeurs qui valorisent leur expérience et leur
-                    expertise. Que vous soyez à la recherche d’une première opportunité ou d’un
+                    expertise. Que vous soyez à la recherche d'une première opportunité ou d'un
                     poste à long terme, nous simplifions vos démarches pour que vous puissiez vous
                     concentrer sur ce qui compte.</p>
             </div>

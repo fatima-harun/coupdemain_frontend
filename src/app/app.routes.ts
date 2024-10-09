@@ -6,21 +6,26 @@ import { PublicationOffreComponent } from './Composants/Employeur/publication-of
 import { AuthEmployeurGuard } from './Guard/employeur.guard';
 import { ListeOffresComponent } from './Composants/Employeur/list-offre/list-offre.component';
 import { DetailOffreComponent } from './Composants/Employeur/detail-offre/detail-offre.component';
+import { PostuleOffreComponent } from './Composants/Employe/postule-offre/postule-offre.component';
 
 export const routes: Routes = [
 
     // route par defaut
     {path:"", pathMatch:"full",redirectTo:"portail"},
-   
+
     // routes visiteur
     {path:"portail",component:PortailComponent},
 
     {path:"connexion",component:ConnexionComponent},
-    
+
     {path:"inscription",component:InscriptionComponent},
 
     // routes employeur
     // {path:"offre",component:PublicationOffreComponent,canActivate:[AuthEmployeurGuard]}
     {path:"offre",component:PublicationOffreComponent,canActivate:[AuthEmployeurGuard]},
     { path: 'liste-offre', component:ListeOffresComponent},
+
+
+    //route du demandeur d'emploi
+    {path:"employe",component:PostuleOffreComponent}
 ];

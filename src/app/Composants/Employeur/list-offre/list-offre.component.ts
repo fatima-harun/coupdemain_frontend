@@ -23,8 +23,7 @@ export class ListeOffresComponent implements OnInit {
   tabOffres: OffreModel[] = [];
   offreObject:OffreModel = {};
   user: any;
-
-
+  
   ngOnInit(): void {
     this.fetchOffres();
     this.user = this.getUser();

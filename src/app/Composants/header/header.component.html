@@ -5,18 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <link rel="stylesheet" href="header.component.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <title>Coup de main</title>
 </head>
 <body>
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand ms-3" href="#"><img src="assets/img/logo_coupdemain.png" alt="" class="ms-4"></a>
-            <!-- ici c'est pour le menu burger -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-            </button>  
+            </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0"> <!-- Centrer les éléments de la liste -->
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="#">Accueil</a>
                     </li>
@@ -33,16 +33,30 @@
                         <a class="nav-link" href="#">Candidats</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <div class="me-1"> <!-- Ajouter de l'espace à droite du bouton "S'inscrire" -->
-                       <button class="btn-connect" > <a  href="/connexion">Se connecter</a></button>
+                <!-- Vérification de la connexion -->
+                <form class="d-flex" *ngIf="!isLoggedIn; else loggedInTemplate">
+                    <div class="me-1">
+                       <button class="btn-connect"><a href="/connexion">Se connecter</a></button>
                     </div>
-                    <div class="me-3"> 
-                       <button class="btn-register"> <a  href="/inscription">S'inscrire</a></button>
+                    <div class="me-3">
+                       <button class="btn-register"><a href="/inscription">S'inscrire</a></button>
                     </div>
                 </form>
+                <!--  utilisateur connecté -->
+                <ng-template #loggedInTemplate>
+                    <div class="dropdown me-3">
+                        <button class="btn btn-secondary dropdown-toggle user-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                            <i class="fas fa-user-circle me-2"></i>
+                            {{ userName }}
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                            <li><a class="dropdown-item" href="#" (click)="onLogout()">Se déconnecter</a></li>
+                        </ul>
+                    </div>
+                </ng-template>
             </div>
         </div>
     </nav>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

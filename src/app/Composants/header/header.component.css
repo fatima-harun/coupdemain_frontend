@@ -38,18 +38,38 @@ form{
     gap:0.5rem
 }
 .navbar {
-    background-color: #4A69BD; 
+    background-color: #4A69BD;
 }
 .navbar-collapse {
     background-color: #4A69BD;
-    width:200rem 
+    width:200rem
 }
 
 .navbar-toggler {
-    border: none; 
+    border: none;
+}
+.navbar-toggler-icon {
+    background-color: white;
+}
+.user-btn {
+  background-color:#FED330;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 15px;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+.user-btn i {
+  font-size: 20px;
+  margin-right: 10px;
+}
+.user-btn:hover {
+  background-color:#4A69BD;
+  color: white;
+}
+.dropdown-menu {
+  border-radius: 10px;
 }
 
-.navbar-toggler-icon {
-    background-color: white; 
-}
 

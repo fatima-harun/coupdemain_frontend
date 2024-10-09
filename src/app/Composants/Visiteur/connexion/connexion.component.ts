@@ -15,11 +15,11 @@ import { HeaderComponent } from '../../header/header.component';
   styleUrl: './connexion.component.css'
 })
 export class ConnexionComponent {
-  // Injection de dependances 
+  // Injection de dependances
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  // Declaration des variables 
+  // Declaration des variables
   userObject: UserModel = {}; // un objet qui a pour type UserModel qui se trouve dans Models/user.model.ts
   alertMessage: string = ""; // cette variable permettra de stocker la valeur de l'alerte
 
@@ -31,14 +31,14 @@ export class ConnexionComponent {
 
           console.log(response.access_token);
           console.log("user",response.user.nom);
-  
+
           if (response.user) {
             localStorage.setItem('user', JSON.stringify(response.user));
             localStorage.setItem('role', response.user.roles[0].name);
             localStorage.setItem('access_token', response.access_token);
             console.log(localStorage.getItem('role'));
             // private redirectionrole(role_id)
-  
+
             if (response.user.roles) {
               if (response.user.roles.some((role: Role) => role.name === 'admin')) {
                 this.router.navigateByUrl('portail');
@@ -50,25 +50,13 @@ export class ConnexionComponent {
             } else {
               this.router.navigateByUrl('');
             }
-  
+
           }
         },
-       
+
       );
     }
   }
-  // logout() {
-  //     return this.authService.logout().subscribe(
-  //       (response: any) => {
-  //         console.log(response);
-  //         localStorage.removeItem('access_token');
-  //         localStorage.removeItem('user');
-  //         this.router.navigateByUrl('/login');
-  //       },
-  //       (error) => {
-  //         console.error(error);
-  //       }
-  //     )
-  //   }
   
+
 }
