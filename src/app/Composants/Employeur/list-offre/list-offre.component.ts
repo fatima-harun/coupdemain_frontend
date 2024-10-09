@@ -96,9 +96,6 @@ export class ListeOffresComponent implements OnInit {
       offre.services?.some(service => selectedServices.some(selService => selService.id === service.id)) // Utilisation de ?. pour éviter l'erreur
     );
   }
-
-
-
   // Cette méthode pourrait être appelée depuis le template
   onServiceChange(serviceId: number | undefined) {
     if (serviceId !== undefined) {
