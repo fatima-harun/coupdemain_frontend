@@ -42,8 +42,6 @@ export class AuthService {
               })
           );
   }
-
-
     // Méthode pour s'inscrire
     register(identifiant: any) {
         return this.http.post(`${apiUrl}/user/create`, identifiant)

@@ -16,8 +16,8 @@ export class InfosService {
         const headers = this.getHeaders(); // Ajout des headers avec le token
 
         // Ajoutez user_id à competence et experience
-        competence.user_id = userId; // Assurez-vous que user_id est un champ valide dans votre modèle CompetenceModel
-        experience.user_id = userId; // Assurez-vous que user_id est un champ valide dans votre modèle ExperienceModel
+        competence.user_id = userId;
+        experience.user_id = userId; 
 
         const competenceRequest = this.http.post(`${apiUrl}/competences`, competence, { headers });
         const experienceRequest = this.http.post(`${apiUrl}/experiences`, experience, { headers });

@@ -46,7 +46,6 @@ export class PublicationOffreComponent implements OnInit {
       }
     )
   }
-
   // Méthode pour ajouter une offre
   addOffre() {
     console.log(this.OffreObject);

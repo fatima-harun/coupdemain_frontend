@@ -56,7 +56,6 @@ export class PostuleOffreComponent implements OnInit {
     });
 }
 
-
   // Méthode pour récupérer le token depuis le localStorage
   getToken(): string | null {
     return localStorage.getItem('access_token');
