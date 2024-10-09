@@ -30,14 +30,22 @@
         <div class="container form-container">
           <div class="form-wrapper">
             <p>Renseignez vos informations complémentaires et profitez des opportunités qui s'offrent à vous</p>
-            <form enctype="multipart/form-data">
-              <label for="competences">Compétences</label> <br>
-              <textarea id="competences" name="competences"></textarea> <br>
-              <label for="experiences">Expériences</label> <br>
-              <textarea id="experiences" name="experiences"></textarea>
+            <form (ngSubmit)="addinfos()" #infoForm="ngForm">
+              <label for="competence-libelle">Compétences (Libellé)</label> <br>
+              <textarea id="competence-libelle" name="competenceLibelle" [(ngModel)]="infosObject.competence.libelle" required></textarea> <br>
+
+              <label for="competence-description">Compétences (Description)</label> <br>
+              <textarea id="competence-description" name="competenceDescription" [(ngModel)]="infosObject.competence.description" required></textarea> <br>
+
+              <label for="experience-libelle">Expériences (Libellé)</label> <br>
+              <textarea id="experience-libelle" name="experienceLibelle" [(ngModel)]="infosObject.experience.libelle" required></textarea> <br>
+
+              <label for="experience-description">Expériences (Description)</label> <br>
+              <textarea id="experience-description" name="experienceDescription" [(ngModel)]="infosObject.experience.description" required></textarea> <br>
+
+              <button type="submit" class="btn-publish">Publier l'offre</button>
             </form>
           </div>
-          <div><button type="submit" class="btn-publish">Publier l'offre</button></div>
         </div>
       </div>
     </div>

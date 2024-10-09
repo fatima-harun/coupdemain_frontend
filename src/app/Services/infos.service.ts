@@ -2,34 +2,29 @@ import { CompetenceModel } from './../Models/competence.model';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
+import { forkJoin } from 'rxjs';
 import { ExperienceModel } from "../Models/experience.model";
 
 @Injectable({
     providedIn: "root"
 })
-
 export class InfosService {
     private http = inject(HttpClient);
 
-     addcompetence(Competence:any){
-      const headers = this.getHeaders(); // Ajout des headers avec le token
-       return this.http.post(`${apiUrl}/competences`, Competence, { headers });
-     }
+    // Modifiez cette méthode pour inclure le user_id
+    addinfos(competence: CompetenceModel, experience: ExperienceModel, userId: string) {
+        const headers = this.getHeaders(); // Ajout des headers avec le token
 
-    // // Méthode pour ajouter une offre avec les headers contenant le token
-    // addOffre(offre: any) {
-    //     const headers = this.getHeaders(); // Ajout des headers avec le token
-    //     return this.http.post(`${apiUrl}/offres`, offre, { headers });
-    // }
+        // Ajoutez user_id à competence et experience
+        competence.user_id = userId; // Assurez-vous que user_id est un champ valide dans votre modèle CompetenceModel
+        experience.user_id = userId; // Assurez-vous que user_id est un champ valide dans votre modèle ExperienceModel
 
-    // // Méthode pour récupérer toutes les offres avec les headers
-    // getAllOffre() {
-    //     const headers = this.getHeaders();
-    //     return this.http.get(`${apiUrl}/offres`, { headers });
-    // }
-    // getOffreById(id: string) {
-    //     return this.http.get<{ data: OffreModel }>(`/api/offres/${id}`);
-    //   }
+        const competenceRequest = this.http.post(`${apiUrl}/competences`, competence, { headers });
+        const experienceRequest = this.http.post(`${apiUrl}/experiences`, experience, { headers });
+
+        // Utilisez forkJoin pour exécuter les deux requêtes en parallèle
+        return forkJoin([competenceRequest, experienceRequest]);
+    }
 
     // Méthode pour récupérer les headers avec le token d'authentification
     private getHeaders(): HttpHeaders {
