@@ -26,7 +26,9 @@ export class PublicationOffreComponent implements OnInit {
   // Declaration des variables
   tabOffres: OffreModel[] = [];
   tabService:ServiceModel[] = [];
-  OffreObject: OffreModel = {};
+  OffreObject: OffreModel = {
+    service_id: undefined
+  };
   user: any;
   utilisateurConnecte: any = null; // Pour stocker l'utilisateur connecté
 
@@ -53,7 +55,7 @@ export class PublicationOffreComponent implements OnInit {
     // Vérifier que tous les champs obligatoires sont remplis
     if (!this.OffreObject.description ||
         !this.OffreObject.lieu ||
-        !this.OffreObject.service_id ||
+         !this.OffreObject.service_id ||
         !this.OffreObject.date_debut ||
         !this.OffreObject.date_fin ||
         !this.OffreObject.date_limite ||
@@ -78,7 +80,7 @@ export class PublicationOffreComponent implements OnInit {
         formdata.append("description", this.OffreObject.description);
         formdata.append("lieu", this.OffreObject.lieu);
         formdata.append("horaire", this.OffreObject.horaire);
-        formdata.append("service_id", this.OffreObject.service_id);
+         formdata.append("service_id", this.OffreObject.service_id);
         formdata.append("date_fin", this.OffreObject.date_fin);
         formdata.append("date_limite", this.OffreObject.date_limite);
         formdata.append("date_debut", this.OffreObject.date_debut);
@@ -93,7 +95,20 @@ export class PublicationOffreComponent implements OnInit {
           (response: any) => {
             console.log(response);
             // Réinitialiser l'objet Offre après ajout
-            this.OffreObject = {};
+           // Réinitialiser l'objet Offre après ajout
+this.OffreObject = {
+  service_id: undefined,
+  description: undefined,
+  lieu: undefined,
+  salaire: undefined,
+  horaire: undefined,
+  nombre_postes: undefined,
+  date_debut: undefined,
+  date_fin: undefined,
+  date_limite: undefined,
+  profil: undefined
+};
+
             // Actualiser la liste des offres ou afficher un message de succès
             Swal.fire({
               icon: "success",

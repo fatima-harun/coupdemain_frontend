@@ -19,6 +19,11 @@ export class ServiceService {
     getAllService(){
         return this.http.get(`${apiUrl}/services`);
     }
+    // Methode pour récupérer un service par son id
+   // ServiceService
+getServiceById(id: number) { // Utilisez number ici
+    return this.http.get(`${apiUrl}/services/${id}`);
+}
 
     // Methode pour mettre a jour un service
     updateService(id:any, Service:any){

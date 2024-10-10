@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
 import { OffreModel } from "../Models/offre.model";
+import { Observable } from "rxjs";
 
 @Injectable({
     providedIn: "root"
@@ -21,9 +22,12 @@ export class OffreService {
         const headers = this.getHeaders();
         return this.http.get(`${apiUrl}/offres`, { headers });
     }
-    getOffreById(id: string) {
-        return this.http.get<{ data: OffreModel }>(`/api/offres/${id}`);
-      }
+    //méthode pour récupérer une seule offre
+    getOffresByid(OffreId: number){
+      const headers = this.getHeaders();
+      return this.http.get(`${apiUrl}/offres/${OffreId}`, { headers }); // Corrige l'URL
+    }
+
 
     // Méthode pour récupérer les headers avec le token d'authentification
     private getHeaders(): HttpHeaders {

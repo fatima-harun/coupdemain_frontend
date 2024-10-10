@@ -6,6 +6,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { ServiceModel } from '../../../Models/service.model';
 import { ServiceService } from '../../../Services/service.service';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';  // 1. Importer le Router
 
 @Component({
   selector: 'app-list-offre',
@@ -15,16 +16,20 @@ import { FormsModule } from '@angular/forms';
   imports: [CommonModule, HeaderComponent, FormsModule],
 })
 export class ListeOffresComponent implements OnInit {
+
   private serviceService = inject(ServiceService);
   tabService: ServiceModel[] = [];
   tabOffres: OffreModel[] = [];
-  offreObject: OffreModel = {};
-  selectedServiceId: number | undefined; // Changement ici
+  offreObject: OffreModel = {
+    service_id: undefined
+  };
+  selectedServiceId: number | undefined;
   offres: any[] = [];
   user: any;
   searchText: string = '';
 
-  constructor(private OffreService: OffreService) {}
+  // 2. Injecter le Router dans le constructeur
+  constructor(private OffreService: OffreService, private router: Router) {}
 
   ngOnInit(): void {
     this.fetchOffres();
@@ -40,13 +45,12 @@ export class ListeOffresComponent implements OnInit {
           console.log('Offres:', this.tabOffres);
         }
       },
-      (error: any) => { // Changement ici
+      (error: any) => {
         console.error('Erreur lors de la récupération des offres:', error);
       }
     );
   }
 
-  // Récupération de tous les services
   fetchService() {
     this.serviceService.getAllService().subscribe(
       (response: any) => {
@@ -62,47 +66,45 @@ export class ListeOffresComponent implements OnInit {
     return user ? JSON.parse(user) : null;
   }
 
-  getOffreObject(offre: any) {
-    this.offreObject = offre;
-    console.log(this.offreObject);
-  }
 
-  // Méthode pour récupérer les offres basées sur le service sélectionné
+
+
+
   getOffresByService(serviceId: number) {
     this.OffreService.getOffresByService(serviceId).subscribe(
       (response: any) => {
         if (response) {
-          this.offres = response; // Mise à jour de la liste des offres
+          this.offres = response;
           console.log('Offres par service:', this.offres);
         }
       },
-      (error: any) => { // Changement ici
+      (error: any) => {
         console.error('Erreur lors de la récupération des offres par service:', error);
       }
     );
   }
 
   filteredOffres(): OffreModel[] {
-    // Récupère les services sélectionnés
     const selectedServices = this.tabService.filter(service => service.selected);
 
-    // Si aucun service n'est sélectionné, renvoie toutes les offres
     if (selectedServices.length === 0) {
       return this.tabOffres;
     }
 
-    // Filtre les offres qui contiennent au moins un service sélectionné
     return this.tabOffres.filter(offre =>
-      offre.services?.some(service => selectedServices.some(selService => selService.id === service.id)) // Utilisation de ?. pour éviter l'erreur
+      offre.services?.some(service => selectedServices.some(selService => selService.id === service.id))
     );
   }
-  // Cette méthode pourrait être appelée depuis le template
+
   onServiceChange(serviceId: number | undefined) {
     if (serviceId !== undefined) {
-      this.getOffresByService(serviceId); // Appelle la fonction seulement si serviceId est défini
+      this.getOffresByService(serviceId);
     } else {
       console.error('Service ID is undefined');
     }
+  }
+  voirDetails(id: number) {
+    this.router.navigate(['/detail', id]);  // Redirection vers la route de détail avec l'ID
   }
 
 }

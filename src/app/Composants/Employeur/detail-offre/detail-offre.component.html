@@ -1,1 +1,22 @@
+<div *ngIf="offre">
+  <h2>Détails de l'offre</h2>
 
+  <div class="offre-details">
+    <h3>{{ offre.salaire }} FCFA</h3>
+    <p><strong>Description :</strong> {{ offre.description }}</p>
+    <p><strong>Date de publication :</strong> {{ offre.date_limite }}</p>
+    <p><strong>Salaire :</strong> {{ offre.salaire }} FCFA</p>
+
+    <div>
+      <p><strong>Lieu :</strong> {{ offre.lieu }}</p>
+      <p><strong>Service :</strong> {{ offre.services && offre.services.length > 0 ? offre.services[0].libelle : 'Non spécifié' }}</p>
+      <p><strong>Description du service :</strong> {{ offre.services && offre.services.length > 0 ? offre.services[0].description : 'Non spécifiée' }}</p>
+    </div>
+
+    <button class="btn btn-primary">Postuler à cette offre</button>
+  </div>
+</div>
+
+<div *ngIf="!offre">
+  <p>Aucune offre trouvée avec cet identifiant.</p>
+</div>

@@ -1,6 +1,7 @@
 import { ServiceModel } from "./service.model";
 
 export interface OffreModel{
+service_id: any;
     id?:number,
     user_id?:number,
     description?:string,
@@ -12,8 +13,6 @@ export interface OffreModel{
     date_fin?:string,
     date_limite?:string,
     profil?:string,
-    service_id?: string,
-
 
 
     //  la propriété services pour contenir un tableau de services

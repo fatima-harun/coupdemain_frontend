@@ -27,5 +27,7 @@ export const routes: Routes = [
 
 
     //route du demandeur d'emploi
-    {path:"employe",component:PostuleOffreComponent}
+    {path:"employe",component:PostuleOffreComponent},
+    // route pour les détails d'une offre avec des paramètres 'id' et service_id
+    {path:'detail/:id',component:DetailOffreComponent},
 ];
