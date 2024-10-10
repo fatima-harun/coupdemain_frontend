@@ -66,10 +66,6 @@ export class ListeOffresComponent implements OnInit {
     return user ? JSON.parse(user) : null;
   }
 
-
-
-
-
   getOffresByService(serviceId: number) {
     this.OffreService.getOffresByService(serviceId).subscribe(
       (response: any) => {

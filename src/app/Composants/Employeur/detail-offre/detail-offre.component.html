@@ -1,22 +1,50 @@
-<div *ngIf="offre">
-  <h2>Détails de l'offre</h2>
+<!DOCTYPE html>
+<html lang="fr">
 
-  <div class="offre-details">
-    <h3>{{ offre.salaire }} FCFA</h3>
-    <p><strong>Description :</strong> {{ offre.description }}</p>
-    <p><strong>Date de publication :</strong> {{ offre.date_limite }}</p>
-    <p><strong>Salaire :</strong> {{ offre.salaire }} FCFA</p>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="detail-offre.component.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <title>Détails de l'Offre d'Emploi</title>
+</head>
 
-    <div>
-      <p><strong>Lieu :</strong> {{ offre.lieu }}</p>
-      <p><strong>Service :</strong> {{ offre.services && offre.services.length > 0 ? offre.services[0].libelle : 'Non spécifié' }}</p>
-      <p><strong>Description du service :</strong> {{ offre.services && offre.services.length > 0 ? offre.services[0].description : 'Non spécifiée' }}</p>
-    </div>
+<body>
+  <app-header></app-header>
 
-    <button class="btn btn-primary">Postuler à cette offre</button>
+  <div class="en_tete">
+    <h1>Détails de l'Offre d'Emploi</h1>
   </div>
-</div>
 
-<div *ngIf="!offre">
-  <p>Aucune offre trouvée avec cet identifiant.</p>
-</div>
+  <div class="container">
+    <div *ngIf="offre">
+      <div class="offre-header mt-4 mb-3">
+        <h2>{{ offre.services && offre.services.length > 0 ? offre.services[0].libelle : 'Service non spécifié' }}</h2>
+      </div>
+      <div class="offre-details ">
+      <div><p><i class="fas fa-map-marker-alt"></i> {{ offre.lieu }}</p></div>
+      <div><p><i class="fas fa-money-bill-wave"></i> {{ offre.salaire }} FCFA</p></div>
+       <div><p><i class="fas fa-clock"></i> {{ offre.horaire }}</p></div>
+      </div>
+      <div style="display: flex; justify-content: flex-end;">
+        <button class="btn-postuler">Postuler</button>
+    </div>
+        <div>
+        <h3>Description</h3>
+        <p> {{ offre.description }}</p>
+        <h3>Profil recherché</h3>
+        <p>{{ offre.profil }}</p>
+        <p> <strong>Date de commencement :</strong> {{ offre.date_debut }}</p>
+        <p> <strong>Date de fin prévue :</strong>{{ offre.date_fin }}</p>
+        <p><strong>Nombre de postes:</strong>{{offre.nombre_postes }}</p>
+      </div>
+    </div>
+    <div style="display: flex; justify-content: flex-end;">
+     <a href="/liste-offre"><button class="btn-return">Retour</button></a>
+    </div>
+    </div>
+    <div *ngIf="!offre">
+      <p>Aucune offre trouvée avec cet identifiant.</p>
+    </div>
+</body>
+</html>

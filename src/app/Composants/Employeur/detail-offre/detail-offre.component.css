@@ -1,0 +1,122 @@
+/* Styles généraux */
+.en_tete {
+  background-image: url("/../../../../assets/img/Group 166.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20.19rem;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  padding-top: 7rem;
+}
+
+.offre-details {
+  display: flex;
+  gap: 4rem;
+  flex-wrap: wrap; /* Permet aux éléments de se placer en ligne si l'espace est réduit */
+}
+
+.offre-details p {
+  color: rgb(139, 133, 133);
+}
+
+i {
+  color: #FED330;
+}
+
+h2 {
+  color: #FED330;
+}
+
+.btn-postuler {
+  background-color: #FED330;
+  color: white;
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-return {
+  background-color: white;
+  color: rgb(142, 137, 137);
+  border-radius: 20px;
+  padding: 8px 20px;
+  font-size: 16px;
+  border: thin solid rgb(106, 102, 102);
+  cursor: pointer;
+}
+
+/* --- Media Queries pour les écrans de petite taille (smartphones) --- */
+@media only screen and (max-width: 768px) {
+  /* Pour les écrans de moins de 768px de large */
+
+  .en_tete {
+    height: 15rem; /* Réduire la hauteur de la bannière */
+    background-position: center;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+    padding-top: 5rem;
+  }
+
+  .offre-details {
+    flex-direction: column; /* Empiler les détails en colonne */
+    gap: 2rem; /* Réduire l'espace entre les éléments */
+  }
+
+  .btn-postuler,
+  .btn-return {
+    font-size: 14px;
+    padding: 6px 15px; /* Ajuster la taille des boutons */
+  }
+
+  h2 {
+    font-size: 1.5rem;
+    text-align: center; /* Centrer le titre */
+  }
+
+  .offre-header {
+    text-align: center;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+/* --- Media Queries pour les écrans encore plus petits (smartphones) --- */
+@media only screen and (max-width: 480px) {
+  /* Pour les écrans de moins de 480px de large */
+
+  .en_tete {
+    height: 12rem;
+  }
+
+  h1 {
+    font-size: 1.2rem;
+    padding-top: 4rem;
+  }
+
+  .offre-details {
+    gap: 1rem;
+  }
+
+  h2 {
+    font-size: 1.2rem;
+  }
+
+  .btn-postuler,
+  .btn-return {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  p {
+    font-size: 0.9rem;
+  }
+}

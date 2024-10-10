@@ -5,6 +5,7 @@ import { OffreModel } from '../../../Models/offre.model';
 import { ListeOffresComponent } from '../../Employeur/list-offre/list-offre.component';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../header/header.component';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { HeaderComponent } from '../../header/header.component';
 })
 export class PortailComponent implements OnInit {
 
-  private offreService = inject(OffreService);
+  constructor(private offreService: OffreService, private router: Router) {}
 
   offres: OffreModel[] = []; // Tableau pour stocker les offres
   utilisateurConnecte: any = null; // Pour stocker l'utilisateur connecté
@@ -39,5 +40,7 @@ export class PortailComponent implements OnInit {
       }
     );
   }
-
+  voirDetails(id: number) {
+    this.router.navigate(['/detail', id]);  // Redirection vers la route de détail avec l'ID
+  }
 }

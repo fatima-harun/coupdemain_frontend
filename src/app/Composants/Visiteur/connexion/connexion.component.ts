@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AlertShowMessage } from '../../../Services/alertMessage';
 import { Role } from '../../../Models/role.model';
 import { HeaderComponent } from '../../header/header.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-connexion',
@@ -37,26 +38,23 @@ export class ConnexionComponent {
             localStorage.setItem('role', response.user.roles[0].name);
             localStorage.setItem('access_token', response.access_token);
             console.log(localStorage.getItem('role'));
-            // private redirectionrole(role_id)
+
 
             if (response.user.roles) {
               if (response.user.roles.some((role: Role) => role.name === 'admin')) {
                 this.router.navigateByUrl('portail');
               } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
-                this.router.navigateByUrl('offre');
+                window.location.href ='/offre';
+
               } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {
                 this.router.navigateByUrl('portail');
               }
             } else {
               this.router.navigateByUrl('');
             }
-
           }
         },
-
       );
     }
   }
-  
-
 }

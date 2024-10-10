@@ -32,9 +32,6 @@
                     <i class="fas fa-utensils me-3 mt-1"></i> Cuisinier
                 </button>
                 <button class="btn btn-primary  me-4">
-                    <i class="fas fa-book-reader me-3 mt-1"></i> Répétiteur
-                </button>
-                <button class="btn btn-primary  me-4">
                     <i class="fas fa-user-nurse me-3 mt-1"></i> Aide Soignante
                 </button>
                 <button class="btn btn-primary me-4">
@@ -107,7 +104,7 @@
                             <span class="price">
                                 <i class="fa fa-money-bill-wave"></i> {{ offre.salaire }}
                             </span>
-                            <a href="#" class="view-link">Voir</a>
+                            <a *ngIf="offre.id !== undefined" (click)="voirDetails(offre.id)">Voir</a>
                         </div>
                     </div>
                 </div>

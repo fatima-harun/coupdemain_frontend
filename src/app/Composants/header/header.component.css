@@ -5,6 +5,9 @@ nav{
 .nav-link{
     color:white
 }
+.nav-link:hover{
+ color:#FED330
+}
 .btn-connect{
     border-radius: 1.25rem;
     background: #FED330;
@@ -70,6 +73,12 @@ form{
 }
 .dropdown-menu {
   border-radius: 10px;
+}
+
+.active-link {
+  text-decoration: underline;
+  font-weight: bold;
+  color:#FED330
 }
 
 

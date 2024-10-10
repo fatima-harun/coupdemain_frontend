@@ -94,20 +94,19 @@ export class PublicationOffreComponent implements OnInit {
         this.offreService.addOffre(formdata).subscribe(
           (response: any) => {
             console.log(response);
-            // Réinitialiser l'objet Offre après ajout
            // Réinitialiser l'objet Offre après ajout
-this.OffreObject = {
-  service_id: undefined,
-  description: undefined,
-  lieu: undefined,
-  salaire: undefined,
-  horaire: undefined,
-  nombre_postes: undefined,
-  date_debut: undefined,
-  date_fin: undefined,
-  date_limite: undefined,
-  profil: undefined
-};
+        this.OffreObject = {
+          service_id: undefined,
+          description: undefined,
+          lieu: undefined,
+          salaire: undefined,
+          horaire: undefined,
+          nombre_postes: undefined,
+          date_debut: undefined,
+          date_fin: undefined,
+          date_limite: undefined,
+         profil: undefined
+      };
 
             // Actualiser la liste des offres ou afficher un message de succès
             Swal.fire({
