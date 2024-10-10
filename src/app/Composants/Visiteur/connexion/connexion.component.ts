@@ -39,15 +39,13 @@ export class ConnexionComponent {
             localStorage.setItem('access_token', response.access_token);
             console.log(localStorage.getItem('role'));
 
-
             if (response.user.roles) {
               if (response.user.roles.some((role: Role) => role.name === 'admin')) {
-                this.router.navigateByUrl('portail');
+                window.location.href ='portail';
               } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
                 window.location.href ='/offre';
-
               } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {
-                this.router.navigateByUrl('portail');
+                window.location.href ='portail';
               }
             } else {
               this.router.navigateByUrl('');

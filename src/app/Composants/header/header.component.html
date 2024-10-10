@@ -29,10 +29,11 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/liste-offre" routerLinkActive="active-link">Emplois</a>
                     </li>
-                    <li class="nav-item">
+                    <li *ngIf="isEmployeur">
                         <a class="nav-link" href="#" routerLinkActive="active-link">Candidats</a>
                     </li>
                     <li *ngIf="isEmployeur"><a href="/offre" class="nav-link">Publier une offre</a></li>
+                    <li *ngIf="isEmploye"><a href="/employe" class="nav-link">Informations complèmentaires</a></li>
                 </ul>
                 <!-- Vérification de la connexion -->
                 <form class="d-flex" *ngIf="!isLoggedIn; else loggedInTemplate">
