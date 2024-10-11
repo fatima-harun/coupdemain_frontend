@@ -1,0 +1,8 @@
+<app-header></app-header>
+<div *ngFor="let candidat of tabCandidat">
+  <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}">
+  <p>{{ candidat.nom }} {{ candidat.prenom }}</p>
+  <p>Email: {{ candidat.email || 'Non spécifié' }}</p>
+  <p>Téléphone: {{ candidat.telephone }}</p>
+  <p>Adresse: {{ candidat.adresse }}</p>
+</div>

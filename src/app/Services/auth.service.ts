@@ -1,8 +1,8 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -73,4 +73,26 @@ export class AuthService {
     isLoggedIn(): boolean {
         return !!this.currentUserSubject.value;
     }
+    private getHeaders(): HttpHeaders {
+      const token = localStorage.getItem('access_token');
+      if (token) {
+          return new HttpHeaders().set('Authorization', `Bearer ${token}`);
+      } else {
+          console.error('Token non trouvé');
+          return new HttpHeaders();
+      }
+  }
+  getAllCandidat(): Observable<any> {
+    const headers = this.getHeaders();
+    return this.http.get(`${apiUrl}/candidats`, { headers }).pipe(
+      tap(response => {
+        console.log('Réponse de l\'API:', response); // Log the response here
+      }),
+      catchError(error => {
+        console.error('Erreur dans getAllCandidat:', error); // Catch errors from HTTP
+        return throwError(error); // Rethrow the error for further handling
+      })
+    );
+  }
+
 }

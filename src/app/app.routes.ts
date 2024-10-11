@@ -7,6 +7,7 @@ import { AuthEmployeurGuard } from './Guard/employeur.guard';
 import { ListeOffresComponent } from './Composants/Employeur/list-offre/list-offre.component';
 import { DetailOffreComponent } from './Composants/Employeur/detail-offre/detail-offre.component';
 import { PostuleOffreComponent } from './Composants/Employe/postule-offre/postule-offre.component';
+import { CandidatsComponent } from './Composants/Employeur/candidats/candidats.component';
 
 export const routes: Routes = [
 
@@ -30,4 +31,5 @@ export const routes: Routes = [
     {path:"employe",component:PostuleOffreComponent},
     // route pour les détails d'une offre avec des paramètres 'id' et service_id
     {path:'detail/:id',component:DetailOffreComponent},
+    {path:"candidats",component:CandidatsComponent},
 ];
