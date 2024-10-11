@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../header/header.component";
+import { ServiceModel } from '../../../Models/service.model';
 
 @Component({
   selector: 'app-candidats',
@@ -16,7 +17,7 @@ import { HeaderComponent } from "../../header/header.component";
 export class CandidatsComponent implements OnInit {
 
   tabCandidat: any[] = []; // Initialisation de tabCandidat
-
+  tabService: ServiceModel[] = [];
 
   constructor(private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
@@ -42,7 +43,6 @@ export class CandidatsComponent implements OnInit {
 getimage(photo: string): string {
   return `http://127.0.0.1:8000/storage/${photo}`;
 }
-
 
 
 }

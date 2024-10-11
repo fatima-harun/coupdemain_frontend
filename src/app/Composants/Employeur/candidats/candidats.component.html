@@ -1,8 +1,28 @@
 <app-header></app-header>
-<div *ngFor="let candidat of tabCandidat">
-  <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}">
-  <p>{{ candidat.nom }} {{ candidat.prenom }}</p>
-  <p>Email: {{ candidat.email || 'Non spécifié' }}</p>
-  <p>Téléphone: {{ candidat.telephone }}</p>
-  <p>Adresse: {{ candidat.adresse }}</p>
+<div class="en_tete">
+  <h1>Catalogue des demandeurs d'emploi</h1>
 </div>
+
+
+
+<!-- Liste des cartes -->
+<div class="cards-container">
+  <div class="profile-card" *ngFor="let candidat of tabCandidat">
+    <!-- En-tête de la carte avec l'image du candidat -->
+    <div class="profile-header">
+      <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}">
+    </div>
+
+    <!-- Corps de la carte avec les détails du candidat -->
+    <div class="profile-body">
+      <h3>{{ candidat.prenom }} {{ candidat.nom }}</h3>
+      <p class="profession">{{ candidat.profession || 'Profession non spécifiée' }}</p>
+      <p class="contact-info"><strong>Email :</strong> {{ candidat.email || 'Non spécifié' }}</p>
+      <p class="contact-info"><strong>Téléphone :</strong> {{ candidat.telephone || 'Non spécifié' }}</p>
+      <button class="profile-btn">Voir le profil</button>
+    </div>
+  </div>
+</div>
+
+
+

@@ -1,0 +1,90 @@
+.en_tete{
+  background-image: url("/../../../../assets/img/Group 186.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20.19rem;
+}
+h1{
+  text-align:center;
+  color:white;
+  padding-top: 7rem;
+}
+/* Conteneur principal pour les cartes */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Répartition dynamique */
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  background-color: #f7f7f7;
+}
+
+/* Style des cartes de profil */
+.profile-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+  padding: 15px;
+  transition: transform 0.2s;
+}
+
+.profile-card:hover {
+  transform: scale(1.05);
+}
+
+/* Image de profil (en-tête de la carte) */
+.profile-header img {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-bottom: 10px;
+}
+
+
+/* Corps de la carte (informations du candidat) */
+.profile-body h3 {
+  margin: 10px 0 5px 0;
+  font-size: 18px;
+  font-weight: bold;
+  color: #FED330;
+}
+.profile-body .profession {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #666;
+}
+.profile-body .contact-info {
+  margin: 5px 0;
+  font-size: 13px;
+  color: #777;
+}
+.profile-btn {
+  margin-top: 10px;
+  padding: 8px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.profile-btn:hover {
+  background-color:#0056b3;
+}
+
+/* Responsive Design pour petits écrans */
+@media (max-width: 768px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+    padding: 10px;
+  }
+
+  .profile-card {
+    width: 100%; /* Les cartes prennent toute la largeur sur petits écrans */
+  }
+}
