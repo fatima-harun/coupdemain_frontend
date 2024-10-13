@@ -1,0 +1,14 @@
+<div *ngIf="candidat">
+  <h1>{{ candidat.nom }} {{ candidat.prenom }}</h1>
+  <p>Email: {{ candidat.email }}</p>
+  <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}" class="photo">
+  {{ candidat.adresse }}
+  {{ candidat.telephone }}
+  <div *ngIf="candidat.services?.length > 0">
+    <p><i class="fas fa-briefcase"></i>
+      <span *ngFor="let service of candidat.services">
+        {{ service.libelle }}
+      </span>
+    </p>
+  </div>
+</div>

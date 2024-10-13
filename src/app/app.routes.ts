@@ -8,6 +8,7 @@ import { ListeOffresComponent } from './Composants/Employeur/list-offre/list-off
 import { DetailOffreComponent } from './Composants/Employeur/detail-offre/detail-offre.component';
 import { PostuleOffreComponent } from './Composants/Employe/postule-offre/postule-offre.component';
 import { CandidatsComponent } from './Composants/Employeur/candidats/candidats.component';
+import { DetailCandidatComponent } from './Composants/Employeur/detail-candidat/detail-candidat.component';
 
 export const routes: Routes = [
 
@@ -32,4 +33,5 @@ export const routes: Routes = [
     // route pour les détails d'une offre avec des paramètres 'id' et service_id
     {path:'detail/:id',component:DetailOffreComponent},
     {path:"candidats",component:CandidatsComponent},
+    { path: 'candidats/:candidatId', component:DetailCandidatComponent},
 ];

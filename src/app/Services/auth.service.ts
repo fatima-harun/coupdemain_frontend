@@ -94,5 +94,10 @@ export class AuthService {
       })
     );
   }
+  getCandidatDetails(candidatId: number): Observable<any> {
+    const apiUrl = 'http://127.0.0.1:8000/api/candidats'; // Définissez l'URL de base ici
+    return this.http.get(`${apiUrl}/${candidatId}`); // Utilisez des backticks pour l'interpolation
+}
+
 
 }

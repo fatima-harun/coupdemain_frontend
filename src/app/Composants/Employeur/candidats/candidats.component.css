@@ -12,12 +12,13 @@ h1{
 /* Conteneur principal pour les cartes */
 .cards-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 5fr)); /* Répartition dynamique */
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 6fr)); /* Répartition dynamique */
+  gap: 20px; /* Réduit l'espace entre les cartes */
   padding: 20px;
   justify-items: center;
   background-color: #f7f7f7;
 }
+
 
 /* Style des cartes de profil */
 .profile-card {
@@ -26,9 +27,10 @@ h1{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   width: 300px;
   text-align: center;
-  padding: 15px;
+  padding: 10px;
   transition: transform 0.2s;
 }
+
  i{
   color:#FED330
  }
@@ -46,7 +48,7 @@ h1{
 }
 
 
-/* Corps de la carte (informations du candidat) */
+
 .profile-body h3 {
   margin: 10px 0 5px 0;
   font-size: 18px;
@@ -65,12 +67,13 @@ h1{
 }
 .profile-btn {
   margin-top: 10px;
-  padding: 8px;
-  background-color:#FED330;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 14px;
+  border-radius: 1.25rem;
+  background: #FED330;
+ width: 7.25rem;
+ height:  2.375rem;
+border:none;
+text-decoration: none;
+color:white;
   cursor: pointer;
   transition: background-color 0.3s;
 }
@@ -87,6 +90,6 @@ h1{
   }
 
   .profile-card {
-    width: 100%; /* Les cartes prennent toute la largeur sur petits écrans */
+    width: 100%;
   }
 }

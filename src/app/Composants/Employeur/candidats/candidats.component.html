@@ -25,12 +25,12 @@
           </span>
         </p>
       </div>
-      <p class="contact-info">
+      <!-- <p class="contact-info">
         <i class="fas fa-envelope"></i>{{ candidat.email || 'Non spécifié' }}
       </p>
       <p class="contact-info">
         <i class="fas fa-phone"></i> {{ candidat.telephone || 'Non spécifié' }}
-      </p>
+      </p> -->
       <p class="contact-info">
         <i class="fas fa-map-marker-alt"></i> {{ candidat.adresse || 'Non spécifié' }}
       </p>
@@ -40,7 +40,7 @@
       </ng-template>
 
       <!-- Bouton pour voir plus d'informations sur le candidat -->
-      <button class="profile-btn">Voir le profil</button>
+      <button class="profile-btn" (click)="voirProfil(candidat.id)">Voir le profil</button>
     </div>
   </div>
 </div>
