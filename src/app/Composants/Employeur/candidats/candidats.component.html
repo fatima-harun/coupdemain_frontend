@@ -1,13 +1,13 @@
 <app-header></app-header>
+
 <div class="en_tete">
   <h1>Catalogue des demandeurs d'emploi</h1>
 </div>
 
-
-
-<!-- Liste des cartes -->
+<!-- Liste des cartes des candidats -->
 <div class="cards-container">
   <div class="profile-card" *ngFor="let candidat of tabCandidat">
+
     <!-- En-tête de la carte avec l'image du candidat -->
     <div class="profile-header">
       <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}">
@@ -15,14 +15,32 @@
 
     <!-- Corps de la carte avec les détails du candidat -->
     <div class="profile-body">
-      <h3>{{ candidat.prenom }} {{ candidat.nom }}</h3>
-      <p class="profession">{{ candidat.profession || 'Profession non spécifiée' }}</p>
-      <p class="contact-info"><strong>Email :</strong> {{ candidat.email || 'Non spécifié' }}</p>
-      <p class="contact-info"><strong>Téléphone :</strong> {{ candidat.telephone || 'Non spécifié' }}</p>
+      <h3> {{ candidat.prenom }} {{ candidat.nom }}</h3>
+
+      <!-- Liste des services associés -->
+      <div *ngIf="candidat.services?.length > 0; else noService">
+        <p><i class="fas fa-briefcase"></i>
+          <span *ngFor="let service of candidat.services">
+            {{ service.libelle }}
+          </span>
+        </p>
+      </div>
+      <p class="contact-info">
+        <i class="fas fa-envelope"></i>{{ candidat.email || 'Non spécifié' }}
+      </p>
+      <p class="contact-info">
+        <i class="fas fa-phone"></i> {{ candidat.telephone || 'Non spécifié' }}
+      </p>
+      <p class="contact-info">
+        <i class="fas fa-map-marker-alt"></i> {{ candidat.adresse || 'Non spécifié' }}
+      </p>
+      <!-- Template si le candidat n'a pas de service -->
+      <ng-template #noService>
+        <p>Aucun service associé.</p>
+      </ng-template>
+
+      <!-- Bouton pour voir plus d'informations sur le candidat -->
       <button class="profile-btn">Voir le profil</button>
     </div>
   </div>
 </div>
-
-
-

@@ -19,6 +19,7 @@ export class CandidatsComponent implements OnInit {
   tabCandidat: any[] = []; // Initialisation de tabCandidat
   tabService: ServiceModel[] = [];
 
+
   constructor(private authService: AuthService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
