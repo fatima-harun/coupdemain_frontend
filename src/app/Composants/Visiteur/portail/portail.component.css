@@ -255,6 +255,17 @@ hr{
   .view-link:hover {
     text-decoration: underline;
   }
+  .video-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+
+  .video-container iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px; 
+  }
 
   @media (max-width: 768px) {
     .card {

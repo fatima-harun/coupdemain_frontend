@@ -6,6 +6,8 @@ import { ListeOffresComponent } from '../../Employeur/list-offre/list-offre.comp
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../header/header.component';
 import { Router } from '@angular/router';
+import { FooterComponent } from '../../../footer/footer.component';
+import { YoutubePlayerComponent } from '../../../youtube-player/youtube-player.component';
 
 
 @Component({
@@ -13,7 +15,7 @@ import { Router } from '@angular/router';
   templateUrl: './portail.component.html',
   styleUrls: ['./portail.component.css'],
   standalone: true,
-  imports: [ListeOffresComponent, CommonModule, HeaderComponent],
+  imports: [ListeOffresComponent, CommonModule, HeaderComponent,FooterComponent,YoutubePlayerComponent],
 })
 export class PortailComponent implements OnInit {
 

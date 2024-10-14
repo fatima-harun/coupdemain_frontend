@@ -1,0 +1,9 @@
+.youtube-player {
+  text-align: center;
+}
+
+iframe {
+  width: 100%;
+  max-width: 600px; /* Ajustez la largeur selon vos besoins */
+  height: 315px; /* Ajustez la hauteur selon vos besoins */
+}

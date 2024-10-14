@@ -6,13 +6,14 @@ import { OffreService } from '../../../Services/offre.service';
 import { OffreModel } from '../../../Models/offre.model';
 import { ServiceModel } from '../../../Models/service.model';
 import { HeaderComponent } from "../../header/header.component";
+import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
   selector: 'app-detail-offre',
   templateUrl: './detail-offre.component.html',
   styleUrls: ['./detail-offre.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderComponent],
+  imports: [CommonModule, HeaderComponent,FooterComponent],
 })
 export class DetailOffreComponent implements OnInit {
 

@@ -7,13 +7,14 @@ import { ServiceModel } from '../../../Models/service.model';
 import { ServiceService } from '../../../Services/service.service';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';  // 1. Importer le Router
+import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
   selector: 'app-list-offre',
   templateUrl: './list-offre.component.html',
   styleUrls: ['./list-offre.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FormsModule],
+  imports: [CommonModule, HeaderComponent, FormsModule,FooterComponent],
 })
 export class ListeOffresComponent implements OnInit {
 

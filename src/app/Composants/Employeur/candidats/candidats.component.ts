@@ -6,11 +6,12 @@ import { CommonModule } from '@angular/common';
 import { HeaderComponent } from "../../header/header.component";
 import { ServiceModel } from '../../../Models/service.model';
 import { ActivatedRoute, Router } from '@angular/router';
+import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
   selector: 'app-candidats',
   standalone: true,
-  imports: [FormsModule, CommonModule, HeaderComponent],
+  imports: [FormsModule, CommonModule, HeaderComponent,FooterComponent],
   templateUrl: './candidats.component.html',
   styleUrls: ['./candidats.component.css'] // Correction de styleUrl à styleUrls
 })

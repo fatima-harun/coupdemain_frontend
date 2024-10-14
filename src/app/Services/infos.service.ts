@@ -2,7 +2,7 @@ import { CompetenceModel } from './../Models/competence.model';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
-import { forkJoin } from 'rxjs';
+import { forkJoin, Observable } from 'rxjs';
 import { ExperienceModel } from "../Models/experience.model";
 
 @Injectable({
@@ -17,7 +17,7 @@ export class InfosService {
 
         // Ajoutez user_id à competence et experience
         competence.user_id = userId;
-        experience.user_id = userId; 
+        experience.user_id = userId;
 
         const competenceRequest = this.http.post(`${apiUrl}/competences`, competence, { headers });
         const experienceRequest = this.http.post(`${apiUrl}/experiences`, experience, { headers });
@@ -35,5 +35,9 @@ export class InfosService {
             console.error('Token non trouvé');
             return new HttpHeaders();
         }
+    }
+    // Récupérer les compétences et expériences de l'utilisateur connecté
+    getUserInfos(): Observable<any> {
+      return this.http.get(`${apiUrl}/user-infos`);
     }
 }

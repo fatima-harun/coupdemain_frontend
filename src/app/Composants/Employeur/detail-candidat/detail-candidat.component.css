@@ -29,7 +29,12 @@ h2,span{
 .icon-jaune {
   color: #FFC107;
 }
-
+h5{
+  color:#FFC107
+}
+li{
+  color:#4A69BD
+}
 @media (max-width: 768px) {
   .en_tete {
     height: 15rem;

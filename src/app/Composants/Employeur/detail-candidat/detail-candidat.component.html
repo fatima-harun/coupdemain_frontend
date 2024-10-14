@@ -10,9 +10,13 @@
     <div class="col-md-4">
       <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}" class="photo mt-5">
     </div>
+
+    <!-- Informations personnelles -->
     <div class="col-md-8">
       <div *ngIf="candidat">
         <h2 class="prenom mb-4 mt-5">{{ candidat.prenom }} {{ candidat.nom }}</h2>
+
+        <!-- Adresse et Téléphone -->
         <div class="row align-items-center mb-3">
           <div class="col-6 d-flex align-items-center">
             <i class="fas fa-map-marker-alt icon-jaune me-2"></i>
@@ -23,6 +27,8 @@
             <span>{{ candidat.telephone }}</span>
           </div>
         </div>
+
+        <!-- Services et Email -->
         <div class="row align-items-center mb-3">
           <div class="col-6 d-flex align-items-center">
             <i class="fas fa-briefcase icon-jaune me-2"></i>
@@ -33,7 +39,34 @@
             <span>{{ candidat.email }}</span>
           </div>
         </div>
+
+        <!-- Compétences et Expériences -->
+        <div class="row">
+          <div class="col-6">
+            <h5>Compétences</h5>
+            <ul *ngIf="competences.length > 0; else noCompetences">
+              <li *ngFor="let competence of competences">
+                <strong>{{ competence.libelle }}</strong> - {{ competence.description }}
+              </li>
+            </ul>
+            <ng-template #noCompetences>
+              <p>Aucune compétence disponible pour ce candidat.</p>
+            </ng-template>
+          </div>
+          <div class="col-6">
+            <h5>Expériences</h5>
+            <ul *ngIf="experiences.length > 0; else noExperiences">
+              <li *ngFor="let experience of experiences">
+                <strong>{{ experience.libelle }}</strong> - {{ experience.description }}
+              </li>
+            </ul>
+            <ng-template #noExperiences>
+              <p>Aucune expérience disponible pour ce candidat.</p>
+            </ng-template>
+          </div>
+        </div>
       </div>
     </div>
   </div>
 </div>
+<app-footer></app-footer>
