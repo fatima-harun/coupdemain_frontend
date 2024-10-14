@@ -1,14 +1,39 @@
-<div *ngIf="candidat">
-  <h1>{{ candidat.nom }} {{ candidat.prenom }}</h1>
-  <p>Email: {{ candidat.email }}</p>
-  <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}" class="photo">
-  {{ candidat.adresse }}
-  {{ candidat.telephone }}
-  <div *ngIf="candidat.services?.length > 0">
-    <p><i class="fas fa-briefcase"></i>
-      <span *ngFor="let service of candidat.services">
-        {{ service.libelle }}
-      </span>
-    </p>
+<app-header></app-header>
+
+<div class="en_tete" style="background-image: url('assets/img/Group 166.png');">
+  <h1>Informations personnelles du candidat</h1>
+</div>
+
+<div class="container mt-4">
+  <div class="row">
+    <!-- Photo -->
+    <div class="col-md-4">
+      <img [src]="getimage(candidat.photo)" alt="{{ candidat.nom }} {{ candidat.prenom }}" class="photo mt-5">
+    </div>
+    <div class="col-md-8">
+      <div *ngIf="candidat">
+        <h2 class="prenom mb-4 mt-5">{{ candidat.prenom }} {{ candidat.nom }}</h2>
+        <div class="row align-items-center mb-3">
+          <div class="col-6 d-flex align-items-center">
+            <i class="fas fa-map-marker-alt icon-jaune me-2"></i>
+            <span>{{ candidat.adresse }}</span>
+          </div>
+          <div class="col-6 d-flex align-items-center">
+            <i class="fas fa-phone icon-jaune me-2"></i>
+            <span>{{ candidat.telephone }}</span>
+          </div>
+        </div>
+        <div class="row align-items-center mb-3">
+          <div class="col-6 d-flex align-items-center">
+            <i class="fas fa-briefcase icon-jaune me-2"></i>
+            <span *ngFor="let service of candidat.services">{{ service.libelle }}</span>
+          </div>
+          <div class="col-6 d-flex align-items-center">
+            <i class="fas fa-envelope icon-jaune me-2"></i>
+            <span>{{ candidat.email }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

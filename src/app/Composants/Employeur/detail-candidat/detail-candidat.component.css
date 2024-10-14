@@ -1,4 +1,40 @@
-.photo{
-  height: 250px;
-  width:auto
+.photo {
+  width: 100%;
+  max-width: 370px;
+  height: auto;
+  flex-shrink: 0;
+}
+
+.en_tete {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 20.19rem;
+}
+
+h1 {
+  text-align: center;
+  color: white;
+  padding-top: 7rem;
+}
+h2,span{
+  color:#4A69BD
+}
+
+.prenom {
+  font-weight: bold;
+  font-size: 1.8rem;
+}
+
+.icon-jaune {
+  color: #FFC107;
+}
+
+@media (max-width: 768px) {
+  .en_tete {
+    height: 15rem;
+  }
+  .prenom {
+    font-size: 1.5rem;
+  }
 }

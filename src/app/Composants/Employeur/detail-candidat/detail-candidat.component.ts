@@ -3,11 +3,12 @@ import { Component } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { ServiceModel } from '../../../Models/service.model';
+import { HeaderComponent } from '../../header/header.component';
 
 @Component({
   selector: 'app-detail-candidat',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,HeaderComponent],
   templateUrl: './detail-candidat.component.html',
   styleUrl: './detail-candidat.component.css'
 })
