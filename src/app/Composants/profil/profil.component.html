@@ -1,0 +1,84 @@
+<app-header></app-header>
+
+<div class="container my-5">
+  <div class="card shadow-lg profile-container mx-auto">
+    <div class="card-body text-center">
+      <h2 class="mb-4">Informations personnelles</h2>
+
+      <!-- Image de profil -->
+      <div class="profile-header mb-4">
+        <img [src]="getimage(user?.photo)"
+             class="rounded-circle img-fluid shadow"
+             [alt]="user?.nom + ' ' + user?.prenom"
+             width="100" height="auto">
+      </div>
+
+      <!-- Informations utilisateur -->
+      <div class="row text-center">
+        <div class="col-md-6 mb-3">
+          <p><i class="fas fa-user"></i> <strong>Nom :</strong> {{ user?.nom }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><i class="fas fa-user-alt"></i> <strong>Prénom :</strong> {{ user?.prenom }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><i class="fas fa-envelope"></i> <strong>Email :</strong> {{ user?.email }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><i class="fas fa-phone"></i> <strong>Téléphone :</strong> {{ user?.telephone }}</p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><i class="fas fa-briefcase"></i> <strong>Services :</strong>
+            <span *ngFor="let service of user?.services; let last = last">
+              {{ service.libelle }}<span *ngIf="!last">, </span>
+            </span>
+          </p>
+        </div>
+        <div class="col-md-6 mb-3">
+          <p><i class="fas fa-map-marker-alt"></i> <strong>Adresse :</strong> {{ user?.adresse }}</p>
+        </div>
+      </div>
+
+      <div class="row mt-4">
+        <div class="col-6">
+          <h5>Compétences</h5>
+          <ul *ngIf="competences.length > 0; else noCompetences">
+            <li *ngFor="let competence of competences">
+              <strong>{{ competence.libelle }}</strong> - {{ competence.description }}
+            </li>
+          </ul>
+          <ng-template #noCompetences>
+            <p>Aucune compétence disponible pour ce candidat.</p>
+          </ng-template>
+        </div>
+        <div class="col-6">
+          <h5>Expériences</h5>
+          <ul *ngIf="experiences.length > 0; else noExperiences">
+            <li *ngFor="let experience of experiences">
+              <strong>{{ experience.libelle }}</strong> - {{ experience.description }}
+            </li>
+          </ul>
+          <ng-template #noExperiences>
+            <p>Aucune expérience disponible pour ce candidat.</p>
+          </ng-template>
+        </div>
+      </div>
+
+      <!-- Boutons Modifier et Supprimer -->
+      <div class="d-flex justify-content-center mt-4">
+        <button class="btn btn-warning me-3" (click)="editProfile()">
+          Modifier
+        </button>
+        <button class="btn btn-danger" (click)="deleteAccount()">
+          Supprimer mon compte
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <ng-template #loading>
+    <p class="text-center mt-5">Chargement des informations...</p>
+  </ng-template>
+</div>
+
+<app-footer></app-footer>

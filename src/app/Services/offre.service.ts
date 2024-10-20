@@ -43,4 +43,10 @@ export class OffreService {
     getOffresByService(serviceId: number){
       return this.http.get(`${apiUrl}/services/${serviceId}/offres`);
     }
+    update(offreId: number, formData: FormData): Observable<any> {
+      return this.http.put(`${apiUrl}/offres/${offreId}`, formData);
+    }
+
+
+
 }

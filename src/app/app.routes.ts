@@ -9,6 +9,7 @@ import { DetailOffreComponent } from './Composants/Employeur/detail-offre/detail
 import { PostuleOffreComponent } from './Composants/Employe/postule-offre/postule-offre.component';
 import { CandidatsComponent } from './Composants/Employeur/candidats/candidats.component';
 import { DetailCandidatComponent } from './Composants/Employeur/detail-candidat/detail-candidat.component';
+import { ProfilComponent } from './Composants/profil/profil.component';
 
 export const routes: Routes = [
 
@@ -34,4 +35,5 @@ export const routes: Routes = [
     {path:'detail/:id',component:DetailOffreComponent},
     {path:"candidats",component:CandidatsComponent},
     { path: 'candidats/:candidatId', component:DetailCandidatComponent},
+    {path:'profil',component:ProfilComponent}
 ];

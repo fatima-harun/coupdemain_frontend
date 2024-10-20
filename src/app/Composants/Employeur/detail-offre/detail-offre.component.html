@@ -1,37 +1,122 @@
 <app-header></app-header>
 
-  <div class="en_tete">
-    <h1>Détails de l'Offre d'Emploi</h1>
-  </div>
+<div class="en_tete">
+  <h1>Détails de l'Offre d'Emploi</h1>
+</div>
 
-  <div class="container">
-    <div *ngIf="offre">
-      <div class="offre-header mt-4 mb-3">
-        <h2>{{ offre.services && offre.services.length > 0 ? offre.services[0].libelle : 'Service non spécifié' }}</h2>
-      </div>
-      <div class="offre-details ">
+<div class="container">
+  <div *ngIf="offre">
+    <div class="offre-header mt-4 mb-3">
+      <h2>
+        <span *ngIf="offre.services && offre.services.length > 0; else noService">
+          <span *ngFor="let service of offre.services; let last = last">
+            {{ service.libelle }}<span *ngIf="!last">, </span>
+          </span>
+        </span>
+        <ng-template #noService>Service non spécifié</ng-template>
+      </h2>
+    </div>
+    <div class="offre-details">
       <div><p><i class="fas fa-map-marker-alt"></i> {{ offre.lieu }}</p></div>
       <div><p><i class="fas fa-money-bill-wave"></i> {{ offre.salaire }} FCFA</p></div>
-       <div><p><i class="fas fa-clock"></i> {{ offre.horaire }}</p></div>
-      </div>
-      <div style="display: flex; justify-content: flex-end;">
-        <button class="btn-postuler">Postuler</button>
-    </div>
-        <div>
-        <h3>Description</h3>
-        <p> {{ offre.description }}</p>
-        <h3>Profil recherché</h3>
-        <p>{{ offre.profil }}</p>
-        <p> <strong>Date de commencement :</strong> {{ offre.date_debut }}</p>
-        <p> <strong>Date de fin prévue :</strong>{{ offre.date_fin }}</p>
-        <p><strong>Nombre de postes:</strong>{{offre.nombre_postes }}</p>
-      </div>
+      <div><p><i class="fas fa-clock"></i> {{ offre.horaire }}</p></div>
     </div>
     <div style="display: flex; justify-content: flex-end;">
-     <a href="/liste-offre"><button class="btn-return">Retour</button></a>
+      <button *ngIf="isEmploye" class="btn-postuler">Postuler</button>
+      <button *ngIf="isEmployeur" class="btn-modifier" data-bs-toggle="modal" data-bs-target="#editOffreModal">
+        Modifier
+      </button>
+      <button *ngIf="isEmployeur" class="btn-supprimer">Supprimer</button>
     </div>
+    <div>
+      <h3>Description</h3>
+      <p><strong>Description :</strong> {{ offre.description || 'Aucune description disponible' }}</p>
+
+      <h3>Profil recherché</h3>
+      <p>{{ offre.profil }}</p>
+      <p><strong>Date de commencement :</strong> {{ offre.date_debut }}</p>
+      <p><strong>Date de fin prévue :</strong> {{ offre.date_fin }}</p>
+      <p><strong>Nombre de postes:</strong> {{ offre.nombre_postes }}</p>
     </div>
-    <div *ngIf="!offre">
-      <p>Aucune offre trouvée avec cet identifiant.</p>
+  </div>
+  <div style="display: flex; justify-content: flex-end;">
+    <a href="/liste-offre"><button class="btn-return">Retour</button></a>
+  </div>
+  <div *ngIf="!offre">
+    <p>Aucune offre trouvée avec cet identifiant.</p>
+  </div>
+</div>
+
+<!-- Modal pour modifier l'offre -->
+<div class="modal fade" id="editOffreModal" tabindex="-1" aria-labelledby="editOffreModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editOffreModalLabel">Modifier l'Offre</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form >
+          <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea id="description" class="form-control" [(ngModel)]="offre.description" name="description" required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="lieu" class="form-label">Lieu</label>
+            <input id="lieu" type="text" class="form-control" [(ngModel)]="offre.lieu" name="lieu" required />
+          </div>
+          <div class="mb-3">
+            <label for="salaire" class="form-label">Salaire</label>
+            <input id="salaire" type="number" class="form-control" [(ngModel)]="offre.salaire" name="salaire" required />
+          </div>
+          <div class="mb-3">
+            <label for="horaire" class="form-label">Horaire</label>
+            <input id="horaire" type="text" class="form-control" [(ngModel)]="offre.horaire" name="horaire" required />
+          </div>
+          <div class="mb-3">
+            <label for="nombre_postes" class="form-label">Nombre de postes</label>
+            <input id="nombre_postes" type="number" class="form-control" [(ngModel)]="offre.nombre_postes" name="nombre_postes" required />
+          </div>
+          <div class="mb-3">
+            <label for="date_debut" class="form-label">Date de début</label>
+            <input id="date_debut" type="date" class="form-control" [(ngModel)]="offre.date_debut" name="date_debut" required />
+          </div>
+          <div class="mb-3">
+            <label for="date_limite" class="form-label">Date Limite</label>
+            <input id="date_limite" type="date" class="form-control" [(ngModel)]="offre.date_limite" name="date_limite" required />
+          </div>
+          <div class="mb-3">
+            <label for="date_fin" class="form-label">Date de fin</label>
+            <input id="date_fin" type="date" class="form-control" [(ngModel)]="offre.date_fin" name="date_fin" required />
+          </div>
+          <!-- <div class="mb-3">
+            <label for="services" class="form-label">Services</label>
+            <div *ngFor="let service of tabService">
+              <input
+                type="checkbox"
+                [value]="service.id"
+                (change)="onServiceChange(service.id, $event.target)" />
+              {{ service.libelle }}
+            </div>
+          </div> -->
+          <div *ngFor="let service of tabService">
+            <input
+              type="checkbox"
+              [value]="service.id"
+              [checked]="isServiceChecked(service.id)"
+              (change)="onServiceChange(service.id, $event)"
+            />
+            {{ service.libelle }}
+          </div>
+
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
+            <button type="submit" class="btn btn-primary"(click)="update()">Sauvegarder les modifications</button>
+          </div>
+        </form>
+      </div>
     </div>
+  </div>
+</div>
 <app-footer></app-footer>

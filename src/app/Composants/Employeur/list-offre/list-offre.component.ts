@@ -6,7 +6,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { ServiceModel } from '../../../Models/service.model';
 import { ServiceService } from '../../../Services/service.service';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';  // 1. Importer le Router
+import { Router } from '@angular/router';
 import { FooterComponent } from '../../../footer/footer.component';
 
 @Component({
@@ -14,7 +14,7 @@ import { FooterComponent } from '../../../footer/footer.component';
   templateUrl: './list-offre.component.html',
   styleUrls: ['./list-offre.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FormsModule,FooterComponent],
+  imports: [CommonModule, HeaderComponent, FormsModule, FooterComponent],
 })
 export class ListeOffresComponent implements OnInit {
 
@@ -22,14 +22,13 @@ export class ListeOffresComponent implements OnInit {
   tabService: ServiceModel[] = [];
   tabOffres: OffreModel[] = [];
   offreObject: OffreModel = {
-    service_id: undefined
+    service_ids: []
   };
   selectedServiceId: number | undefined;
   offres: any[] = [];
   user: any;
   searchText: string = '';
 
-  // 2. Injecter le Router dans le constructeur
   constructor(private OffreService: OffreService, private router: Router) {}
 
   ngOnInit(): void {
@@ -100,8 +99,8 @@ export class ListeOffresComponent implements OnInit {
       console.error('Service ID is undefined');
     }
   }
+
   voirDetails(id: number) {
     this.router.navigate(['/detail', id]);  // Redirection vers la route de détail avec l'ID
   }
-
 }

@@ -1,7 +1,7 @@
 import { ServiceModel } from "./service.model";
 
 export interface OffreModel{
-service_id: any;
+service_ids: any[];
     id?:number,
     user_id?:number,
     description?:string,
@@ -17,4 +17,5 @@ service_id: any;
 
     //  la propriété services pour contenir un tableau de services
     services?: ServiceModel[];  // Utilise un tableau de ServiceModel
+    
 }

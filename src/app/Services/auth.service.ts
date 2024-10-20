@@ -99,6 +99,16 @@ export class AuthService {
     return this.http.get(`${apiUrl}/${candidatId}`);
 }
 
-
+// Appel à l'API pour récupérer les infos de l'utilisateur connecté
+getUserInfo(): Observable<any> {
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}/profil`, { headers }).pipe(
+    tap(response => console.log('Utilisateur connecté :', response)),
+    catchError(error => {
+      console.error('Erreur lors de la récupération de l\'utilisateur :', error);
+      return throwError(() => error);
+    })
+  );
+}
 
 }
