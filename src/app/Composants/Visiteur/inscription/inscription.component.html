@@ -76,13 +76,26 @@
                     </select>
                   </div>
                   <div class="mb-3" *ngIf="userObject.role === 'demandeur_d_emploi'">
+                    <label for="service" class="form-label">Type de service</label>
+                    <div *ngFor="let service of tabService" class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        [value]="service.id"
+                        [checked]="OffreObject.service_ids.includes(service.id)"
+                        (change)="onCheckboxChange($event, service.id)"
+                      />
+                      <label class="form-check-label">{{ service.libelle }}</label>
+                    </div>
+                  </div>
+                  <!-- <div class="mb-3" *ngIf="userObject.role === 'demandeur_d_emploi'">
                     <label for="service" class="form-label">Service</label>
                     <select name="service_id" id="service_id" class="form-control" [(ngModel)]="userObject.service_id">
                       @for (service of tabService; track $index) {
                         <option [value]="service.id">{{service.libelle}}</option>
                       }
                     </select>
-                  </div>
+                  </div> -->
                   <div class="mb-3">
                     <label for="motDePasse" class="form-label">Mot de passe</label>
                     <input type="password" class="form-control" id="motDePasse" placeholder="Entrez votre mot de passe" name="password" [(ngModel)]="userObject.password">

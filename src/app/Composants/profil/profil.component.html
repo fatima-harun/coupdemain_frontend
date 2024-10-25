@@ -3,11 +3,11 @@
 <div class="container my-5">
   <div class="card shadow-lg profile-container mx-auto">
     <div class="card-body text-center">
-      <h2 class="mb-4">Informations personnelles</h2>
+    <div class="user_infos"> <h2 class="mb-4">Informations personnelles</h2></div>
 
       <!-- Image de profil -->
       <div class="profile-header mb-4">
-        <img [src]="getimage(user?.photo)"
+        <img [src]="getImage(user?.photo)"
              class="rounded-circle img-fluid shadow"
              [alt]="user?.nom + ' ' + user?.prenom"
              width="100" height="auto">
@@ -27,54 +27,172 @@
         <div class="col-md-6 mb-3">
           <p><i class="fas fa-phone"></i> <strong>Téléphone :</strong> {{ user?.telephone }}</p>
         </div>
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6 mb-3" *ngIf="isEmploye">
           <p><i class="fas fa-briefcase"></i> <strong>Services :</strong>
             <span *ngFor="let service of user?.services; let last = last">
               {{ service.libelle }}<span *ngIf="!last">, </span>
             </span>
+            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editInfoModal">
+            </button>
           </p>
         </div>
         <div class="col-md-6 mb-3">
-          <p><i class="fas fa-map-marker-alt"></i> <strong>Adresse :</strong> {{ user?.adresse }}</p>
+          <p><i class="fas fa-map-marker-alt"></i> <strong>Adresse :</strong> {{ user?.adresse }}
+            <button class="btn btn-link" data-bs-toggle="modal" data-bs-target="#editInfoModal">
+            </button>
+          </p>
         </div>
       </div>
-
-      <div class="row mt-4">
-        <div class="col-6">
-          <h5>Compétences</h5>
-          <ul *ngIf="competences.length > 0; else noCompetences">
-            <li *ngFor="let competence of competences">
-              <strong>{{ competence.libelle }}</strong> - {{ competence.description }}
-            </li>
-          </ul>
-          <ng-template #noCompetences>
-            <p>Aucune compétence disponible pour ce candidat.</p>
-          </ng-template>
-        </div>
-        <div class="col-6">
-          <h5>Expériences</h5>
-          <ul *ngIf="experiences.length > 0; else noExperiences">
-            <li *ngFor="let experience of experiences">
-              <strong>{{ experience.libelle }}</strong> - {{ experience.description }}
-            </li>
-          </ul>
-          <ng-template #noExperiences>
-            <p>Aucune expérience disponible pour ce candidat.</p>
-          </ng-template>
-        </div>
+      <!-- Compétences -->
+      <div *ngIf="competences.length > 0; else noCompetences" >
+        <h3>Liste des compétences :</h3>
+        <ul>
+          <li *ngFor="let competence of competences">
+            <strong>{{ competence.libelle }}</strong>
+            <button class="btn btn-link" (click)="openEditCompetenceModal(competence)"
+            data-bs-toggle="modal"
+            data-bs-target="#editCompetenceModal">
+        <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-link" (click)="openEditCompetenceModal(competence)"
+    data-bs-toggle="modal"
+            data-bs-target="#editCompetenceModal">
+      <i class="fas fa-trash"></i>
+  </button>
+          </li>
+        </ul>
       </div>
+      <ng-template #noCompetences>
+        <p>Aucune compétence disponible pour l'utilisateur.</p>
+      </ng-template>
 
-      <!-- Boutons Modifier et Supprimer -->
+      <div *ngIf="experiences.length > 0; else noExperiences" >
+        <h3>Liste des expériences :</h3>
+        <ul>
+          <li *ngFor="let experience of experiences">
+            <strong>{{ experience.libelle }}</strong>
+            <button class="btn btn-link" (click)="openEditExperienceModal(experience)"
+            data-bs-toggle="modal"
+            data-bs-target="#editExperienceModal">
+        <i class="fas fa-edit"></i>
+    </button>
+    <button class="btn btn-link" (click)="openEditExperienceModal(experience)"
+    data-bs-toggle="modal"
+            data-bs-target="#editExperienceModal">
+      <i class="fas fa-trash"></i>
+  </button>
+          </li>
+        </ul>
+      </div>
+      <ng-template #noExperiences>
+        <p>Aucune experiences disponible pour l'utilisateur.</p>
+      </ng-template>
+
+
+      <!-- Boutons Modifier et Supprimer le compte -->
       <div class="d-flex justify-content-center mt-4">
-        <button class="btn btn-warning me-3" (click)="editProfile()">
+        <button class="btn btn-warning me-3"data-bs-toggle="modal" data-bs-target="#editInfoModal">
           Modifier
         </button>
-        <button class="btn btn-danger" (click)="deleteAccount()">
+        <button class="btn btn-danger">
           Supprimer mon compte
         </button>
       </div>
     </div>
   </div>
+
+  <!-- Modal de modification des informations générales -->
+  <div class="modal fade" id="editInfoModal" tabindex="-1" aria-labelledby="editInfoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editInfoModalLabel">Modifier les informations personnelles</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <!-- Formulaire de modification des informations générales -->
+          <form>
+            <div class="mb-3">
+              <label for="editNom" class="form-label">Nom</label>
+              <input type="text" class="form-control" id="editNom">
+            </div>
+            <div class="mb-3">
+              <label for="editPrenom" class="form-label">Prénom</label>
+              <input type="text" class="form-control" id="editPrenom" >
+            </div>
+            <div class="mb-3">
+              <label for="editEmail" class="form-label">Email</label>
+              <input type="email" class="form-control" id="editEmail" >
+            </div>
+            <div class="mb-3">
+              <label for="editTelephone" class="form-label">Téléphone</label>
+              <input type="text" class="form-control" id="editTelephone" >
+            </div>
+            <div class="mb-3">
+              <label for="editServices" class="form-label">Services</label>
+              <input type="text" class="form-control" id="editServices" >
+            </div>
+            <div class="mb-3">
+              <label for="editAdresse" class="form-label">Adresse</label>
+              <input type="text" class="form-control" id="editAdresse" >
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+          <button type="button" class="btn btn-primary">Enregistrer les modifications</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="editCompetenceModal" tabindex="-1" aria-labelledby="editCompetenceModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editCompetenceModalLabel">Modifier la compétence</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="mb-3">
+                        <label for="editCompetenceLibelle" class="form-label">Compétence</label>
+                        <input type="text" class="form-control" id="editCompetenceLibelle" name="libelle" [(ngModel)]="competenceObject.libelle">
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                <button type="button" class="btn btn-primary" (click)="updateCompetence()">Enregistrer</button>
+                <button type="button" class="btn btn-danger" (click)="deleteCompetence()">Supprimer</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editExperienceModal" tabindex="-1" aria-labelledby="editExperienceModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title" id="editExperienceModalLabel">Modifier l'expérience</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div class="mb-3">
+                      <label for="editExperienceLibelle" class="form-label">Expérience</label>
+                      <input type="text" class="form-control" id="editExperienceLibelle" name="libelle" [(ngModel)]="experienceObject.libelle">
+                  </div>
+              </form>
+          </div>
+          <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+              <button type="button" class="btn btn-primary" (click)="updateExperience()">Enregistrer</button>
+              <button type="button" class="btn btn-danger" (click)="deleteExperience()">Supprimer</button>
+          </div>
+      </div>
+  </div>
+</div>
 
   <ng-template #loading>
     <p class="text-center mt-5">Chargement des informations...</p>

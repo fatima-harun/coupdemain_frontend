@@ -26,7 +26,7 @@
       <button *ngIf="isEmployeur" class="btn-modifier" data-bs-toggle="modal" data-bs-target="#editOffreModal">
         Modifier
       </button>
-      <button *ngIf="isEmployeur" class="btn-supprimer">Supprimer</button>
+      <button *ngIf="isEmployeur" class="btn-supprimer" (click)="delete()">Supprimer</button>
     </div>
     <div>
       <h3>Description</h3>
@@ -56,67 +56,57 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form >
+        <form action="" enctype="multipart/form-data"> <!-- Utiliser ngSubmit ici -->
           <div class="mb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea id="description" class="form-control" [(ngModel)]="offre.description" name="description" required></textarea>
+            <textarea id="description" class="form-control" [(ngModel)]="OffreObject.description" name="description" required></textarea>
           </div>
           <div class="mb-3">
             <label for="lieu" class="form-label">Lieu</label>
-            <input id="lieu" type="text" class="form-control" [(ngModel)]="offre.lieu" name="lieu" required />
+            <input id="lieu" type="text" class="form-control" [(ngModel)]="OffreObject.lieu" name="lieu" required />
           </div>
           <div class="mb-3">
             <label for="salaire" class="form-label">Salaire</label>
-            <input id="salaire" type="number" class="form-control" [(ngModel)]="offre.salaire" name="salaire" required />
+            <input id="salaire" type="number" class="form-control" [(ngModel)]="OffreObject.salaire" name="salaire" required />
           </div>
           <div class="mb-3">
             <label for="horaire" class="form-label">Horaire</label>
-            <input id="horaire" type="text" class="form-control" [(ngModel)]="offre.horaire" name="horaire" required />
+            <input id="horaire" type="text" class="form-control" [(ngModel)]="OffreObject.horaire" name="horaire" required />
+          </div>
+          <div class="mb-3">
+            <label for="profil" class="form-label">Profil</label>
+            <input id="profil" type="text" class="form-control" [(ngModel)]="OffreObject.profil" name="profil" required />
           </div>
           <div class="mb-3">
             <label for="nombre_postes" class="form-label">Nombre de postes</label>
-            <input id="nombre_postes" type="number" class="form-control" [(ngModel)]="offre.nombre_postes" name="nombre_postes" required />
+            <input id="nombre_postes" type="number" class="form-control" [(ngModel)]="OffreObject.nombre_postes" name="nombre_postes" required />
           </div>
           <div class="mb-3">
             <label for="date_debut" class="form-label">Date de début</label>
-            <input id="date_debut" type="date" class="form-control" [(ngModel)]="offre.date_debut" name="date_debut" required />
-          </div>
-          <div class="mb-3">
-            <label for="date_limite" class="form-label">Date Limite</label>
-            <input id="date_limite" type="date" class="form-control" [(ngModel)]="offre.date_limite" name="date_limite" required />
+            <input id="date_debut" type="date" class="form-control" [(ngModel)]="OffreObject.date_debut" name="date_debut" required />
           </div>
           <div class="mb-3">
             <label for="date_fin" class="form-label">Date de fin</label>
-            <input id="date_fin" type="date" class="form-control" [(ngModel)]="offre.date_fin" name="date_fin" required />
+            <input id="date_fin" type="date" class="form-control" [(ngModel)]="OffreObject.date_fin" name="date_fin" required />
           </div>
-          <!-- <div class="mb-3">
-            <label for="services" class="form-label">Services</label>
+          <div class="mb-3">
+            <label for="date_limite" class="form-label">Date limite</label>
+            <input id="date_limite" type="date" class="form-control" [(ngModel)]="OffreObject.date_limite" name="date_limite" required />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Services</label>
             <div *ngFor="let service of tabService">
-              <input
-                type="checkbox"
-                [value]="service.id"
-                (change)="onServiceChange(service.id, $event.target)" />
+              <input type="checkbox" [checked]="isServiceChecked(service.id)" (change)="onServiceChange(service.id, $event)" />
               {{ service.libelle }}
             </div>
-          </div> -->
-          <div *ngFor="let service of tabService">
-            <input
-              type="checkbox"
-              [value]="service.id"
-              [checked]="isServiceChecked(service.id)"
-              (change)="onServiceChange(service.id, $event)"
-            />
-            {{ service.libelle }}
           </div>
-
-
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Annuler</button>
-            <button type="submit" class="btn btn-primary"(click)="update()">Sauvegarder les modifications</button>
-          </div>
+          <button type="submit" class="btn btn-primary" (click)="update()" >Sauvegarder</button>
         </form>
       </div>
     </div>
   </div>
 </div>
+
+
+
 <app-footer></app-footer>

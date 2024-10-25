@@ -9,6 +9,7 @@ import { HeaderComponent } from '../../header/header.component';
 import { ServiceModel } from '../../../Models/service.model';
 import { ServiceService } from '../../../Services/service.service';
 import { CommonModule } from '@angular/common';
+import { OffreModel } from '../../../Models/offre.model';
 
 @Component({
   selector: 'app-inscription',
@@ -32,6 +33,9 @@ export class InscriptionComponent implements OnInit {
   userObject: UserModel = {};
   alertMessage: string = "";  // Par défaut, vide
   tabService: ServiceModel[] = [];
+  OffreObject: OffreModel = {
+    service_ids: [], // Initialiser à un tableau vide
+  };
   user: any; // Pour stocker l'objet utilisateur
 
   // Déclaration des méthodes
@@ -54,7 +58,9 @@ export class InscriptionComponent implements OnInit {
     formData.append('adresse', this.userObject.adresse ?? '');
     formData.append('telephone', this.userObject.telephone ?? '');
     formData.append('password', this.userObject.password ?? '');
-    formData.append('service_id', this.userObject.service_id ?? '');
+    for (let serviceId of this.OffreObject.service_ids) {
+      formData.append('service_ids[]', serviceId);
+    }
 
     // Envoi de la requête au service Auth
     this.authService.register(formData).subscribe(
@@ -123,5 +129,17 @@ export class InscriptionComponent implements OnInit {
   getUser(): any {
     const user = localStorage.getItem('user');
     return user ? JSON.parse(user) : null; // Retourne l'objet utilisateur ou null
+  }
+  // Methode pour gerer les changements de checkbox
+  onCheckboxChange(event: any, serviceId: any) {
+    if (event.target.checked) {
+      this.OffreObject.service_ids.push(serviceId);
+    } else {
+      const index = this.OffreObject.service_ids.indexOf(serviceId);
+      if (index > -1) {
+        this.OffreObject.service_ids.splice(index, 1);
+      }
+    }
+    console.log(this.OffreObject.service_ids);
   }
 }

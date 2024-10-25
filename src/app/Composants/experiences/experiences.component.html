@@ -1,0 +1,22 @@
+<app-header></app-header>
+
+<div class="container my-5">
+  <div class="card shadow-lg mx-auto">
+    <div class="card-body">
+      <h2 class="mb-4">Ajouter des expériences</h2>
+      <form >
+        <div class="mb-3">
+          <label for="libelle" class="form-label">Libellé</label>
+          <input type="text" id="libelle"  class="form-control"  name="libelle" [(ngModel)]="experienceObject.libelle">
+        </div>
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea id="description"  class="form-control"name="description" [(ngModel)]="experienceObject.description"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" (click)="ajoutexperience()">Ajouter</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

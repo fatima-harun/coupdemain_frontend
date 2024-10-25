@@ -1,3 +1,4 @@
+import { CompetencesComponent } from './Composants/competences/competences.component';
 import { Routes } from '@angular/router';
 import { ConnexionComponent } from './Composants/Visiteur/connexion/connexion.component';
 import { InscriptionComponent } from './Composants/Visiteur/inscription/inscription.component';
@@ -10,6 +11,7 @@ import { PostuleOffreComponent } from './Composants/Employe/postule-offre/postul
 import { CandidatsComponent } from './Composants/Employeur/candidats/candidats.component';
 import { DetailCandidatComponent } from './Composants/Employeur/detail-candidat/detail-candidat.component';
 import { ProfilComponent } from './Composants/profil/profil.component';
+import { ExperiencesComponent } from './Composants/experiences/experiences.component';
 
 export const routes: Routes = [
 
@@ -26,14 +28,25 @@ export const routes: Routes = [
     // routes employeur
     // {path:"offre",component:PublicationOffreComponent,canActivate:[AuthEmployeurGuard]}
     {path:"offre",component:PublicationOffreComponent,canActivate:[AuthEmployeurGuard]},
-    { path: 'liste-offre', component:ListeOffresComponent},
 
+    { path: 'liste-offre', component:ListeOffresComponent},
 
     //route du demandeur d'emploi
     {path:"employe",component:PostuleOffreComponent},
     // route pour les détails d'une offre avec des paramètres 'id' et service_id
     {path:'detail/:id',component:DetailOffreComponent},
+
     {path:"candidats",component:CandidatsComponent},
+
     { path: 'candidats/:candidatId', component:DetailCandidatComponent},
-    {path:'profil',component:ProfilComponent}
+
+    {path:'profil',component:ProfilComponent},
+
+    { path: 'competences/:competenceId/edit', component: ProfilComponent },
+
+    { path: 'experiences/:experienceId/edit', component: ProfilComponent },
+
+    {path:'competence',component:CompetencesComponent},
+
+    {path:'experience',component:ExperiencesComponent},
 ];

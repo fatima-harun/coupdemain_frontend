@@ -43,10 +43,10 @@ export class OffreService {
     getOffresByService(serviceId: number){
       return this.http.get(`${apiUrl}/services/${serviceId}/offres`);
     }
-    update(offreId: number, formData: FormData): Observable<any> {
-      return this.http.put(`${apiUrl}/offres/${offreId}`, formData);
+    updateOffre(id: string, offreData: any): Observable<any> {
+      return this.http.post(`${apiUrl}/offres/${id}`, offreData);
     }
-
-
-
+    destroy(id: string, offreData: any): Observable<any> {
+      return this.http.delete(`${apiUrl}/offres/${id}`, offreData);
+    }
 }

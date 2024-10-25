@@ -30,7 +30,7 @@ getServiceById(id: number) { // Utilisez number ici
         return this.http.post(`${apiUrl}/services/${id}`, Service);
     }
 
-    // Methode pour supprimer definitivement une service
+    // Methode pour supprimer definitivement un service
     deleteService(id:any){
         return this.http.delete(`${apiUrl}/services/${id}/force-delete`);
     }

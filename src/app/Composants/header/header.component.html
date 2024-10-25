@@ -33,7 +33,8 @@
                         <a class="nav-link" href="/candidats" routerLinkActive="active-link">Candidats</a>
                     </li>
                     <li *ngIf="isEmployeur"><a href="/offre" class="nav-link">Publier une offre</a></li>
-                    <li *ngIf="isEmploye"><a href="/employe" class="nav-link">Informations complèmentaires</a></li>
+                    <li *ngIf="isEmploye"><a href="/competence" class="nav-link">Compétences</a></li>
+                    <li *ngIf="isEmploye"><a href="/experience" class="nav-link">Expériences</a></li>
                 </ul>
                 <!-- Vérification de la connexion -->
                 <form class="d-flex" *ngIf="!isLoggedIn; else loggedInTemplate">

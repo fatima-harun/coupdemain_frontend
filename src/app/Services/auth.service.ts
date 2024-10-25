@@ -110,5 +110,8 @@ getUserInfo(): Observable<any> {
     })
   );
 }
-
+getCompetences(candidatId: number): Observable<any> {
+  const apiUrl = 'http://127.0.0.1:8000/api/candidats';
+  return this.http.get(`${apiUrl}/${candidatId}/competences`);
+}
 }
