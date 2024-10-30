@@ -12,6 +12,7 @@ import { CandidatsComponent } from './Composants/Employeur/candidats/candidats.c
 import { DetailCandidatComponent } from './Composants/Employeur/detail-candidat/detail-candidat.component';
 import { ProfilComponent } from './Composants/profil/profil.component';
 import { ExperiencesComponent } from './Composants/experiences/experiences.component';
+import { MesoffresComponent } from './Composants/Employeur/mesoffres/mesoffres.component';
 
 export const routes: Routes = [
 
@@ -30,9 +31,11 @@ export const routes: Routes = [
     {path:"offre",component:PublicationOffreComponent,canActivate:[AuthEmployeurGuard]},
 
     { path: 'liste-offre', component:ListeOffresComponent},
+    
+    {path:'mesoffres',component:MesoffresComponent},
 
     //route du demandeur d'emploi
-   
+
     // route pour les détails d'une offre avec des paramètres 'id' et service_id
     {path:'detail/:id',component:DetailOffreComponent},
 

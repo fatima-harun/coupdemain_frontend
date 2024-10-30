@@ -26,9 +26,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#guide" routerLinkActive="active-link">Guide</a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item" *ngIf="isEmploye">
                         <a class="nav-link" href="/liste-offre" routerLinkActive="active-link">Emplois</a>
                     </li>
+                    <li class="nav-item" *ngIf="isEmployeur">
+                      <a class="nav-link" href="/mesoffres" routerLinkActive="active-link">Mes offres</a>
+                  </li>
                     <li *ngIf="isEmployeur">
                         <a class="nav-link" href="/candidats" routerLinkActive="active-link">Candidats</a>
                     </li>

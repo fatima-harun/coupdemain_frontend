@@ -43,10 +43,16 @@ export class OffreService {
     getOffresByService(serviceId: number){
       return this.http.get(`${apiUrl}/services/${serviceId}/offres`);
     }
+
     updateOffre(id: string, offreData: any): Observable<any> {
       return this.http.post(`${apiUrl}/offres/${id}`, offreData);
     }
+
     destroy(id: string, offreData: any): Observable<any> {
       return this.http.delete(`${apiUrl}/offres/${id}`, offreData);
+    }
+    getmesoffres(){
+      const headers = this.getHeaders();
+      return this.http.get(`${apiUrl}/employeur/offres`,{ headers });
     }
 }
