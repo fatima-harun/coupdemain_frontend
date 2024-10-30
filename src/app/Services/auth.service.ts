@@ -114,4 +114,14 @@ getCompetences(candidatId: number): Observable<any> {
   const apiUrl = 'http://127.0.0.1:8000/api/candidats';
   return this.http.get(`${apiUrl}/${candidatId}/competences`);
 }
+
+updateUser(userData: any): Observable<any> {
+  const headers = this.getHeaders();
+  const apiUrl = 'http://127.0.0.1:8000/api/user';
+  return this.http.post(`${apiUrl}/update`, userData, { headers }).pipe();
 }
+getCandidatsByService(serviceId: number){
+  return this.http.get(`${apiUrl}/services/${serviceId}/user`);
+}
+}
+

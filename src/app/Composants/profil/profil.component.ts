@@ -1,3 +1,4 @@
+import { UserModel } from './../../Models/user.model';
 import { ExperienceService } from './../../Services/experience.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
@@ -11,6 +12,7 @@ import { ExperienceModel } from '../../Models/experience.model';
 import { CompetenceService } from '../../Services/competences.service'; // Import du service Compétences
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { ServiceService } from '../../Services/service.service';
 
 @Component({
   selector: 'app-profil',
@@ -40,13 +42,31 @@ export class ProfilComponent implements OnInit {
     description: ''
   };
 
+  UserObject: UserModel = {
+    service_ids: [], // Initialiser à un tableau vide
+  };
+  infosObject = {
+    user: {
+      id: '',
+      name: '',
+    },
+  };
+  utilisateurConnecte: any = null;
+
+
   // Injection des services
+  private serviceService = inject(ServiceService);
   private competenceService = inject(CompetenceService);
   private experienceService = inject(ExperienceService);
 
-  constructor(private authService: AuthService, private route: ActivatedRoute) {}
+  constructor(private authService: AuthService, private route: ActivatedRoute,) {}
+
 
   ngOnInit(): void {
+    this.utilisateurConnecte = this.authService.getUser();
+    if (this.utilisateurConnecte) {
+      this.infosObject.user.id = this.utilisateurConnecte.id;
+      }
     this.loadUserInfo(); // Charger les informations utilisateur à l'initialisation
     this.checkUserRole(); // Vérifier le rôle de l'utilisateur
     this.route.paramMap.subscribe(params => {
@@ -60,7 +80,39 @@ export class ProfilComponent implements OnInit {
       if (this.experienceId) {
         this.loadExperienceById(this.experienceId); // Charger la compétence spécifique si l'ID est présent dans l'URL
       }
+      this.fetchService();
+      this.user = this.getUser();
     });
+  }
+
+  // Récupération de tous les services
+  fetchService() {
+    this.serviceService.getAllService().subscribe(
+      (response: any) => {
+        if (response.data) {
+          this.tabService = response.data; // Remplir le tableau de services
+        }
+      }
+    );
+  }
+  isServiceChecked(serviceId: number | undefined): boolean {
+    if (serviceId === undefined) return false;
+    return this.user?.services?.some((service: { id: number; }) => service.id === serviceId) || false;
+  }
+
+  onServiceChange(serviceId: number | undefined, event: Event): void {
+    if (serviceId === undefined) return;
+
+    const isChecked = (event.target as HTMLInputElement).checked;
+    if (isChecked) {
+      if (!this.UserObject.service_ids.includes(serviceId)) {
+        this.UserObject.service_ids.push(serviceId); // Ajout d'un service
+      }
+    } else {
+      this.UserObject.service_ids = this.UserObject.service_ids.filter(id => id !== serviceId); // Suppression d'un service
+    }
+
+    console.log('Services sélectionnés:', this.UserObject.service_ids); // Debugging
   }
 
   // Récupère les informations de l'utilisateur depuis l'API
@@ -68,6 +120,14 @@ export class ProfilComponent implements OnInit {
     this.authService.getUserInfo().subscribe(
       (response: any) => {
         this.user = response;
+        this.UserObject = {
+          nom: this.user.nom || '',
+          prenom: this.user.prenom || '',
+          adresse: this.user.adresse || '',
+          telephone: this.user.telephone || '',
+          email: this.user.email || '',
+          service_ids: this.user.services ? this.user.services.map((s: { id: any; }) => s.id) : [],
+        };
         console.log('Utilisateur récupéré :', this.user);
         this.getCompetences(); // Charger les compétences après avoir récupéré l'utilisateur
         this.getExperiences(); // Charger les expériences après avoir récupéré l'utilisateur
@@ -101,43 +161,63 @@ export class ProfilComponent implements OnInit {
 
   // Fonction pour récupérer les compétences de l'utilisateur
   getCompetences(): void {
-    this.competenceService.usercompetence(this.user).subscribe(
-      (response: any) => {
-        console.log('Compétences récupérées :', response);
-        this.competences = response.competences || response.data || [];
-        // Vérifiez si chaque compétence contient bien un ID
-        this.competences.forEach(comp => {
-          console.log('ID de la compétence :', comp.id);
-        });
-      },
-      (error: any) => {
-        console.error('Erreur lors de la récupération des compétences :', error);
-        Swal.fire('Erreur', 'Impossible de récupérer les compétences', 'error');
+    if (this.user) { // Vérifiez que l'utilisateur est défini avant de récupérer ses compétences
+      const userRole = this.user.role; // Récupérer le rôle de l'utilisateur
+      console.log('Rôle de l\'utilisateur :', userRole); // Afficher le rôle dans la console
+
+      if (userRole === 'demandeur_d_emploi') { // Vérifiez si le rôle est demandeur_d_emploi
+        this.competenceService.usercompetence(this.user).subscribe(
+          (response: any) => {
+            console.log('Compétences récupérées :', response);
+            this.competences = response.competences || response.data || [];
+            // Vérifiez si chaque compétence contient bien un ID
+            this.competences.forEach(comp => {
+              console.log('ID de la compétence :', comp.id);
+            });
+          },
+          (error: any) => {
+            console.error('Erreur lors de la récupération des compétences :', error);
+            Swal.fire('Erreur', 'Impossible de récupérer les compétences', 'error');
+          }
+        );
+      } else {
+        console.log('L\'utilisateur n\'est pas un demandeur d\'emploi.'); // Message dans la console si ce n'est pas le bon rôle
       }
-    );
+    } else {
+      console.error('Utilisateur non défini ou ID manquant');
+    }
   }
+
 
 
   // Fonction pour récupérer les expériences de l'utilisateur
   getExperiences(): void {
     if (this.user) { // Vérifiez que l'utilisateur est défini avant de récupérer ses expériences
-      this.experienceService.userexperience(this.user).subscribe(
-        (response: any) => {
-          console.log('Expériences récupérées :', response);
-          this.experiences = response.experiences || response.data || [];
-          this.experiences.forEach(exp => {
-            console.log('ID de l\'expérience :', exp.id);
-          });
-        },
-        (error: any) => {
-          console.error('Erreur lors de la récupération des expériences :', error);
-          Swal.fire('Erreur', 'Impossible de récupérer les expériences', 'error');
-        }
-      );
+      const userRole = this.user.role; // Récupérer le rôle de l'utilisateur
+      console.log('Rôle de l\'utilisateur :', userRole); // Afficher le rôle dans la console
+
+      if (userRole === 'demandeur_d_emploi') { // Vérifiez si le rôle est demandeur_d_emploi
+        this.experienceService.userexperience(this.user).subscribe(
+          (response: any) => {
+            console.log('Expériences récupérées :', response);
+            this.experiences = response.experiences || response.data || [];
+            this.experiences.forEach(exp => {
+              console.log('ID de l\'expérience :', exp.id);
+            });
+          },
+          (error: any) => {
+            console.error('Erreur lors de la récupération des expériences :', error);
+            Swal.fire('Erreur', 'Impossible de récupérer les expériences', 'error');
+          }
+        );
+      } else {
+        console.log('L\'utilisateur n\'est pas un demandeur d\'emploi.'); // Message dans la console si ce n'est pas le bon rôle
+      }
     } else {
       console.error('Utilisateur non défini ou ID manquant');
     }
   }
+
 
   // Ouvre le modal pour éditer une compétence spécifique
   openEditCompetenceModal(competence: CompetenceModel): void {
@@ -276,5 +356,114 @@ deleteExperience(): void {
   } else {
       console.error('Aucune expérience sélectionnée pour la suppression');
   }
+}
+updateUser() {
+  console.log(this.UserObject);
+
+  // Vérifiez si tous les champs obligatoires sont remplis
+  if (
+    !this.UserObject.nom ||
+  !this.UserObject.prenom ||
+  !this.UserObject.telephone ||
+  !this.UserObject.adresse ||
+  (this.UserObject.role === 'demandeur_d_emploi' && !this.UserObject.service_ids.length) ||
+  (this.UserObject.role !== 'employeur' && !this.UserObject.email) // Vérification de l'email uniquement si l'utilisateur n'est pas un employeur
+  ) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'Veuillez remplir tous les champs obligatoires',
+      confirmButtonColor: '#4AA3A2',
+    });
+    return; // Sortir si les champs sont manquants
+  }
+
+  // Vérifiez si l'ID de l'utilisateur est défini
+  if (!this.user) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Erreur',
+      text: "ID de l'utilisateur non trouvé. Veuillez recharger la page.",
+      confirmButtonColor: '#4AA3A2',
+    });
+    return;
+  }
+
+  const token = this.getToken();
+
+  if (token) {
+    let formdata = new FormData();
+    if (this.UserObject.photo) {
+      formdata.append('photo', this.UserObject.photo); // Fichier photo
+    }
+    formdata.append('nom', this.UserObject.nom);
+    formdata.append('prenom', this.UserObject.prenom);
+    formdata.append('adresse', this.UserObject.adresse);
+    formdata.append('telephone', this.UserObject.telephone);
+
+    if (this.UserObject.email) {
+        formdata.append('email', this.UserObject.email);
+    }
+
+this.UserObject.service_ids.forEach(serviceId => {
+    formdata.append('service_ids[]', String(serviceId));
+});
+
+// Vérifie que la photo est un fichier avant de l'ajouter
+if (this.UserObject.photo) {
+    formdata.append('photo', this.UserObject.photo);
+}
+
+    console.log(formdata);
+    this.authService.updateUser(formdata).subscribe(
+      (response: any) => {
+        console.log(response);
+        this.UserObject = {
+          service_ids: [],
+        };
+
+        // Afficher le popup et attendre 1 seconde avant de le fermer
+        Swal.fire({
+          icon: 'success',
+          title: 'Succès',
+          text: 'Utilisateur mis à jour avec succès',
+          confirmButtonColor: '#4AA3A2',
+          timer: 1000, // Le popup se ferme après 1 seconde
+        }).then(() => {
+          // Récupérer les détails de l'utilisateur pour les mettre à jour sans recharger la page
+          this.loadUserInfo();
+        });
+      },
+      (error) => {
+        console.error("Erreur lors de la mise à jour de l'utilisateur", error);
+        Swal.fire({
+          icon: 'error',
+          title: 'Erreur',
+          text: "Une erreur s'est produite lors de la mise à jour de l'utilisateur",
+          confirmButtonColor: '#4AA3A2',
+        });
+      }
+    );
+  } else {
+    console.error("Token non trouvé, l'utilisateur doit être authentifié.");
+    Swal.fire({
+      icon: 'error',
+      title: 'Erreur',
+      text: "L'utilisateur n'est pas authentifié. Veuillez vous connecter.",
+      confirmButtonColor: '#4AA3A2',
+    });
+  }
+}
+// Ajout des champs dans formData
+
+// Méthode pour uploader l'image
+uploadImage(event: any) {
+  console.log(event.target.files[0]);
+  this.UserObject.photo = event.target.files[0];
+}
+// Récupérer l'utilisateur connecté
+getUser() {
+  this.utilisateurConnecte = this.authService.getUser();
+  console.log('Utilisateur connecté:', this.utilisateurConnecte);
 }
 }

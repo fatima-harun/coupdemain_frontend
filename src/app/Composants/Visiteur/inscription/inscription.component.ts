@@ -30,7 +30,9 @@ export class InscriptionComponent implements OnInit {
   }
 
   // Déclaration des variables
-  userObject: UserModel = {};
+  userObject: UserModel = {
+    service_ids: [],
+  };
   alertMessage: string = "";  // Par défaut, vide
   tabService: ServiceModel[] = [];
   OffreObject: OffreModel = {

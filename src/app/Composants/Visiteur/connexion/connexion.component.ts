@@ -21,7 +21,9 @@ export class ConnexionComponent {
   private router = inject(Router);
 
   // Declaration des variables
-  userObject: UserModel = {}; // un objet qui a pour type UserModel qui se trouve dans Models/user.model.ts
+  userObject: UserModel = {
+    service_ids: [], 
+  }; // un objet qui a pour type UserModel qui se trouve dans Models/user.model.ts
   alertMessage: string = ""; // cette variable permettra de stocker la valeur de l'alerte
 
 
