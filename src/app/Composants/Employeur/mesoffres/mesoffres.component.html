@@ -8,7 +8,7 @@
                       <span *ngFor="let service of offre.services">{{ service.libelle }}</span>
                   </h3>
                   <p class="card-text">
-                      {{ offre.description | slice: 0: 50 }}...
+                      {{ offre.description | slice: 0: 150 }}...
                   </p>
                   <div class="card-details">
                       <span class="location">
@@ -22,9 +22,9 @@
                       <span class="price">
                           <i class="fa fa-money-bill-wave"></i> {{ offre.salaire }}
                       </span>
-                      <!-- <button *ngIf="offre.id !== undefined" (click)="voirDetails(offre.id)" class="btn btn-primary">
+                      <button *ngIf="offre.id !== undefined" (click)="voirDetails(offre.id)" class="btn btn-primary">
                         Voir
-                    </button> -->
+                    </button>
                   </div>
               </div>
           </div>
