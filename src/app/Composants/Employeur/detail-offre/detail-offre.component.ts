@@ -1,3 +1,4 @@
+import { CandidatureService } from './../../../Services/candidature.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,6 +11,7 @@ import { AuthService } from '../../../Services/auth.service';
 import Swal from 'sweetalert2';
 import { ServiceService } from '../../../Services/service.service';
 import { FormsModule } from '@angular/forms';
+import { CandidatureModel } from '../../../Models/candidature.model';
 
 @Component({
   selector: 'app-detail-offre',
@@ -22,8 +24,6 @@ export class DetailOffreComponent implements OnInit {
 
   offreId!: number; // L'ID de l'offre
   offre: OffreModel = {} as OffreModel; // Initialisation
-  isEmployeur: boolean = false;
-  isEmploye: boolean = false;
   tabService: ServiceModel[] = [];
   private serviceService = inject(ServiceService);
    missingFields: string[] = [];
@@ -33,19 +33,22 @@ export class DetailOffreComponent implements OnInit {
     service_ids: [], // Initialiser à un tableau vide
   };
   isLoading: boolean = true; // État de chargement
+  candidatures: CandidatureModel[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private offreService: OffreService,
-    private authService: AuthService
+    private authService: AuthService,
+    private CandidatureService: CandidatureService
   ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.offreId = +params['id'];
       this.getOffreDetails();
-      this.checkUserRole();
       this.fetchService(); // Récupérer tous les services
+      console.log("Offre ID :", this.offreId);  // Ajoutez ceci
+      this.fetchCandidaturesByOffre(this.offreId);
     });
   }
 
@@ -79,12 +82,7 @@ export class DetailOffreComponent implements OnInit {
   }
 
 
-  checkUserRole() {
-    this.authService.currentUser.subscribe(user => {
-      this.isEmployeur = user && user.roles.some((role: { name: string; }) => role.name === 'employeur');
-      this.isEmploye = user && user.roles.some((role: { name: string; }) => role.name === 'demandeur_d_emploi');
-    });
-  }
+
 
   // Récupération de tous les services
   fetchService() {
@@ -256,5 +254,31 @@ export class DetailOffreComponent implements OnInit {
         );
       }
     });
+  }
+  // fetchCandidaturesByOffre(offreId: number) {
+  //   this.CandidatureService.getCandidaturesByOffre(offreId).subscribe(
+  //     (response: any) => {
+  //       if (response.data) {
+  //         this.candidatures = response.data; // Récupérer les candidatures
+  //         console.log('Candidatures récupérées:', this.candidatures);
+  //       }
+  //     },
+  //     (error: any) => {
+  //       console.error('Erreur lors de la récupération des candidatures:', error);
+  //     }
+  //   );
+  // }
+
+  fetchCandidaturesByOffre(offreId: number): void {
+    this.CandidatureService.getCandidaturesByOffre(offreId).subscribe(
+      (response: any) => {
+        this.candidatures = response || [];
+        console.log('offreId',offreId );
+        console.log('Candidatures récupérées:', this.candidatures);
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des candidatures:', error);
+      }
+    );
   }
 }

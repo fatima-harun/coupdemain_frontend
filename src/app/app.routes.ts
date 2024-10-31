@@ -13,6 +13,7 @@ import { DetailCandidatComponent } from './Composants/Employeur/detail-candidat/
 import { ProfilComponent } from './Composants/profil/profil.component';
 import { ExperiencesComponent } from './Composants/experiences/experiences.component';
 import { MesoffresComponent } from './Composants/Employeur/mesoffres/mesoffres.component';
+import { DetailsOffresComponent } from './Composants/Employe/details-offres/details-offres.component';
 
 export const routes: Routes = [
 
@@ -31,13 +32,13 @@ export const routes: Routes = [
     {path:"offre",component:PublicationOffreComponent,canActivate:[AuthEmployeurGuard]},
 
     { path: 'liste-offre', component:ListeOffresComponent},
-    
+
     {path:'mesoffres',component:MesoffresComponent},
 
     //route du demandeur d'emploi
 
     // route pour les détails d'une offre avec des paramètres 'id' et service_id
-    {path:'detail/:id',component:DetailOffreComponent},
+    {path:'detail/:id',component:DetailOffreComponent}, //route pour les employeurs
 
     {path:"candidats",component:CandidatsComponent},
 
@@ -52,4 +53,6 @@ export const routes: Routes = [
     {path:'competence',component:CompetencesComponent},
 
     {path:'experience',component:ExperiencesComponent},
+
+    {path:'details/:id',component:DetailsOffresComponent}, //route pour les candidats
 ];

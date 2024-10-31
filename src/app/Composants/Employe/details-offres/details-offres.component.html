@@ -1,0 +1,48 @@
+<app-header></app-header>
+
+
+<div class="en_tete">
+  <h1>Détails de l'Offre d'Emploi</h1>
+</div>
+
+
+<div class="container">
+  <div *ngIf="offre">
+    <div class="offre-header mt-4 mb-3">
+      <h2>
+        <span *ngIf="offre.services && offre.services.length > 0; else noService">
+          <span *ngFor="let service of offre.services; let last = last">
+            {{ service.libelle }}<span *ngIf="!last">, </span>
+          </span>
+        </span>
+        <ng-template #noService>Service non spécifié</ng-template>
+      </h2>
+    </div>
+    <div class="offre-details">
+      <div><p><i class="fas fa-map-marker-alt"></i> {{ offre.lieu }}</p></div>
+      <div><p><i class="fas fa-money-bill-wave"></i> {{ offre.salaire }} FCFA</p></div>
+      <div><p><i class="fas fa-clock"></i> {{ offre.horaire }}</p></div>
+    </div>
+    <div style="display: flex; justify-content: flex-end;">
+      <button class="btn-postuler" (click)="postuler()">Postuler</button>
+    </div>
+    <div>
+      <h3>Description</h3>
+      <p><strong>Description :</strong> {{ offre.description || 'Aucune description disponible' }}</p>
+
+
+      <h3>Profil recherché</h3>
+      <p>{{ offre.profil }}</p>
+      <p><strong>Date de commencement :</strong> {{ offre.date_debut }}</p>
+      <p><strong>Date de fin prévue :</strong> {{ offre.date_fin }}</p>
+      <p><strong>Nombre de postes:</strong> {{ offre.nombre_postes }}</p>
+    </div>
+  </div>
+  <div style="display: flex; justify-content: flex-end;">
+    <a href="/liste-offre"><button class="btn-return">Retour</button></a>
+  </div>
+  <div *ngIf="!offre">
+    <p>Aucune offre trouvée avec cet identifiant.</p>
+  </div>
+</div>
+<app-footer></app-footer>

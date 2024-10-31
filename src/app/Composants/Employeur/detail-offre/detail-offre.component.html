@@ -22,11 +22,10 @@
       <div><p><i class="fas fa-clock"></i> {{ offre.horaire }}</p></div>
     </div>
     <div style="display: flex; justify-content: flex-end;">
-      <button *ngIf="isEmploye" class="btn-postuler">Postuler</button>
-      <button *ngIf="isEmployeur" class="btn-modifier" data-bs-toggle="modal" data-bs-target="#editOffreModal">
+      <button class="btn-modifier" data-bs-toggle="modal" data-bs-target="#editOffreModal">
         Modifier
       </button>
-      <button *ngIf="isEmployeur" class="btn-supprimer" (click)="delete()">Supprimer</button>
+      <button class="btn-supprimer" (click)="delete()">Supprimer</button>
     </div>
     <div>
       <h3>Description</h3>
@@ -107,6 +106,41 @@
   </div>
 </div>
 
+<div *ngIf="candidatures.length > 0">
+  <h2>Liste des Candidatures</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Photo</th>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Adresse</th>
+        <th>Téléphone</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let candidature of candidatures">
+        <td><img *ngIf="candidature.user.photo" [src]="candidature.user.photo" alt="Photo" width="50"></td>
+        <td>{{ candidature.user.nom }}</td>
+        <td>{{ candidature.user.prenom }}</td>
+        <td>{{ candidature.user.email }}</td>
+        <td>{{ candidature.user.adresse }}</td>
+        <td>{{ candidature.user.telephone }}</td>
+        <td>{{ candidature.statut }}</td>
+        <td>
+          <button class="btn btn-success">Recruter</button>
+          <button class="btn btn-danger">Refuser</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
 
+<div *ngIf="candidatures.length === 0">
+  <p>Aucune candidature pour cette offre d'emploi.</p>
+</div>
 
 <app-footer></app-footer>

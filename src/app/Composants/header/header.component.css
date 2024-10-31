@@ -75,8 +75,10 @@ form{
   border-radius: 10px;
 }
 
+
 .active-link {
-  text-decoration: underline;
   font-weight: bold;
-  color:#FED330
+  color:#FED330; /* Changez la couleur selon vos préférences */
 }
+
+

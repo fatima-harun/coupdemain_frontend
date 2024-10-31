@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -14,8 +15,9 @@ export class HeaderComponent implements OnInit {
   isEmployeur: boolean = false;
   isEmploye:boolean = false;
   userName: string = '';
+  activePage: string = ''; 
 
-  constructor(private authService: AuthService) { }
+  constructor(private authService: AuthService,private router: Router) {this.setActivePage(); }
 
   ngOnInit(): void {
     // S'abonne aux changements de l'état de connexion de l'utilisateur
@@ -29,6 +31,9 @@ export class HeaderComponent implements OnInit {
   }
   onLogout() {
     this.authService.logout();
+  }
+  setActivePage() {
+    this.activePage = this.router.url; // Récupère l'URL actuelle
   }
 
 }

@@ -101,6 +101,6 @@ export class ListeOffresComponent implements OnInit {
   }
 
   voirDetails(id: number) {
-    this.router.navigate(['/detail', id]);  // Redirection vers la route de détail avec l'ID
+    this.router.navigate(['/details', id]);  // Redirection vers la route de détail avec l'ID
   }
 }

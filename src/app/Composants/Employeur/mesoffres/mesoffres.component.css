@@ -1,0 +1,11 @@
+.en_tete{
+  background-image: url("/../../../../assets/img/Group 166.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 20.19rem;
+}
+h1{
+  text-align:center;
+  color:white;
+  padding-top: 7rem;
+}
