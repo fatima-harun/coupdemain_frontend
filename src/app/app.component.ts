@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { YoutubePlayerComponent } from './youtube-player/youtube-player.component';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 
 @Component({
+
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet],

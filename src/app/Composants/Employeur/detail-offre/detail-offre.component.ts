@@ -1,3 +1,4 @@
+
 import { CandidatureService } from './../../../Services/candidature.service';
 import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -12,13 +13,15 @@ import Swal from 'sweetalert2';
 import { ServiceService } from '../../../Services/service.service';
 import { FormsModule } from '@angular/forms';
 import { CandidatureModel } from '../../../Models/candidature.model';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { UserModel } from '../../../Models/user.model';
 
 @Component({
   selector: 'app-detail-offre',
   templateUrl: './detail-offre.component.html',
   styleUrls: ['./detail-offre.component.css'],
   standalone: true,
-  imports: [CommonModule, HeaderComponent, FooterComponent, FormsModule],
+  imports: [CommonModule, HeaderComponent, FooterComponent, FormsModule,NgxPaginationModule],
 })
 export class DetailOffreComponent implements OnInit {
 
@@ -34,12 +37,19 @@ export class DetailOffreComponent implements OnInit {
   };
   isLoading: boolean = true; // État de chargement
   candidatures: CandidatureModel[] = [];
+  page: number = 1;  // Page actuelle pour la pagination
+  candidatObject:UserModel = {
+    service_ids: []
+  }
+  candidats:any[] = []
+  Candidat: UserModel[] = [];
 
   constructor(
     private route: ActivatedRoute,
     private offreService: OffreService,
     private authService: AuthService,
-    private CandidatureService: CandidatureService
+    private CandidatureService: CandidatureService,
+    private router: Router, 
   ) {}
 
   ngOnInit(): void {
@@ -80,9 +90,6 @@ export class DetailOffreComponent implements OnInit {
       }
     );
   }
-
-
-
 
   // Récupération de tous les services
   fetchService() {
@@ -255,19 +262,6 @@ export class DetailOffreComponent implements OnInit {
       }
     });
   }
-  // fetchCandidaturesByOffre(offreId: number) {
-  //   this.CandidatureService.getCandidaturesByOffre(offreId).subscribe(
-  //     (response: any) => {
-  //       if (response.data) {
-  //         this.candidatures = response.data; // Récupérer les candidatures
-  //         console.log('Candidatures récupérées:', this.candidatures);
-  //       }
-  //     },
-  //     (error: any) => {
-  //       console.error('Erreur lors de la récupération des candidatures:', error);
-  //     }
-  //   );
-  // }
 
   fetchCandidaturesByOffre(offreId: number): void {
     this.CandidatureService.getCandidaturesByOffre(offreId).subscribe(
@@ -280,5 +274,33 @@ export class DetailOffreComponent implements OnInit {
         console.error('Erreur lors de la récupération des candidatures:', error);
       }
     );
+  }
+  updateStatut(id: number, statut: string): void {
+    this.CandidatureService.updateStatut(id, statut).subscribe({
+      next: (response: any) => {
+        this.loadCandidatures(this.offreId); // Recharge toutes les candidatures après mise à jour
+        console.log(response.message);
+      },
+      error: (error) => {
+        console.error('Erreur lors de la mise à jour du statut:', error.message || error);
+      }
+    });
+  }
+
+  loadCandidatures(offreId: number): void {
+    this.CandidatureService.getCandidaturesByOffre(offreId).subscribe({
+      next: (response: any) => {
+        this.candidatures = response || [];
+      },
+      error: (error) => {
+        console.error('Erreur lors de la récupération des candidatures:', error.message || error);
+      }
+    });
+  }
+  getimage(photo: string): string {
+    return `http://127.0.0.1:8000/storage/${photo}`;
+  }
+  voirProfil(candidatId: number) {
+    this.router.navigate(['/candidats', candidatId]);
   }
 }

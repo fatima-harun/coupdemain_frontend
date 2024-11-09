@@ -9,3 +9,118 @@ h1{
   color:white;
   padding-top: 7rem;
 }
+/* Style de base pour la carte */
+.card {
+  border: 1px solid #FED330;
+  border-radius: 10px;
+  padding: 20px;
+  max-width: 500px;
+  margin: 20px auto;
+  background-color: #fff;
+  font-family: Arial, sans-serif;
+}
+.card:hover {
+  transform: scale(1.05); /* Zoom sur la carte au survol */
+  background-color:#ffc800; /* Couleur de fond jaune */
+  color: white; /* Couleur du texte blanche */
+}
+.card-title, .card-text, .card-details, .card-footer {
+  overflow: hidden; /* Empêche le contenu de déborder */
+  text-overflow: ellipsis; /* Ajoute des points de suspension si le texte est trop long */
+  white-space: nowrap; /* Ne pas permettre à la ligne de se diviser */
+}
+.card-details {
+  margin-top: 10px; /* Ajout d'un espacement entre les détails et le texte */
+}
+.card:hover .card-title{
+color:white
+}
+.card:hover .card-text{
+color:white
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between; /* Aligne les éléments du pied de page */
+  margin-top: 15px; /* Espacement entre le corps de la carte et le pied de page */
+}
+ .carte p{
+  font-size: 1rem;
+ }
+ .carte input{
+  border-radius: 20px;
+ }
+ .input{
+   border-radius: 20px;
+   border:none;
+   width: 15rem;
+ }
+ .input::placeholder {
+  font-size: 0.875rem;
+  color: #888;
+}
+.card-body {
+  padding: 10px;
+}
+
+.card-title {
+  font-size: 1.5rem;
+  margin-bottom: 5px;
+  color: #000;
+}
+.card-text {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+.card-details {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+.card-details i {
+  margin-right: 5px;
+}
+.card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 1.1rem;
+}
+.view-link {
+  text-decoration: none;
+  color: #FED330;
+  font-weight: bold;
+  font-size: 1rem;
+}
+.view-link:hover {
+  text-decoration: underline;
+}
+.carte{
+  width: 18rem;
+  height: 20rem;
+  border-radius: 1.25rem;
+  background-color: #4A69BD;
+  color:#fff
+}
+.btn-primary{
+  border-radius: 1.25rem;
+  background: #FED330;
+ width: 7.25rem;
+ height:  2.375rem;
+border:none;
+text-decoration: none;
+}
+.btn-primary:hover{
+  background-color:#4A69BD;
+  color:white
+  }
+@media (max-width: 768px) {
+  .card {
+    max-width: 100%;
+    padding: 15px;
+  }
+}

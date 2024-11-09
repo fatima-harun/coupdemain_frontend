@@ -123,5 +123,18 @@ updateUser(userData: any): Observable<any> {
 getCandidatsByService(serviceId: number){
   return this.http.get(`${apiUrl}/services/${serviceId}/user`);
 }
+getAllUser(): Observable<any> {
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}/users`, { headers }).pipe(
+    tap(response => {
+      console.log('Réponse de l\'API:', response); // Log the response here
+    }),
+    catchError(error => {
+      console.error('Erreur dans getAllCandidat:', error); // Catch errors from HTTP
+      return throwError(error); // Rethrow the error for further handling
+    })
+  );
+}
+
 }
 

@@ -19,13 +19,15 @@ import { YoutubePlayerComponent } from '../../../youtube-player/youtube-player.c
 })
 export class PortailComponent implements OnInit {
 
-  constructor(private offreService: OffreService, private router: Router) {}
-
   offres: OffreModel[] = []; // Tableau pour stocker les offres
   utilisateurConnecte: any = null; // Pour stocker l'utilisateur connecté
+  tabCandidat: any[] = [];
+
+  constructor(private offreService: OffreService, private router: Router,private authService: AuthService) {}
 
   ngOnInit(): void {
     this.fetchOffres(); // Appel à la méthode pour récupérer les offres
+    this.fetchCandidats();
   }
 
   // Récupération des offres
@@ -44,5 +46,27 @@ export class PortailComponent implements OnInit {
   }
   voirDetails(id: number) {
     this.router.navigate(['/detail', id]);  // Redirection vers la route de détail avec l'ID
+  }
+  fetchCandidats() {
+    this.authService.getAllCandidat().subscribe(
+      (response: any) => {
+        console.log('Réponse de l\'API :', response);
+        if (Array.isArray(response)) {
+          this.tabCandidat = response;
+          console.log('Candidats :', this.tabCandidat);
+        } else {
+          console.warn('Aucune donnée trouvée dans la réponse :', response);
+        }
+      },
+      (error: any) => {
+        console.error('Erreur lors de la récupération des Candidats :', error);
+      }
+    );
+  }
+  voirProfil(candidatId: number) {
+    this.router.navigate(['/candidats', candidatId]);
+  }
+  getimage(photo: string): string {
+    return `http://127.0.0.1:8000/storage/${photo}`;
   }
 }

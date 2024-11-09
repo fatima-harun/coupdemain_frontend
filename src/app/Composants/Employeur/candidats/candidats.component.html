@@ -3,10 +3,9 @@
 <div class="en_tete">
   <h1>Catalogue des demandeurs d'emploi</h1>
 </div>
-
 <!-- Barre de recherche -->
-<div class="search-bar">
-  <input type="text" placeholder="Rechercher par adresse" [(ngModel)]="searchText" (input)="filtrerCandidats()" />
+<div class="search-bar mt-5">
+  <input type="text " placeholder="Rechercher par adresse" [(ngModel)]="searchText" (input)="filtrerCandidats()" class="input" />
   <p>Rechercher par service</p>
   <div class="d-flex flex-wrap mb-3">
     <div *ngFor="let service of tabService" class="form-check form-check-inline me-3">
@@ -30,7 +29,12 @@
     <!-- Corps de la carte avec les détails du candidat -->
     <div class="profile-body">
       <h3> {{ candidat.prenom }} {{ candidat.nom }}</h3>
-
+      <fa-icon [class.rated]="candidat.rating >= 1" [icon]="faStar" (click)="setRating(candidat, 1)"></fa-icon>
+      <fa-icon [class.rated]="candidat.rating >= 2" [icon]="faStar" (click)="setRating(candidat, 2)"></fa-icon>
+      <fa-icon [class.rated]="candidat.rating >= 3" [icon]="faStar" (click)="setRating(candidat, 3)"></fa-icon>
+      <fa-icon [class.rated]="candidat.rating >= 4" [icon]="faStar" (click)="setRating(candidat, 4)"></fa-icon>
+      <fa-icon [class.rated]="candidat.rating >= 5" [icon]="faStar" (click)="setRating(candidat, 5)"></fa-icon>
+      <!-- <span>Note : {{ candidat.rating }}</span> -->
       <!-- Liste des services associés -->
       <div *ngIf="candidat.services?.length > 0; else noService">
         <p><i class="fas fa-briefcase"></i>

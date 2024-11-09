@@ -22,7 +22,7 @@ export class ConnexionComponent {
 
   // Declaration des variables
   userObject: UserModel = {
-    service_ids: [], 
+    service_ids: [],
   }; // un objet qui a pour type UserModel qui se trouve dans Models/user.model.ts
   alertMessage: string = ""; // cette variable permettra de stocker la valeur de l'alerte
 
@@ -43,7 +43,7 @@ export class ConnexionComponent {
 
             if (response.user.roles) {
               if (response.user.roles.some((role: Role) => role.name === 'admin')) {
-                window.location.href ='portail';
+                window.location.href ='dashboard';
               } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
                 window.location.href ='/offre';
               } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {

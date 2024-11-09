@@ -26,15 +26,18 @@
                 <li class="nav-item">
                     <a class="nav-link" [ngClass]="{'active-link': activePage === '#guide'}" (click)="setActivePage()" href="#guide">Guide</a>
                 </li>
-                <li class="nav-item" *ngIf="isEmploye">
+                <li class="nav-item">
                     <a class="nav-link" [ngClass]="{'active-link': activePage === '/liste-offre'}" (click)="setActivePage()" href="/liste-offre">Emplois</a>
                 </li>
                 <li class="nav-item" *ngIf="isEmployeur">
                     <a class="nav-link" [ngClass]="{'active-link': activePage === '/mesoffres'}" (click)="setActivePage()" href="/mesoffres">Mes offres</a>
                 </li>
-                <li *ngIf="isEmployeur">
+                <li>
                     <a class="nav-link" [ngClass]="{'active-link': activePage === '/candidats'}" (click)="setActivePage()" href="/candidats">Candidats</a>
                 </li>
+                <li>
+                  <a class="nav-link" [ngClass]="{'active-link': activePage === '/nos chiffres'}" (click)="setActivePage()" href="">Nos chiffres</a>
+              </li>
                 <li *ngIf="isEmployeur"><a href="/offre" class="nav-link" [ngClass]="{'active-link': activePage === '/offre'}" (click)="setActivePage()">Publier une offre</a></li>
                 <li *ngIf="isEmploye"><a href="/competence" class="nav-link" [ngClass]="{'active-link': activePage === '/competence'}" (click)="setActivePage()">Compétences</a></li>
                 <li *ngIf="isEmploye"><a href="/experience" class="nav-link" [ngClass]="{'active-link': activePage === '/experience'}" (click)="setActivePage()">Expériences</a></li>
@@ -50,21 +53,43 @@
             </form>
             <!-- Utilisateur connecté -->
             <ng-template #loggedInTemplate>
+              <div class="d-flex align-items-center">
+                <!-- Icône de notification avec badge dans une div séparée -->
                 <div class="dropdown me-3">
-                    <button class="btn btn-secondary dropdown-toggle user-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
-                        <i class="fas fa-user-circle me-2"></i>
-                        {{ userName }}
-                    </button>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
-                        <li><a class="dropdown-item" href="#" (click)="onLogout()">Se déconnecter</a></li>
-                        <li><a class="dropdown-item" href="/profil">Mon profil</a></li>
-                    </ul>
+                  <i class="fas fa-bell notification-icon me-3" id="notificationIcon" data-bs-toggle="dropdown" aria-expanded="false">
+                    <span class="badge">{{ unreadNotificationsCount }}</span>
+                  </i>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="notificationIcon">
+                    <li *ngIf="notifications.length > 0">
+                      <h6 class="dropdown-header">Notifications</h6>
+                      <div *ngFor="let notification of notifications" class="dropdown-item">
+                        {{ notification.message }}
+                        <button *ngIf="!notification.read" (click)="onMarkAsRead(notification.id)">
+                          Marquer comme lue
+                        </button>
+                      </div>
+                    </li>
+                    <li *ngIf="notifications.length === 0">
+                      <span class="dropdown-item">Aucune notification</span>
+                    </li>
+                  </ul>
                 </div>
+                <!-- Menu utilisateur avec icône dans une autre div -->
+                <div class="dropdown">
+                  <button class="btn btn-secondary dropdown-toggle user-btn" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+                    <i class="fas fa-user-circle me-2"></i>
+                    {{ userName }}
+                  </button>
+                  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+                    <li><a class="dropdown-item" href="#" (click)="onLogout()">Se déconnecter</a></li>
+                    <li><a class="dropdown-item" href="/profil">Mon profil</a></li>
+                  </ul>
+                </div>
+              </div>
             </ng-template>
         </div>
     </div>
 </nav>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

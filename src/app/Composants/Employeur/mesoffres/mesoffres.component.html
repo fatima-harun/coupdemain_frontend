@@ -3,32 +3,30 @@
   <h1>Mes offres d'emploi</h1>
 </div>
 <div class="col-md-9 mt-4">
-  <div class="row">
-      <div class="col-md-6 mb-4" *ngFor="let offre of offres">
-          <div class="card">
-              <div class="card-body">
-                  <h3 class="card-title">
-                      <span *ngFor="let service of offre.services">{{ service.libelle }}</span>
-                  </h3>
-                  <p class="card-text">
-                      {{ offre.description | slice: 0: 150 }}...
-                  </p>
-                  <div class="card-details">
-                      <span class="location">
-                          <i class="fa fa-map-marker-alt"></i> {{ offre.lieu }}
-                      </span>
-                      <span class="time">
-                          <i class="fa fa-clock"></i> {{ offre.horaire }}
-                      </span>
-                  </div>
-                  <div class="card-footer">
-                      <span class="price">
-                          <i class="fa fa-money-bill-wave"></i> {{ offre.salaire }}
-                      </span>
-                      <button *ngIf="offre.id !== undefined" (click)="voirDetails(offre.id)" class="btn btn-primary">
-                        Voir
-                    </button>
-                  </div>
+  <div class="card-container"> <!-- Conteneur centré -->
+      <div *ngFor="let offre of offres" class="card"> <!-- Classe "card" appliquée directement -->
+          <div class="card-body">
+              <h3 class="card-title">
+                  <span *ngFor="let service of offre.services">{{ service.libelle }}</span>
+              </h3>
+              <p class="card-text">
+                  {{ offre.description | slice: 0: 150 }}...
+              </p>
+              <div class="card-details">
+                  <span class="location">
+                      <i class="fa fa-map-marker-alt"></i> {{ offre.lieu }}
+                  </span>
+                  <span class="time">
+                      <i class="fa fa-clock"></i> {{ offre.horaire }}
+                  </span>
+              </div>
+              <div class="card-footer">
+                  <span class="price">
+                      <i class="fa fa-money-bill-wave"></i> {{ offre.salaire }}
+                  </span>
+                  <button *ngIf="offre.id !== undefined" (click)="voirDetails(offre.id)" class="btn btn-primary">
+                    Voir
+                  </button>
               </div>
           </div>
       </div>

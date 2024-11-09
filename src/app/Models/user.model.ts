@@ -12,6 +12,7 @@ export interface UserModel{
     telephone?:string,
     adresse?:string,
     password?:string,
+    rating?: number; 
     service_ids: any[];
 
     //  la propriété services pour contenir un tableau de services

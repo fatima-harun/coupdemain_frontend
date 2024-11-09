@@ -1,3 +1,4 @@
+
 import { UserModel } from './../../../Models/user.model';
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../../Services/auth.service';
@@ -8,11 +9,13 @@ import { ServiceModel } from '../../../Models/service.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FooterComponent } from '../../../footer/footer.component';
 import { ServiceService } from '../../../Services/service.service';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-candidats',
   standalone: true,
-  imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent],
+  imports: [FormsModule, CommonModule, HeaderComponent, FooterComponent,FontAwesomeModule],
   templateUrl: './candidats.component.html',
   styleUrls: ['./candidats.component.css']
 })
@@ -28,10 +31,17 @@ export class CandidatsComponent implements OnInit {
     service_ids: []
   }
   candidats:any[] = []
+  Candidat: UserModel[] = [];
+  // rating= 0;
+
+  // setRating(value:number){
+  //   this.rating=value
+  // }
 
   constructor(private authService: AuthService, private cdr: ChangeDetectorRef, private router: Router, route: ActivatedRoute) {
     this.route = route;
   }
+  faStar=faStar
 
   ngOnInit(): void {
     this.fetchCandidats();
@@ -111,12 +121,11 @@ export class CandidatsComponent implements OnInit {
     );
   }
 
-
-
   onServiceChange() {
     // Appelle filterecandidats pour actualiser la liste des candidats filtrés
     this.candidatsFiltres = this.filterecandidats();
   }
-
-
+  setRating(candidat: UserModel, value: number) {
+    candidat.rating = value; // Mettre à jour la note du candidat
+  }
 }

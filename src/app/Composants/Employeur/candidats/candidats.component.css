@@ -16,9 +16,8 @@ h1{
   gap: 20px; /* Réduit l'espace entre les cartes */
   padding: 20px;
   justify-items: center;
-  background-color: #f7f7f7;
+  /* background-color: #f7f7f7; */
 }
-
 
 /* Style des cartes de profil */
 .profile-card {
@@ -77,6 +76,48 @@ color:white;
 
 .profile-btn:hover {
   background-color:#0056b3;
+}
+.search-bar {
+  display: grid;
+  place-items: center;
+  padding: 20px;
+}
+
+.input {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 20px;
+  border: none; /* Supprime la bordure initiale */
+  padding: 10px;
+  outline: none; /* Supprime la bordure de focus */
+  background-color: #f0f0f0; /* Optionnel : couleur de fond légère */
+}
+
+.input:focus {
+  background-color: #e8e8e8; /* Change de couleur au focus (optionnel) */
+}
+
+.search-bar p {
+  margin-top: 10px;
+  font-weight: bold;
+  color:#0056b3;
+}
+
+.form-check-inline {
+  margin-right: 10px;
+}
+.form-check-label{
+  color:#0056b3
+}
+fa-icon{
+  color:rgb(203, 203, 203);
+  cursor:pointer;
+
+  &.rated,
+  &:hover{
+   color:#FED330;
+  }
+  transition: color 0.2s ease-in-out
 }
 
 /* Responsive Design pour petits écrans */

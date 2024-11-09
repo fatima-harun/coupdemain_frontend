@@ -25,6 +25,9 @@ h2,span{
   font-weight: bold;
   font-size: 1.8rem;
 }
+.service {
+  margin-right: 11px; 
+}
 
 .icon-jaune {
   color: #FFC107;

@@ -1,84 +1,125 @@
-nav{
-    background-color: #4A69BD;
-    height: 5.56rem
-}
-.nav-link{
-    color:white
-}
-.nav-link:hover{
- color:#FED330
-}
-.btn-connect{
-    border-radius: 1.25rem;
-    background: #FED330;
-   width: 7.25rem;
-   height:  2.375rem;
-  border:none;
-  text-decoration: none;
-}
-.btn-register a{
- text-decoration: none;
- color:white
-}
-.btn-connect a{
-    text-decoration: none;
-    color:white
-}
-.btn-register{
-    width: 7.25rem;
-    height:  2.375rem;
-   border:none;
-   background-color: #4A69BD;
-   border-radius: 1.25rem;
-   border: 0.0625rem solid #FFF;
-   text-decoration: none;
-}
-ul{
-    gap:2rem
-}
-form{
-    display:flex;
-    gap:0.5rem
-}
-.navbar {
-    background-color: #4A69BD;
-}
-.navbar-collapse {
-    background-color: #4A69BD;
-    width:200rem
+/* Enlève les marges et padding par défaut du HTML et du Body */
+html, body {
+    margin: 0;
+    padding: 0;
 }
 
+/* Style pour la barre de navigation */
+nav {
+    background-color: #4A69BD;
+    height: 5.56rem;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    background-color: #4A69BD;
+    margin-bottom: 0 !important; /* Évite l’espace sous la navbar */
+}
+
+.navbar-collapse {
+    background-color: #4A69BD;
+    width: auto; /* Supprime la largeur de 200rem */
+    height: auto;
+    margin: 0;
+    padding: 0;
+}
+
+/* Couleurs et effet de survol des liens de navigation */
+.nav-link {
+    color: white;
+}
+.nav-link:hover {
+    color: #FED330;
+}
+.active-link {
+    font-weight: bold;
+    color: #FED330;
+}
+
+/* Style des boutons de connexion et d’inscription */
+.btn-connect, .btn-register {
+    border-radius: 1.25rem;
+    width: 7.25rem;
+    height: 2.375rem;
+    border: none;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-connect {
+    background: #FED330;
+}
+.btn-register {
+    background-color: #4A69BD;
+    border: 0.0625rem solid #FFF;
+}
+
+.btn-connect a, .btn-register a {
+    text-decoration: none;
+    color: white;
+}
+
+/* Ajustement des marges et espacements entre les éléments */
+ul.navbar-nav {
+    gap: 2rem;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    display: flex;
+    gap: 0.5rem;
+}
+
+/* Style du bouton utilisateur */
+.user-btn {
+    background-color: #FED330;
+    color: white;
+    border-radius: 20px;
+    padding: 8px 15px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+}
+.user-btn i {
+    font-size: 20px;
+    margin-right: 10px;
+}
+.user-btn:hover {
+    background-color: #4A69BD;
+    color: white;
+}
+
+/* Icône de notification avec badge */
+.notification-icon {
+    position: relative;
+    color: white;
+    font-size: 1.25rem;
+    margin-right: 15px;
+}
+.notification-icon .badge {
+    position: absolute;
+    top: -5px;
+    right: -10px;
+    background-color: red;
+    color: white;
+    border-radius: 50%;
+    padding: 3px 6px;
+    font-size: 0.75rem;
+}
+
+/* Style du menu déroulant */
+.dropdown-menu {
+    border-radius: 10px;
+}
+
+/* Style pour le bouton navbar-toggle en mode mobile */
 .navbar-toggler {
     border: none;
 }
 .navbar-toggler-icon {
     background-color: white;
 }
-.user-btn {
-  background-color:#FED330;
-  color: white;
-  border-radius: 20px;
-  padding: 8px 15px;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-}
-.user-btn i {
-  font-size: 20px;
-  margin-right: 10px;
-}
-.user-btn:hover {
-  background-color:#4A69BD;
-  color: white;
-}
-.dropdown-menu {
-  border-radius: 10px;
-}
-
-
-.active-link {
-  font-weight: bold;
-  color:#FED330; /* Changez la couleur selon vos préférences */
-}
-
-
