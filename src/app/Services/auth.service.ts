@@ -1,8 +1,13 @@
+import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { inject, Injectable } from "@angular/core";
 import { apiUrl } from "./apiUrl";
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, tap ,timeout} from 'rxjs/operators';
+
+
+
+
 
 @Injectable({
     providedIn: 'root'
@@ -13,18 +18,24 @@ export class AuthService {
     // Observable pour suivre l'état de l'utilisateur connecté
     private currentUserSubject: BehaviorSubject<any>;
     public currentUser: Observable<any>;
+    private router!: Router;
 
     constructor() {
         // Initialise l'utilisateur à partir du localStorage
         const storedUser = localStorage.getItem('user');
         this.currentUserSubject = new BehaviorSubject<any>(storedUser ? JSON.parse(storedUser) : null);
         this.currentUser = this.currentUserSubject.asObservable();
+
     }
 
     // Getter pour obtenir la valeur actuelle de l'utilisateur
     public get currentUserValue(): any {
         return this.currentUserSubject.value;
     }
+    // Getter pour obtenir l'ID de l'utilisateur connecté
+    public get currentUserId(): number {
+      return this.currentUserSubject.value?.id;
+  }
 
     // Méthode pour s'authentifier
     login(identifiant: any) {
@@ -134,6 +145,27 @@ getAllUser(): Observable<any> {
       return throwError(error); // Rethrow the error for further handling
     })
   );
+}
+
+checkAccountStatus(): void {
+  this.getUser().subscribe((user: { status: number; }) => {
+    if (user.status === 0) {
+      this.router.navigate(['/compte']); // Redirigez vers une page d'erreur ou de notification
+    }
+  });
+}
+toggleStatus(id: number): Observable<any> {
+  const headers = this.getHeaders();
+  return this.http.put(`${apiUrl}/users/${id}/status`, {}, { headers });
+}
+
+// auth.service.ts
+getEmployeurs(): Observable<any> {
+  return this.http.get(`${apiUrl}/users/employeur`);
+}
+
+getEmployer(): Observable<any> {
+  return this.http.get(`${apiUrl}/users/employer`);
 }
 
 }

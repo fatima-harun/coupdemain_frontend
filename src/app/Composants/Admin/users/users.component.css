@@ -1,0 +1,53 @@
+.table-container {
+  max-width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: left;
+}
+
+.styled-table thead tr {
+  background-color:#FED330;
+  color: #ffffff;
+}
+
+.styled-table th, .styled-table td {
+  padding: 12px 15px;
+  border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
+
+.status-icon {
+  font-size: 20px;
+  color: #009879;
+  cursor: pointer;
+}
+
+.status-icon i {
+  margin: 0 5px;
+}
+
+.status-icon .fa-toggle-on {
+  color: green;
+}
+
+.status-icon .fa-toggle-off {
+  color: red;
+}
+canvas {
+  width: 100% !important;
+  height: 400px; /* Vous pouvez ajuster la hauteur selon vos besoins */
+}
+

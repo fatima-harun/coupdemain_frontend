@@ -1,20 +1,20 @@
 
 import { CandidatureService } from './../../../Services/candidature.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OffreService } from '../../../Services/offre.service';
 import { OffreModel } from '../../../Models/offre.model';
 import { ServiceModel } from '../../../Models/service.model';
-import { HeaderComponent } from "../../header/header.component";
-import { FooterComponent } from '../../../footer/footer.component';
 import { AuthService } from '../../../Services/auth.service';
 import Swal from 'sweetalert2';
 import { ServiceService } from '../../../Services/service.service';
-import { FormsModule } from '@angular/forms';
 import { CandidatureModel } from '../../../Models/candidature.model';
-import { NgxPaginationModule } from 'ngx-pagination';
 import { UserModel } from '../../../Models/user.model';
+import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../../header/header.component';
+import { FooterComponent } from '../../../footer/footer.component';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 @Component({
   selector: 'app-detail-offre',
@@ -49,7 +49,7 @@ export class DetailOffreComponent implements OnInit {
     private offreService: OffreService,
     private authService: AuthService,
     private CandidatureService: CandidatureService,
-    private router: Router, 
+    private router: Router,
   ) {}
 
   ngOnInit(): void {

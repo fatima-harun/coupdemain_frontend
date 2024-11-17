@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { AuthService } from '../../Services/auth.service';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
@@ -16,11 +16,12 @@ export class HeaderComponent implements OnInit {
   isEmployeur: boolean = false;
   isEmploye:boolean = false;
   userName: string = '';
-  activePage: string = ''; 
+  activePage: string = '';
   notifications: any[] = [];
   unreadNotificationsCount = 0;
+  private router = inject(Router);
 
-  constructor(private authService: AuthService,private router: Router,private notificationService: NotificationService) {this.setActivePage(); }
+  constructor(private authService: AuthService,private notificationService: NotificationService) {this.setActivePage(); }
 
   ngOnInit(): void {
     // S'abonne aux changements de l'état de connexion de l'utilisateur

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand ms-3" href="#">
+      <img src="assets/img/logo_coupdemain.png" alt="Logo" class="ms-4">
+    </a>
+
+    <!-- Toggle button pour le mode responsive -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Vérification de la connexion -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <form class="d-flex ms-auto" *ngIf="!isLoggedIn; else loggedInTemplate">
+        <div class="me-1">
+          <button class="btn btn-primary"><a href="/connexion" class="text-white text-decoration-none">Se connecter</a></button>
+        </div>
+        <div class="me-3">
+          <button class="btn btn-secondary"><a href="/inscription" class="text-white text-decoration-none">S'inscrire</a></button>
+        </div>
+      </form>
+
+      <!-- Utilisateur connecté -->
+      <ng-template #loggedInTemplate>
+        <div class="d-flex align-items-center ms-auto">
+          <!-- Menu utilisateur -->
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle user-btn" type="button" id="dropdownMenuButton"
+                    data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fas fa-user-circle me-2"></i>
+              {{ userName }}
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdownMenuButton">
+              <li><a class="dropdown-item" href="/profil">Mon profil</a></li>
+              <li><a class="dropdown-item" (click)="onLogout()">Se déconnecter</a></li>
+            </ul>
+          </div>
+        </div>
+      </ng-template>
+    </div>
+  </div>
+</nav>

@@ -1,12 +1,16 @@
+
 import { CompetenceService } from './../../Services/competences.service';
 import { Component, inject, OnInit } from '@angular/core';
-import { HeaderComponent } from '../header/header.component';
-import { FooterComponent } from '../../footer/footer.component';
+
 import { AuthService } from '../../Services/auth.service';
 import { CompetenceModel } from '../../Models/competence.model';
 import Swal from 'sweetalert2';
 import { CommonModule } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
+import { FooterComponent } from '../../footer/footer.component';
 import { FormsModule } from '@angular/forms';
+import { HeaderadminComponent } from '../../headeradmin/headeradmin.component';
+
 
 @Component({
   selector: 'app-competences',
@@ -88,5 +92,5 @@ export class CompetencesComponent implements OnInit {
       }
     }
   }
-  
+
 }

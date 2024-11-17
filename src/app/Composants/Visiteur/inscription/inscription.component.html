@@ -23,98 +23,91 @@
             <h2>Formulaire d'inscription</h2>
             <p>Bienvenue sur notre plateforme ! <br> Nous sommes heureux de vous accueillir
               dans notre communauté dédiée à la mise en relation entre personnels de maison et employeurs.</p>
-            <form enctype="multipart/form-data">
-              <div class="row">
-                <!-- Colonne 1 -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="photo" class="form-label">Photo</label>
-                    <input type="file" class="form-control" id="photo" name="photo" accept="image/*" (change)="uploadImage($event)">
-                  </div>
-                  <div class="mb-3">
-                    <label for="nom" class="form-label">Nom</label>
-                    <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom" name="nom" [(ngModel)]="userObject.nom">
-                  </div>
-                  <div class="mb-3">
-                    <label for="prenom" class="form-label">Prénom</label>
-                    <input type="text" class="form-control" id="prenom" placeholder="Entrez votre prénom" name="prenom" [(ngModel)]="userObject.prenom">
-                  </div>
-                  <div class="mb-3">
-                    <label for="nom_utilisateur" class="form-label">Nom d'utilisateur</label>
-                    <input type="text" class="form-control" id="nom_utilisateur" placeholder="Entrez un nom d'utilisateur" name="nom_utilisateur" [(ngModel)]="userObject.nom_utilisateur">
-                  </div>
-                  <div class="mb-3">
-                    <label for="email" class="form-label">Email</label>
-                    <input type="email" class="form-control" id="email" placeholder="Entrez votre email(optionnel)" name="email" [(ngModel)]="userObject.email">
-                  </div>
-                </div>
-
-                <!-- Colonne 2 -->
-                <div class="col-md-6">
-                  <div class="mb-3">
-                    <label for="role" class="form-label">Rôle</label>
-                    <select class="form-select" id="role" name="role" [(ngModel)]="userObject.role">
-                      <option selected>Choisir votre rôle</option>
-                      <option value="employeur">Employeur</option>
-                      <option value="demandeur_d_emploi">Demandeur d'emploi</option>
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="telephone" class="form-label">Téléphone</label>
-                    <input type="text" class="form-control" id="telephone" placeholder="Entrez votre numéro de téléphone" name="telephone" [(ngModel)]="userObject.telephone">
-                  </div>
-                  <div class="mb-3">
-                    <label for="adresse" class="form-label">Adresse</label>
-                    <input type="text" class="form-control" id="adresse" placeholder="Entrez votre adresse" name="adresse" [(ngModel)]="userObject.adresse">
-                  </div>
-                  <div class="mb-3">
-                    <label for="sexe" class="form-label">Sexe</label>
-                    <select class="form-select" id="sexe" name="sexe" [(ngModel)]="userObject.sexe">
-                      <option selected>Choisir votre sexe</option>
-                      <option value="Masculin">Masculin</option>
-                      <option value="Féminin">Féminin</option>
-                    </select>
-                  </div>
-                  <div class="mb-3" *ngIf="userObject.role === 'demandeur_d_emploi'">
-                    <label for="service" class="form-label">Type de service</label>
-                    <div *ngFor="let service of tabService" class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="checkbox"
-                        [value]="service.id"
-                        [checked]="OffreObject.service_ids.includes(service.id)"
-                        (change)="onCheckboxChange($event, service.id)"
-                      />
-                      <label class="form-check-label">{{ service.libelle }}</label>
+              <form enctype="multipart/form-data">
+                <div class="row">
+                  <!-- Colonne 1 -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="photo" class="form-label">Photo</label>
+                      <input type="file" class="form-control" id="photo" name="photo" accept="image/*" (change)="uploadImage($event)">
+                      <div *ngIf="errors.photo" class="text-danger">{{ errors.photo }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nom" class="form-label">Nom</label>
+                      <input type="text" class="form-control" id="nom" placeholder="Entrez votre nom" name="nom" [(ngModel)]="userObject.nom">
+                      <div *ngIf="errors.nom" class="text-danger">{{ errors.nom }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="prenom" class="form-label">Prénom</label>
+                      <input type="text" class="form-control" id="prenom" placeholder="Entrez votre prénom" name="prenom" [(ngModel)]="userObject.prenom">
+                      <div *ngIf="errors.prenom" class="text-danger">{{ errors.prenom }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="nom_utilisateur" class="form-label">Nom d'utilisateur</label>
+                      <input type="text" class="form-control" id="nom_utilisateur" placeholder="Entrez un nom d'utilisateur" name="nom_utilisateur" [(ngModel)]="userObject.nom_utilisateur">
+                      <div *ngIf="errors.nom_utilisateur" class="text-danger">{{ errors.nom_utilisateur }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="email" class="form-label">Email</label>
+                      <input type="email" class="form-control" id="email" placeholder="Entrez votre email(optionnel)" name="email" [(ngModel)]="userObject.email">
+                      <div *ngIf="errors.email" class="text-danger">{{ errors.email }}</div>
                     </div>
                   </div>
-                  <!-- <div class="mb-3" *ngIf="userObject.role === 'demandeur_d_emploi'">
-                    <label for="service" class="form-label">Service</label>
-                    <select name="service_id" id="service_id" class="form-control" [(ngModel)]="userObject.service_id">
-                      @for (service of tabService; track $index) {
-                        <option [value]="service.id">{{service.libelle}}</option>
-                      }
-                    </select>
-                  </div> -->
-                  <div class="mb-3">
-                    <label for="motDePasse" class="form-label">Mot de passe</label>
-                    <input type="password" class="form-control" id="motDePasse" placeholder="Entrez votre mot de passe" name="password" [(ngModel)]="userObject.password">
+
+                  <!-- Colonne 2 -->
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="role" class="form-label">Rôle</label>
+                      <select class="form-select" id="role" name="role" [(ngModel)]="userObject.role">
+                        <option selected>Choisir votre rôle</option>
+                        <option value="employeur">Employeur</option>
+                        <option value="demandeur_d_emploi">Demandeur d'emploi</option>
+                      </select>
+                      <div *ngIf="errors.role" class="text-danger">{{ errors.role }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="telephone" class="form-label">Téléphone</label>
+                      <input type="text" class="form-control" id="telephone" placeholder="Entrez votre numéro de téléphone" name="telephone" [(ngModel)]="userObject.telephone">
+                      <div *ngIf="errors.telephone" class="text-danger">{{ errors.telephone }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="adresse" class="form-label">Adresse</label>
+                      <input type="text" class="form-control" id="adresse" placeholder="Entrez votre adresse" name="adresse" [(ngModel)]="userObject.adresse">
+                      <div *ngIf="errors.adresse" class="text-danger">{{ errors.adresse }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="sexe" class="form-label">Sexe</label>
+                      <select class="form-select" id="sexe" name="sexe" [(ngModel)]="userObject.sexe">
+                        <option selected>Choisir votre sexe</option>
+                        <option value="Masculin">Masculin</option>
+                        <option value="Féminin">Féminin</option>
+                      </select>
+                      <div *ngIf="errors.sexe" class="text-danger">{{ errors.sexe }}</div>
+                    </div>
+                    <div class="mb-3" *ngIf="userObject.role === 'demandeur_d_emploi'">
+                      <label for="service" class="form-label">Type de service</label>
+                      <div *ngFor="let service of tabService" class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [value]="service.id"
+                          [checked]="OffreObject.service_ids.includes(service.id)"
+                          (change)="onCheckboxChange($event, service.id)"
+                        />
+                        <label class="form-check-label">{{ service.libelle }}</label>
+                      </div>
+                      <div *ngIf="errors.service" class="text-danger">{{ errors.service }}</div>
+                    </div>
+                    <div class="mb-3">
+                      <label for="motDePasse" class="form-label">Mot de passe</label>
+                      <input type="password" class="form-control" id="motDePasse" placeholder="Entrez votre mot de passe" name="motDePasse" [(ngModel)]="userObject.password">
+                      <div *ngIf="errors.password" class="text-danger">{{ errors.password }}</div>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="text-left mt-2">
-                <button (click)="register()" class="btn-register">S'inscrire</button>
-              </div>
-              <p class="paragraphe2 mt-3">Vous avez un compte ! <span>Connectez-vous</span></p>
-            </form>
+                <button type="button" class="btn btn-primary" (click)="register()">S'inscrire</button>
+              </form>
 
-            <!-- Message d'alerte -->
-            @if (alertMessage) {
-              <div class="mt-3 alert alert-dismissible fade js-alert" role="alert">
-                {{alertMessage}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-              </div>
-            }
           </div>
         </div>
       </div>

@@ -45,11 +45,13 @@ export class OffreService {
     }
 
     updateOffre(id: string, offreData: any): Observable<any> {
-      return this.http.post(`${apiUrl}/offres/${id}`, offreData);
+      const headers = this.getHeaders();
+      return this.http.post(`${apiUrl}/offres/${id}`, offreData,{ headers });
     }
 
     destroy(id: string, offreData: any): Observable<any> {
-      return this.http.delete(`${apiUrl}/offres/${id}`, offreData);
+      const headers = this.getHeaders();
+      return this.http.delete(`${apiUrl}/offres/${id}`, { headers });
     }
     getmesoffres(){
       const headers = this.getHeaders();

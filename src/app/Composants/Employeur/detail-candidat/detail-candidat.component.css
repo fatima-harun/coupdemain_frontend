@@ -26,7 +26,7 @@ h2,span{
   font-size: 1.8rem;
 }
 .service {
-  margin-right: 11px; 
+  margin-right: 11px;
 }
 
 .icon-jaune {
@@ -38,6 +38,120 @@ h5{
 li{
   color:#4A69BD
 }
+/* Styles pour le formulaire */
+.form-floating {
+  margin: auto;
+  padding: 1rem;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-control {
+  border-radius: 5px;
+}
+
+.form-floating label {
+  font-size: 1rem;
+  color: #333;
+}
+
+button.mt-3 {
+  background-color:#FFC107;
+  color: white;
+  border: none;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button.mt-3:hover {
+  background-color: #d87b24;
+}
+
+/* Styles pour la liste des commentaires */
+.commentaire {
+  margin: 1rem auto;
+  padding: 1rem;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.employer-info {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.employer-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 0.5rem;
+}
+
+.employer-name-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.employer-name {
+  margin: 0;
+  font-size: 1rem;
+  color: #333;
+  font-weight: bold;
+}
+
+.comment-text {
+  margin-top: 0.5rem;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+hr {
+  border: none;
+  height: 1px;
+  background-color: #ddd;
+  margin-top: 1rem;
+}
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination button {
+  background-color: #FFC107;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 10px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination button:hover {
+  background-color: #d87b24;
+}
+
+.pagination span {
+  font-size: 1rem;
+  margin: 0 10px;
+}
+
+.pagination button:disabled {
+  background-color: #ddd;
+  cursor: not-allowed;
+}
+
 @media (max-width: 768px) {
   .en_tete {
     height: 15rem;

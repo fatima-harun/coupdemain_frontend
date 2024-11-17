@@ -1,3 +1,4 @@
+import { CompteComponent } from './Composants/Admin/compte/compte.component';
 import { CompetencesComponent } from './Composants/competences/competences.component';
 import { Routes } from '@angular/router';
 import { ConnexionComponent } from './Composants/Visiteur/connexion/connexion.component';
@@ -15,6 +16,7 @@ import { ExperiencesComponent } from './Composants/experiences/experiences.compo
 import { MesoffresComponent } from './Composants/Employeur/mesoffres/mesoffres.component';
 import { DetailsOffresComponent } from './Composants/Employe/details-offres/details-offres.component';
 import { UsersComponent } from './Composants/Admin/users/users.component';
+import { StatusGuard } from './Guard/status.guard';
 
 export const routes: Routes = [
 
@@ -34,18 +36,18 @@ export const routes: Routes = [
 
     { path: 'liste-offre', component:ListeOffresComponent},
 
-    {path:'mesoffres',component:MesoffresComponent},
+    {path:'mesoffres',component:MesoffresComponent,canActivate: [StatusGuard]},
 
     //route du demandeur d'emploi
 
     // route pour les détails d'une offre avec des paramètres 'id' et service_id
     {path:'detail/:id',component:DetailOffreComponent}, //route pour les employeurs
 
-    {path:"candidats",component:CandidatsComponent},
+    {path:"candidats",component:CandidatsComponent,canActivate: [StatusGuard]},
 
-    { path: 'candidats/:candidatId', component:DetailCandidatComponent},
+    { path: 'candidats/:candidatId', component:DetailCandidatComponent,canActivate: [StatusGuard]},
 
-    {path:'profil',component:ProfilComponent},
+    {path:'profil',component:ProfilComponent,canActivate: [StatusGuard]},
 
     { path: 'competences/:competenceId/edit', component: ProfilComponent },
 
@@ -55,7 +57,11 @@ export const routes: Routes = [
 
     {path:'experience',component:ExperiencesComponent},
 
-    {path:'details/:id',component:DetailsOffresComponent}, //route pour les candidats
+    {path:'details/:id',component:DetailsOffresComponent,canActivate: [StatusGuard]}, //route pour les candidats
 
     {path:'dashboard',component:UsersComponent},
+
+    { path: 'compte', component: CompteComponent },
+
+
 ];

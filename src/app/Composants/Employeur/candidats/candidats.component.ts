@@ -32,13 +32,14 @@ export class CandidatsComponent implements OnInit {
   }
   candidats:any[] = []
   Candidat: UserModel[] = [];
+  private router = inject(Router);
   // rating= 0;
 
   // setRating(value:number){
   //   this.rating=value
   // }
 
-  constructor(private authService: AuthService, private cdr: ChangeDetectorRef, private router: Router, route: ActivatedRoute) {
+  constructor(private authService: AuthService, private cdr: ChangeDetectorRef,  route: ActivatedRoute) {
     this.route = route;
   }
   faStar=faStar

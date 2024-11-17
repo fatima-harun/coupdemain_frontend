@@ -124,44 +124,40 @@ export class DetailsOffresComponent implements OnInit {
   }
 
   postuler() {
-    if (!this.user || !this.offreId) {
-      Swal.fire('Erreur', 'Veuillez vous assurer que vous êtes connecté et que l\'offre est valide.', 'error');
+    // Vérifier si l'utilisateur est connecté
+    if (!this.user) {
+      Swal.fire('Erreur', 'Vous devez être connecté pour postuler.', 'error');
       return;
     }
-    // Construction de l'objet `candidatureData` avec toutes les propriétés requises
-    this.candidatureData = {
-      id: 0, // Vous pouvez mettre 0 ou null ici, selon votre logique
-      offre_id: this.offreId,
+
+    // Vérifier si l'utilisateur est un employeur
+    if (this.user.role === 'employeur') {
+      Swal.fire('Erreur', 'Vous êtes un employeur, vous ne pouvez pas postuler à des offres.', 'error');
+      return;
+    }
+
+    // Préparer les données de la candidature
+    const candidatureData = {
+      offre_id: this.offreId, // L'ID de l'offre doit être disponible ici
       user_id: this.user.id,
-      user: {
-        id: this.user.id,
-        photo: this.user.photo,
-        nom: this.user.nom,
-        prenom: this.user.prenom,
-        email: this.user.email,
-        nom_utilisateur: this.user.nom_utilisateur,
-        sexe: this.user.sexe,
-        role: this.user.role,
-        telephone: this.user.telephone,
-        adresse: this.user.adresse,
-        password: '', // à remplir si nécessaire
-        service_ids: this.user.service_ids || []
-      },
-      date_candidature: new Date(),
-      statut: Statut.EnCours,
-      services: this.user.services || [] // Inclut les services de l'utilisateur si disponibles
+      statut: 'EnCours',
     };
-    this.candidatureService.postuler(this.candidatureData).subscribe(
-      response => {
-        console.log('Candidature soumise avec succès:', response);
+
+    // Appeler le service pour soumettre la candidature
+    this.candidatureService.postuler(candidatureData).subscribe({
+      next: (response) => {
         Swal.fire('Succès', 'Votre candidature a été soumise avec succès.', 'success');
       },
-      error => {
-        console.error('Erreur lors de la soumission de la candidature:', error);
-        Swal.fire('Erreur', 'Impossible de soumettre votre candidature.', 'error');
-      }
-    );
+      error: (error) => {
+        if (error.status === 403) {
+          Swal.fire('Erreur', 'Vous êtes un employeur, vous ne pouvez pas postuler.', 'error');
+        } else if (error.status === 409) {
+          Swal.fire('Erreur', 'Vous avez déjà postulé à cette offre.', 'info');
+        } else {
+          Swal.fire('Erreur', 'Impossible de soumettre votre candidature.', 'error');
+        }
+      },
+    });
   }
-
 
 }

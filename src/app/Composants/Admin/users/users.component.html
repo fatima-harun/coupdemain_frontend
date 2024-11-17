@@ -1,2 +1,54 @@
-<app-header></app-header>
-<app-footer></app-footer>
+<app-headeradmin></app-headeradmin>
+<div class="table-container">
+  <h2>Liste des Utilisateurs</h2>
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Prénom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Adresse</th>
+        <th>Sexe</th>
+        <th>Pseudo</th>
+        <th>Rôle</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of tabUser">
+        <td>{{ user.nom }}</td>
+        <td>{{ user.prenom }}</td>
+        <td>{{ user.email }}</td>
+        <td>{{ user.telephone }}</td>
+        <td>{{ user.adresse }}</td>
+        <td>{{ user.sexe }}</td>
+        <td>{{ user.nom_utilisateur }}</td>
+        <td *ngFor="let role of user.roles">{{ role.name }}</td>
+        <td>
+          <span class="status-icon" (click)="toggleuserStatus(user)">
+            <i class="fas" [ngClass]="user.status ? 'fa-toggle-on' : 'fa-toggle-off'" [style.color]="user.status ? 'green' : 'red'" style="cursor: pointer;" ></i>
+          </span>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div>
+  <h2>Liste des Employeurs</h2>
+  <ul>
+    <li *ngFor="let employeur of employeurs">
+      {{ employeur.prenom }} {{ employeur.nom }}
+    </li>
+  </ul>
+</div>
+
+<div>
+  <h2>Liste des Demandeurs d'Emploi</h2>
+  <ul>
+    <li *ngFor="let employer of employers">
+      {{ employer.prenom }} {{ employer.nom }}
+    </li>
+  </ul>
+</div>
+

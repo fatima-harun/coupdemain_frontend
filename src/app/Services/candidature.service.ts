@@ -37,6 +37,9 @@ updateStatut(Id: number, statut: string) {
   const headers = this.getHeaders();
   return this.http.put(`${apiUrl}/candidatures/${Id}/statut`, { statut }, { headers });
 }
-
+getRecruter() {
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}/candidatures/recruter`,{ headers })
+}
 
 }

@@ -1,60 +1,106 @@
 import { Component, inject } from '@angular/core';
-import { Router, RouterLink, RouterModule } from '@angular/router';
+
 import { AuthService } from '../../../Services/auth.service';
 import { UserModel } from '../../../Models/user.model';
-import { FormsModule } from '@angular/forms';
+
 import { AlertShowMessage } from '../../../Services/alertMessage';
 import { Role } from '../../../Models/role.model';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { FormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../header/header.component';
-import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-connexion',
   standalone: true,
-  imports: [RouterLink, FormsModule,RouterModule,HeaderComponent],
+  imports: [RouterLink, FormsModule,RouterModule, HeaderComponent,CommonModule],
   templateUrl: './connexion.component.html',
-  styleUrl: './connexion.component.css'
+  styleUrls: ['./connexion.component.css']
 })
 export class ConnexionComponent {
-  // Injection de dependances
+  // Injection de dépendances
   private authService = inject(AuthService);
   private router = inject(Router);
 
-  // Declaration des variables
+  // Déclaration des variables
   userObject: UserModel = {
     service_ids: [],
   }; // un objet qui a pour type UserModel qui se trouve dans Models/user.model.ts
-  alertMessage: string = ""; // cette variable permettra de stocker la valeur de l'alerte
+  alertMessage: string = ""; // Cette variable permettra de stocker la valeur de l'alerte
+  errors: any = {};  // Objet pour stocker les erreurs de validation
 
-
+  // Méthode de connexion avec validation
   connexion() {
-    if (this.userObject.nom_utilisateur && this.userObject.password) {
-      this.authService.login(this.userObject).subscribe(
-        (response: any) => {
+    this.errors = {}; // Réinitialiser les erreurs à chaque soumission
 
-          console.log(response.access_token);
-          console.log("user",response.user.nom);
+    let valid = true;
 
-          if (response.user) {
-            localStorage.setItem('user', JSON.stringify(response.user));
-            localStorage.setItem('role', response.user.roles[0].name);
-            localStorage.setItem('access_token', response.access_token);
-            console.log(localStorage.getItem('role'));
-
-            if (response.user.roles) {
-              if (response.user.roles.some((role: Role) => role.name === 'admin')) {
-                window.location.href ='dashboard';
-              } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
-                window.location.href ='/offre';
-              } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {
-                window.location.href ='portail';
-              }
-            } else {
-              this.router.navigateByUrl('');
-            }
-          }
-        },
-      );
+    // Vérifier que le nom d'utilisateur est rempli
+    if (!this.userObject.nom_utilisateur) {
+      this.errors.nom_utilisateur = "Le nom d'utilisateur est requis.";
+      valid = false;
     }
+
+    // Vérifier que le mot de passe est rempli
+    if (!this.userObject.password) {
+      this.errors.password = "Le mot de passe est requis.";
+      valid = false;
+    }
+    const regex = /^[A-Za-z\s]+$/;
+    if (this.userObject.nom_utilisateur && !regex.test(this.userObject.nom_utilisateur)) {
+      this.errors.nom_utilisateur = "Le nom d'utilisateur ne doit pas contenir de chiffres.";
+      valid = false;
+  }
+  const passwordRegex = /^[A-Za-z0-9]{8}$/;
+    if (this.userObject.password && !passwordRegex.test(this.userObject.password)) {
+      this.errors.password = "Le mot de passe doit contenir exactement 8 caractères alphanumériques.";
+      valid = false;
+    }
+
+    // Si la validation échoue, ne pas envoyer la requête
+    if (!valid) {
+      return;
+    }
+
+    // Si les validations passent, procéder à la connexion
+    this.authService.login(this.userObject).subscribe(
+      (response: any) => {
+        // Vérifier le statut de l'utilisateur immédiatement après l'authentification
+        if (response.user.status === 0) {
+          // Si le compte est désactivé, redirigez vers une page d'avertissement
+          this.router.navigate(['/compte']);
+          return;
+        }
+
+        // Si le compte est actif, procéder à la sauvegarde des informations de l'utilisateur
+        console.log(response.access_token);
+        console.log("user", response.user.nom);
+
+        if (response.user) {
+          localStorage.setItem('user', JSON.stringify(response.user));
+          localStorage.setItem('role', response.user.roles[0].name);
+          localStorage.setItem('access_token', response.access_token);
+          console.log(localStorage.getItem('role'));
+
+          // Redirection en fonction du rôle de l'utilisateur
+          if (response.user.roles) {
+            if (response.user.roles.some((role: Role) => role.name === 'admin')) {
+              window.location.href = 'dashboard';
+            } else if (response.user.roles.some((role: Role) => role.name === 'employeur')) {
+              window.location.href = '/offre';
+            } else if (response.user.roles.some((role: Role) => role.name === 'demandeur_d_emploi')) {
+              window.location.href = 'portail';
+            }
+          } else {
+            this.router.navigateByUrl('');
+          }
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la connexion:', error);
+      }
+    );
   }
 }
