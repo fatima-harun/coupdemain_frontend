@@ -1,10 +1,11 @@
+import Swal from 'sweetalert2';
 import { HeaderadminComponent } from './../../../headeradmin/headeradmin.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from './../../../Services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HeaderComponent } from '../../header/header.component';
-import Swal from 'sweetalert2';
+
 
 
 @Component({
@@ -15,9 +16,13 @@ import Swal from 'sweetalert2';
   styleUrl: './users.component.css'
 })
 export class UsersComponent implements OnInit {
-  tabUser : any[] = [];
+  tabUser: any[] = [];
   employeurs: any[] = [];
   employers: any[] = [];
+
+  totalUsers: number = 0;
+  totalEmployeurs: number = 0;
+  totalEmployers: number = 0;
 
   ngOnInit(): void {
     this.fetchUser();
@@ -33,6 +38,7 @@ export class UsersComponent implements OnInit {
         console.log('Réponse de l\'API :', response);
         if (Array.isArray(response)) {
           this.tabUser = response;
+          this.totalUsers = this.tabUser.length;
           console.log('Candidats :', this.tabUser);
         } else {
           console.warn('Aucune donnée trouvée dans la réponse :', response);
@@ -68,12 +74,15 @@ export class UsersComponent implements OnInit {
   loadEmployers(): void {
     this.authService.getEmployeurs().subscribe((data) => {
       this.employeurs = data;
+      this.totalEmployeurs = this.employeurs.length;
     });
   }
 
   loadJobSeekers(): void {
     this.authService.getEmployer().subscribe((data) => {
-      this.employeurs= data;
+      this.employers = data;
+      this.totalEmployers = this.employers.length;
     });
   }
+
 }

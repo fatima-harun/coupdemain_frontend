@@ -161,11 +161,13 @@ toggleStatus(id: number): Observable<any> {
 
 // auth.service.ts
 getEmployeurs(): Observable<any> {
-  return this.http.get(`${apiUrl}/users/employeur`);
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}/users/employeur`,{ headers });
 }
 
 getEmployer(): Observable<any> {
-  return this.http.get(`${apiUrl}/users/employer`);
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}/users/employer`,{ headers });
 }
 
 }
