@@ -29,6 +29,7 @@ export class DetailCandidatComponent implements OnInit {
   candidatId: number = 0;
   CommentObject: CommentaireModel = {
     employer_id: 0,
+    note:0
   };
   isCurrentUserAuthor(commentaire: any): boolean {
     return this.candidatService.currentUserId === commentaire.employer_id;
@@ -39,10 +40,9 @@ export class DetailCandidatComponent implements OnInit {
   isEmployeur: boolean = false;
   isEmploye:boolean = false;
   commentaires: any[] = [];
-
-  pageSize: number = 5; // Nombre de commentaires par page
-  currentPage: number = 1; // Page actuelle
-  pagedComments: any[] = [];// Liste des commentaires pour la page actuelle
+  stars: boolean[] = [false, false, false, false, false];
+  currentPage = 1; // Page actuelle
+  commentsPerPage = 3; // Nombre de commentaires par page
 
   constructor(
     private route: ActivatedRoute,
@@ -77,7 +77,11 @@ export class DetailCandidatComponent implements OnInit {
     });
     this.loadCommentaires();
   }
-
+   // Fonction pour définir la note sélectionnée
+   setRating(rating: number) {
+    this.CommentObject.note = rating;
+    this.stars = this.stars.map((_, index) => index < rating); // Met à jour l'état des étoiles
+  }
   getimage(photo: string): string {
     return `http://127.0.0.1:8000/storage/${photo}`;
   }
@@ -101,12 +105,13 @@ export class DetailCandidatComponent implements OnInit {
 
     let formData = new FormData();
     formData.append('description', this.CommentObject.description);
+    formData.append('note', this.CommentObject.note.toString());
 
     this.CommentairesService.addComment(formData, this.candidatId).subscribe(
         (response) => this.showSuccess('Commentaire ajouté avec succès'),
         (error) => {
             console.error('Erreur lors de l\'ajout du commentaire:', error); // Afficher l'erreur dans la console
-            this.showError('Une erreur s\'est produite lors de l\'ajout du commentaire');
+            this.showError('Vous avez déja commenté pour ce candidat');
         }
     );
 }
@@ -231,5 +236,21 @@ confirmDelete(commentId: number): void {
     }
   });
 }
+get paginatedComments() {
+  const startIndex = (this.currentPage - 1) * this.commentsPerPage;
+  const endIndex = startIndex + this.commentsPerPage;
+  return this.commentaires.slice(startIndex, endIndex);
+}
 
+nextPage() {
+  if (this.currentPage < Math.ceil(this.commentaires.length / this.commentsPerPage)) {
+    this.currentPage++;
+  }
+}
+
+previousPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+  }
+}
 }

@@ -1,53 +1,102 @@
-.table-container {
-  max-width: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+
+.container {
+  max-width: 1200px;
 }
 
-.styled-table {
+.card {
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.canvas-container {
+  height: 200px;
+  position: relative;
+}
+
+canvas {
   width: 100%;
+  height: auto
+}
+.overlay {
+  position: relative;
+  height: 300px;
+  background-image: url('/../../../../assets/img/statistiques.jpg');
+  background-size: cover;
+  background-position: center;
+}
+.overlay-dark {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+.overlay h2 {
+  z-index: 2;
+  margin-top: 80px; /* Ajuste ici pour descendre davantage */
+  font-size: 3rem;
+}
+.table {
   border-collapse: collapse;
-  font-size: 16px;
-  text-align: left;
 }
 
-.styled-table thead tr {
-  background-color:#FED330;
-  color: #ffffff;
+.table-hover tbody tr:hover {
+  background-color: #f8f9fa
 }
 
-.styled-table th, .styled-table td {
-  padding: 12px 15px;
-  border-bottom: 1px solid #dddddd;
+.table th, .table td {
+  vertical-align: middle;
 }
 
-.styled-table tbody tr:nth-of-type(even) {
-  background-color: #f3f3f3;
+.table-dark th {
+  background-color: #FED330;
 }
 
-.styled-table tbody tr:hover {
-  background-color: #f1f1f1;
-}
-
-.status-icon {
-  font-size: 20px;
-  color: #009879;
-  cursor: pointer;
+.table-responsive {
+  overflow-x: auto;
 }
 
 .status-icon i {
-  margin: 0 5px;
+  font-size: 1.2rem;
+  cursor: pointer;
 }
 
-.status-icon .fa-toggle-on {
-  color: green;
+.user-photo {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  padding: 2px;
 }
 
-.status-icon .fa-toggle-off {
-  color: red;
-}
 canvas {
-  width: 100% !important;
-  height: 400px; /* Vous pouvez ajuster la hauteur selon vos besoins */
+  max-width: 100% ;
+  max-height: 300px;
 }
 
+@media (max-width: 768px) {
+  .card {
+    margin-bottom: 20px;
+  }
+
+  .canvas-container {
+    height: 200px;
+  }
+}
+
+@media (max-width: 576px) {
+  .table th, .table td {
+    font-size: 0.85rem;
+  }
+
+  .user-photo {
+    width: 40px;
+    height: 40px;
+  }
+}

@@ -21,6 +21,7 @@
     "@fortawesome/angular-fontawesome": "^0.14.0",
     "@fortawesome/free-solid-svg-icons": "^6.6.0",
     "bootstrap": "^5.3.3",
+    "chart.js": "^4.4.6",
     "igniteui-webcomponents": "^5.1.2",
     "ng2-search-filter": "^0.5.1",
     "ngx-pagination": "^6.0.3",

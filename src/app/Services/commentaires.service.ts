@@ -22,11 +22,12 @@ export class CommentairesService {
    // Ajoutez le commentaire
    addComment(commentaire: any, userId: number) {
     const headers = this.getHeaders(); // Ajout des headers avec le token
-    return this.http.post(`${apiUrl}/candidats/${userId}/comment`, commentaire, { headers });
+    return this.http.post(`${apiUrl}/commentaires/${userId}`, commentaire, { headers });
 }
 
-getCommentaires(userId: number): Observable<any> {
-  return this.http.get(`${apiUrl}/users/${userId}/recommandations`);
+getCommentaires(commentId: number): Observable<any> {
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}/commentaires/${commentId}`,{ headers });
 }
 editComment(commentId: number, description: string): Observable<any> {
   const headers = this.getHeaders();

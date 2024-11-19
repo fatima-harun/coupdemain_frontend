@@ -63,5 +63,4 @@ export const routes: Routes = [
 
     { path: 'compte', component: CompteComponent },
 
-
 ];

@@ -29,11 +29,11 @@
     <!-- Corps de la carte avec les détails du candidat -->
     <div class="profile-body">
       <h3> {{ candidat.prenom }} {{ candidat.nom }}</h3>
-      <fa-icon [class.rated]="candidat.rating >= 1" [icon]="faStar" (click)="setRating(candidat, 1)"></fa-icon>
+      <!-- <fa-icon [class.rated]="candidat.rating >= 1" [icon]="faStar" (click)="setRating(candidat, 1)"></fa-icon>
       <fa-icon [class.rated]="candidat.rating >= 2" [icon]="faStar" (click)="setRating(candidat, 2)"></fa-icon>
       <fa-icon [class.rated]="candidat.rating >= 3" [icon]="faStar" (click)="setRating(candidat, 3)"></fa-icon>
       <fa-icon [class.rated]="candidat.rating >= 4" [icon]="faStar" (click)="setRating(candidat, 4)"></fa-icon>
-      <fa-icon [class.rated]="candidat.rating >= 5" [icon]="faStar" (click)="setRating(candidat, 5)"></fa-icon>
+      <fa-icon [class.rated]="candidat.rating >= 5" [icon]="faStar" (click)="setRating(candidat, 5)"></fa-icon> -->
       <!-- <span>Note : {{ candidat.rating }}</span> -->
       <!-- Liste des services associés -->
       <div *ngIf="candidat.services?.length > 0; else noService">

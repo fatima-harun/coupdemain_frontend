@@ -10,9 +10,11 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./headeradmin.component.css'], // Styles associés
 })
 export class HeaderadminComponent implements OnInit {
-  userName: string = ''; // Contient le prénom de l'utilisateur
+  userName: string = '';
   isLoggedIn: boolean = false; // État de connexion
   private router = inject(Router); // Injection du Router
+  activePage: string = '';
+  isAdmin: boolean = false;
 
   constructor() {}
 
@@ -21,7 +23,7 @@ export class HeaderadminComponent implements OnInit {
     const user = localStorage.getItem('user'); // Exemple avec LocalStorage
     if (user) {
       this.isLoggedIn = true;
-      this.userName = JSON.parse(user).prenom; // Simulez un objet utilisateur avec `prenom`
+      this.userName = JSON.parse(user).prenom;
     }
   }
 
@@ -29,6 +31,9 @@ export class HeaderadminComponent implements OnInit {
   onLogout(): void {
     localStorage.removeItem('user'); // Supprimez l'utilisateur stocké
     this.isLoggedIn = false;
-    this.router.navigate(['/login']); // Redirection vers la page de connexion
+    this.router.navigate(['/login']);
+  }
+  setActivePage() {
+    this.activePage = this.router.url; // Récupère l'URL actuelle
   }
 }

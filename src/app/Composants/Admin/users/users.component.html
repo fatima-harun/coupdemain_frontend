@@ -1,54 +1,109 @@
 <app-headeradmin></app-headeradmin>
-<div class="table-container">
-  <h2>Liste des Utilisateurs</h2>
-  <table class="styled-table">
-    <thead>
-      <tr>
-        <th>Nom</th>
-        <th>Prénom</th>
-        <th>Email</th>
-        <th>Téléphone</th>
-        <th>Adresse</th>
-        <th>Sexe</th>
-        <th>Pseudo</th>
-        <th>Rôle</th>
-        <th>Statut</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let user of tabUser">
-        <td>{{ user.nom }}</td>
-        <td>{{ user.prenom }}</td>
-        <td>{{ user.email }}</td>
-        <td>{{ user.telephone }}</td>
-        <td>{{ user.adresse }}</td>
-        <td>{{ user.sexe }}</td>
-        <td>{{ user.nom_utilisateur }}</td>
-        <td *ngFor="let role of user.roles">{{ role.name }}</td>
-        <td>
-          <span class="status-icon" (click)="toggleuserStatus(user)">
-            <i class="fas" [ngClass]="user.status ? 'fa-toggle-on' : 'fa-toggle-off'" [style.color]="user.status ? 'green' : 'red'" style="cursor: pointer;" ></i>
-          </span>
-        </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-<div>
-  <h2>Liste des Employeurs</h2>
-  <ul>
-    <li *ngFor="let employeur of employeurs">
-      {{ employeur.prenom }} {{ employeur.nom }}
-    </li>
-  </ul>
-</div>
+<div class="container my-5">
+  <div class="statistics-section">
+    <div class="overlay position-relative">
+      <!-- Overlay noir semi-transparent -->
+      <div class="overlay-dark position-absolute w-100 h-100"></div>
+      <!-- Contenu au-dessus de l'overlay -->
+      <h2 class="text-white text-center py-5 position-relative">Statistiques</h2>
+    </div>
+    <!-- Section des graphiques -->
+    <div class="row mt-5">
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center">Répartition des Utilisateurs</h5>
+            <canvas #myChart></canvas>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 mb-4">
+        <div class="card shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title text-center">Taux de Recrutement</h5>
+            <canvas #pieChart></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
-<div>
-  <h2>Liste des Demandeurs d'Emploi</h2>
-  <ul>
-    <li *ngFor="let employer of employers">
-      {{ employer.prenom }} {{ employer.nom }}
-    </li>
-  </ul>
-</div>
+  <div class="card shadow-sm mt-4">
+    <div class="card-header">
+      <h5 class="mb-0">Liste des Utilisateurs</h5>
+    </div>
+    <div class="mb-4">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Rechercher par nom, prénom ou email..."
+        [(ngModel)]="searchKeyword"
+        (input)="filterUsers()"
+      />
+    </div>
+    <div class="card-body table-responsive">
+      <table class="table table-hover align-middle">
+        <thead class="table-dark">
+          <tr>
+            <th>Photo</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Téléphone</th>
+            <th>Adresse</th>
+            <th>Sexe</th>
+            <th>Pseudo</th>
+            <th>Rôle</th>
+            <th>Statut</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of paginatedUsers">
+            <td>
+              <img
+                [src]="getimage(user.photo)"
+                alt="{{ user.nom }} {{ user.prenom }}"
+                class="img-fluid rounded-circle user-photo"
+              />
+            </td>
+            <td>{{ user.nom }}</td>
+            <td>{{ user.prenom }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.telephone }}</td>
+            <td>{{ user.adresse }}</td>
+            <td>{{ user.sexe }}</td>
+            <td>{{ user.nom_utilisateur }}</td>
+            <td>
+              <span *ngFor="let role of user.roles"
+                [ngClass]="changeRoleBackground(role.name)">
+                {{ role.name }}
+              </span>
+            </td>
+            <td>
+              <span class="status-icon" (click)="toggleuserStatus(user)">
+                <i
+                  class="fas"
+                  [ngClass]="user.status ? 'fa-toggle-on' : 'fa-toggle-off'"
+                  [style.color]="user.status ? 'green' : 'red'"
+                  style="cursor: pointer"
+                ></i>
+              </span>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
+    <!-- Pagination -->
+    <div class="d-flex justify-content-between align-items-center mt-3">
+      <button class="btn btn-secondary" [disabled]="currentPage === 1" (click)="currentPage = currentPage - 1">
+        <i class="fas fa-arrow-left"></i>
+      </button>
+      <span>Page {{ currentPage }}</span>
+      <button class="btn btn-secondary" [disabled]="currentPage * usersPerPage >= filteredUsers.length"  (click)="currentPage = currentPage + 1">
+        <i class="fas fa-arrow-right"></i>
+      </button>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

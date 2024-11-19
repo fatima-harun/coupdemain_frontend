@@ -19,11 +19,12 @@ export class NotificationService {
     }
 }
 
-  getNotifications(): Observable<any> {
-    const headers = this.getHeaders();
-    return this.http.get(`${apiUrl}/notifications`,{ headers });
-  }
-  markAsRead(notificationId: number): Observable<any> {
-    return this.http.patch(`${apiUrl}/${notificationId}/lu`, {});
-  }
+getNotifications(): Observable<any> {
+  const headers = this.getHeaders();
+  return this.http.get(`${apiUrl}`, { headers });
+}
+markAsRead(notificationId: number): Observable<any> {
+  const headers = this.getHeaders();
+   return this.http.post(`${apiUrl}/${notificationId}/mark-as-read`, {}, { headers });
+}
 }

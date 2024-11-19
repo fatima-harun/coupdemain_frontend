@@ -1,0 +1,10 @@
+.body{
+  background-image: url('/../../../../assets/img/6338750.jpg');
+  background-size: contain;
+  height: 480px;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+h2,p{
+  text-align: center;
+}

@@ -23,7 +23,7 @@ private getHeaders(): HttpHeaders {
   }
 }
 
-postuler(Candidature:any){
+store(Candidature:any){
   const headers = this.getHeaders(); // Ajout des headers avec le token
       return this.http.post(`${apiUrl}/candidatures`, Candidature, { headers });
 }
@@ -39,7 +39,7 @@ updateStatut(Id: number, statut: string) {
 }
 getRecruter() {
   const headers = this.getHeaders();
-  return this.http.get(`${apiUrl}/candidatures/recruter`,{ headers })
+  return this.http.get<{ nombre_recrute: number; nombre_non_recrute: number }>(`${apiUrl}/candidatures/recruter`,{ headers });
 }
 
 }

@@ -68,12 +68,24 @@
         <form class="form-floating" *ngIf="isEmployeur">
           <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px" name="date_fin" [(ngModel)]="CommentObject.description"></textarea>
           <label for="floatingTextarea2">Faites une recommandation</label>
+          <div class="mt-3">
+            <label for="note" class="form-label">Note (1-5)</label>
+            <div class="star-rating">
+              <span *ngFor="let star of stars; let i = index"
+                    (click)="setRating(i+1)"
+                    [class.filled]="i < CommentObject.note">
+                &#9733;  <!-- Etoile pleine -->
+              </span>
+            </div>
+          </div>
           <button class="mt-3" (click)="addComment()">Envoyer</button>
         </form>
         <!-- detail-candidat.component.html -->
-        <div *ngFor="let commentaire of commentaires; let i = index" class="commentaire">
+        <div *ngFor="let commentaire of paginatedComments" class="commentaire">
           <div class="employer-info">
-            <img [src]="getimage(commentaire.employer.photo)" alt="{{ commentaire.employer.nom }} {{ commentaire.employer.prenom }}" class="employer-photo">
+            <img [src]="getimage(commentaire.employer.photo)"
+                 alt="{{ commentaire.employer.nom }} {{ commentaire.employer.prenom }}"
+                 class="employer-photo">
             <div class="employer-name-container">
               <p class="employer-name">
                 <strong>{{ commentaire.employer.prenom }} {{ commentaire.employer.nom }}</strong>
@@ -81,11 +93,43 @@
               <p class="comment-text">
                 {{ commentaire.description }}
               </p>
-             <!-- Icone de modification qui ouvre le modal -->
-<i class="fas fa-edit icon-edit ms-2" data-bs-toggle="modal" [attr.data-bs-target]="'#exampleModal'" style="cursor: pointer;" *ngIf="isEmployeur && isCurrentUserAuthor(commentaire)" (click)="openEditModal(commentaire.id, commentaire.description)"></i>
-<i class="fas fa-trash-alt icon-delete ms-2" style="cursor: pointer; color: red;" *ngIf="isEmployeur && isCurrentUserAuthor(commentaire)"  (click)="confirmDelete(commentaire.id)"></i>
-<!-- Modal pour la modification du commentaire -->
-<div class="modal fade" [id]="'exampleModal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="editingCommentId !== null && isEmployeur && isCurrentUserAuthor(commentaire)" >
+              <div class="icone">
+                <i class="fas fa-edit icon-edit"
+                   data-bs-toggle="modal"
+                   [attr.data-bs-target]="'#exampleModal'"
+                   *ngIf="isEmployeur && isCurrentUserAuthor(commentaire)"
+                   (click)="openEditModal(commentaire.id, commentaire.description)">
+                </i>
+                <i class="fas fa-trash-alt icon-delete ms-3"
+                   *ngIf="isEmployeur && isCurrentUserAuthor(commentaire)"
+                   (click)="confirmDelete(commentaire.id)">
+                </i>
+              </div>
+            </div>
+          </div>
+          <hr>
+        </div>
+
+        <!-- Boutons de navigation -->
+        <div class="pagination-buttons d-flex justify-content-between mt-4">
+          <!-- Bouton Précédent -->
+          <button class="btn btn-primary d-flex align-items-center"
+                  (click)="previousPage()"
+                  [disabled]="currentPage === 1">
+            <i class="fas fa-chevron-left me-2"></i>
+          </button>
+
+          <!-- Bouton Suivant -->
+          <button class="btn btn-primary d-flex align-items-center"
+                  (click)="nextPage()"
+                  [disabled]="currentPage >= (commentaires.length / commentsPerPage)">
+           <i class="fas fa-chevron-right ms-2"></i>
+          </button>
+        </div>
+
+
+
+<div class="modal fade" [id]="'exampleModal'" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" *ngIf="editingCommentId !== null && isEmployeur && isCurrentUserAuthor(commentaires)" >
 <div class="modal-dialog">
   <div class="modal-content">
     <div class="modal-header">
@@ -106,7 +150,5 @@
         </div>
       </div>
     </div>
-    </div>
-  </div>
-</div>
+
 <app-footer></app-footer>

@@ -151,6 +151,24 @@ hr {
   background-color: #ddd;
   cursor: not-allowed;
 }
+.icone i {
+  color:#FFC107
+}
+
+
+.star-rating {
+  font-size: 2rem;
+  color: #d3d3d3; /* Couleur grise par défaut */
+  cursor: pointer;
+}
+
+.star-rating .filled {
+  color: #fa983a; /* Couleur des étoiles pleines (orange) */
+}
+
+.star-rating span {
+  margin-right: 5px;
+}
 
 @media (max-width: 768px) {
   .en_tete {

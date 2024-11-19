@@ -1,8 +1,9 @@
 export interface CommentaireModel {
   id?: number;
   description?: string;
-  user_id?: number;
+  candidat_id?: number;
   employer_id: number;
+  note: number 
   employer?: {
     nom: string;
     photo: string;
